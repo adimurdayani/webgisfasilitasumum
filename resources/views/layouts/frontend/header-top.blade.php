@@ -1,10 +1,11 @@
 <header class="wrapper bg-gray">
     <nav class="navbar navbar-expand-lg center-logo transparent navbar-light">
         <div class="container flex-lg-row flex-nowrap align-items-center">
-            <div class="navbar-brand w-50">
+            <div class="navbar-brand w-100">
                 <a href="/">
                     <img src="{{ setting(1)->img_fav == null ? asset('assets/images/not_found.jpg') : asset('storage/public/img/'. setting(1)->img_fav) }}"
-                        srcset="{{ setting(1)->img_fav == null ? asset('assets/images/not_found.jpg') : asset('storage/public/img/'. setting(1)->img_fav) }} 1x"
+                        width="40"
+                        srcset="{{ setting(1)->img_fav == null ? asset('assets/images/not_found.jpg') : asset('storage/public/img/'. setting(1)->img_fav) }} 2x"
                         alt="{{ setting(1)->app_name }}" />
                 </a>
             </div>
