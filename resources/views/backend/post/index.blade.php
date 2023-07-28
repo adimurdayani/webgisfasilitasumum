@@ -43,15 +43,16 @@
                         <table class="table table-striped w-100" id="table-posts">
                             <thead>
                                 <tr>
-                                    <th class="text-center">No.</th>
-                                    <th class="text-center" style="width: 45%;">Post</th>
-                                    <th class="text-center">Post Type</th>
-                                    <th class="text-center">Category</th>
-                                    <th class="text-center">Post By</th>
-                                    <th class="text-center" style="width: 10%;">Visibility</th>
-                                    <th class="text-center">View</th>
-                                    <th class="text-center">Added Date</th>
-                                    <th class="text-center">Action</th>
+                                    <th class="text-center align-middle">No.</th>
+                                    <th class="text-center align-middle" style="width: 25%;">Post</th>
+                                    <th class="text-center align-middle">Post Type</th>
+                                    <th class="text-center align-middle">Category</th>
+                                    <th class="text-center align-middle" style="width: 10%;">Visibility</th>
+                                    <th class="text-center align-middle">Publish</th>
+                                    <th class="text-center align-middle">View</th>
+                                    <th class="text-center align-middle">Post By</th>
+                                    <th class="text-center align-middle">Added Date</th>
+                                    <th class="text-center align-middle">Action</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
