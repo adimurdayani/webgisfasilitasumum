@@ -21,7 +21,8 @@ class PostVideoController extends Controller
         Gate::authorize('app.posts.create-video');
         $categories = Categorie::all();
         $visibility = Visibilitie::all();
-        return view('backend.post.add-post-video', compact('categories', 'visibility'));
+        $publises = Post::getValueData('publish');
+        return view('backend.post.add-post-video', compact('categories', 'visibility', 'publises'));
     }
 
     public function store(Request $request)
@@ -89,7 +90,8 @@ class PostVideoController extends Controller
             Gate::authorize('app.posts.edit-video');
             $categories = Categorie::all();
             $visibility = Visibilitie::all();
-            return view('backend.post.edit-post-video', compact('categories', 'visibility', 'post'));
+            $publises = Post::getValueData('publish');
+            return view('backend.post.edit-post-video', compact('categories', 'visibility', 'post', 'publises'));
         }
     }
 

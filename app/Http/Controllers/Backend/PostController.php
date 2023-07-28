@@ -90,7 +90,8 @@ class PostController extends Controller
         Gate::authorize('app.posts.create');
         $categories = Categorie::all();
         $visibility = Visibilitie::all();
-        return view('backend.post.add-post', compact('categories', 'visibility'));
+        $publises = Post::getValueData('publish');
+        return view('backend.post.add-post', compact('categories', 'visibility', 'publises'));
     }
 
     public function store(Request $request)
@@ -106,9 +107,9 @@ class PostController extends Controller
             'meta_tag' => 'required|string|max:255',
         ]);
 
-        $tmpfile_img = File::where('folder', $request->image)->first();
-        if ($tmpfile_img) {
-            Storage::copy('public/img/tmp/' . $tmpfile_img->folder . '/' . $tmpfile_img->file, 'public/img/' . $tmpfile_img->folder . '/' . $tmpfile_img->file);
+        $tmpFile = File::where('folder', $request->image)->first();
+        if ($tmpFile) {
+            Storage::copy("public/img/tmp/{$tmpFile->folder}/{$tmpFile->file}", "public/img/{$tmpFile->folder}/{$tmpFile->file}");
 
             $post = Post::create([
                 'categorie_id' => $request->categorie_id,
@@ -118,7 +119,7 @@ class PostController extends Controller
                 'sub_title' => $request->sub_title,
                 'slug' => Str::slug($request->title),
                 'content' => $request->content,
-                'image' => $tmpfile_img->folder . '/' . $tmpfile_img->file,
+                'image' => "{$tmpFile->folder}/{$tmpFile->file}",
                 'image_description' => $request->image_description,
                 'meta_title' => $request->meta_title,
                 'meta_keywords' => $request->meta_keywords,
@@ -130,8 +131,8 @@ class PostController extends Controller
             ]);
             $post->visibilities()->sync((array)$request->input('visibilitie_id'));
 
-            Storage::deleteDirectory('public/img/tmp/' . $tmpfile_img->folder);
-            $tmpfile_img->delete();
+            Storage::deleteDirectory("public/img/tmp/{$tmpFile->folder}");
+            $tmpFile->delete();
 
             Session::flash('success', 'Post created successfully!');
             return redirect()->back();
@@ -150,7 +151,8 @@ class PostController extends Controller
             Gate::authorize('app.posts.edit');
             $categories = Categorie::all();
             $visibility = Visibilitie::all();
-            return view('backend.post.edit-post', compact('post', 'visibility', 'categories'));
+            $publises = Post::getValueData('publish');
+            return view('backend.post.edit-post', compact('post', 'visibility', 'categories', 'publises'));
         }
     }
 
@@ -167,10 +169,9 @@ class PostController extends Controller
             'meta_tag' => 'required|string|max:255',
         ]);
 
-        $tmpfile_img = File::where('folder', $request->image)->first();
-        if ($tmpfile_img) {
-            Storage::copy('public/img/tmp/' . $tmpfile_img->folder . '/' . $tmpfile_img->file, 'public/img/' . $tmpfile_img->folder . '/' . $tmpfile_img->file);
-            Storage::delete('public/img/' . $post->image);
+        $tmpFile = File::where('folder', $request->image)->first();
+        if ($tmpFile) {
+            Storage::delete("public/img/{$post->image}");
 
             $post->update([
                 'categorie_id' => $request->categorie_id,
@@ -180,7 +181,7 @@ class PostController extends Controller
                 'sub_title' => $request->sub_title,
                 'slug' => Str::slug($request->title),
                 'content' => $request->content,
-                'image' => $tmpfile_img->folder . '/' . $tmpfile_img->file,
+                'image' => "{$tmpFile->folder}/{$tmpFile->file}",
                 'image_description' => $request->image_description,
                 'meta_title' => $request->meta_title,
                 'meta_keywords' => $request->meta_keywords,
@@ -190,13 +191,14 @@ class PostController extends Controller
                 'type' => 'article',
                 'is_active' => $request->is_active,
             ]);
-            $post->visibilities()->sync((array)$request->input('visibilitie_id'));
 
-            Storage::deleteDirectory('public/img/tmp/' . $tmpfile_img->folder);
-            $tmpfile_img->delete();
+            if (Storage::exists("public/img/tmp/{$tmpFile->folder}/{$tmpFile->file}", "public/img/{$tmpFile->folder}/{$tmpFile->file}")) {
+                Storage::copy("public/img/tmp/{$tmpFile->folder}/{$tmpFile->file}", "public/img/{$tmpFile->folder}/{$tmpFile->file}");
+                $post->image = "{$tmpFile->folder}/{$tmpFile->file}";
+            }
 
-            Session::flash('success', 'Post changed successfully!');
-            return redirect()->back();
+            Storage::deleteDirectory("public/img/tmp/{$tmpFile->folder}");
+            $tmpFile->delete();
         } else {
             $post->update([
                 'categorie_id' => $request->categorie_id,
@@ -215,10 +217,11 @@ class PostController extends Controller
                 'type' => 'article',
                 'is_active' => $request->is_active,
             ]);
-            $post->visibilities()->sync((array)$request->input('visibilitie_id'));
-            Session::flash('success', 'Post changed successfully!');
-            return redirect()->back();
         }
+
+        $post->visibilities()->sync((array)$request->input('visibilitie_id'));
+        Session::flash('success', 'Post changed successfully!');
+        return redirect()->back();
     }
 
     public function delete(Request $request)
@@ -243,14 +246,14 @@ class PostController extends Controller
     {
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $file_image = $image->getClientOriginalName();
+            $fileName = $image->getClientOriginalName();
 
             $folder = uniqid('post', true);
-            $image->storeAs('public/img/tmp/' . $folder, $file_image);
+            $image->storeAs("public/img/tmp/{$folder}", $fileName);
 
             File::create([
                 'folder' => $folder,
-                'file' => $file_image,
+                'file' => $fileName,
             ]);
             return $folder;
         }
@@ -260,10 +263,10 @@ class PostController extends Controller
 
     public function tmpdelete_img()
     {
-        $tmp_file = File::where('folder', request()->getContent())->first();
-        if ($tmp_file) {
-            Storage::deleteDirectory('public/img/tmp/' . $tmp_file->folder);
-            $tmp_file->delete();
+        $tmpFile = File::where('folder', request()->getContent())->first();
+        if ($tmpFile) {
+            Storage::deleteDirectory("public/img/tmp/{$tmpFile->folder}");
+            $tmpFile->delete();
             return response()->json(['success' => true]);
         }
         return response()->json(['error' => 'Image not found!']);

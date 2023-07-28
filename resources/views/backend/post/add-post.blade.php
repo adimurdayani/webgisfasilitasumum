@@ -251,8 +251,9 @@
                             <div class="form-group mb-2">
                                 <label for="publish">Publish</label>
                                 <select name="publish" class="form-control">
-                                    <option value="publish">Publish</option>
-                                    <option value="draf">Draf</option>
+                                    @foreach ($publises as $publish)
+                                    <option value="{{ $publish }}">{{ $publish }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
@@ -271,4 +272,4 @@
     </div> <!-- content -->
 </div> <!-- content -->
 @endsection
-@include('backend.post.includes.js.add-js')
+@include('backend.post.includes.js.action-js')
