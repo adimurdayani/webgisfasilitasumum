@@ -30,7 +30,7 @@ class PostController extends Controller
         $posts = Post::with(['user', 'visibilities'])->orderBy('id', 'desc')->get();
         return DataTables::of($posts)
             ->editColumn('title_image', function ($post) {
-                return '<div class="form-inline"><img src="' . asset('storage/img') . '/' . $post->image . '" class="img-thumbnail m-1" title="Img Post" width="20%"> ' . $post->title . '</div>';
+                return '<div class="form-inline"><img src="' . asset('storage/public/img') . '/' . $post->image . '" class="img-thumbnail m-1" title="Img Post" width="20%"> ' . $post->title . '</div>';
             })
             ->escapeColumns([])
             ->addColumn('category', function ($post) {

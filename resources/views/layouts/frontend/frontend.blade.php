@@ -10,10 +10,10 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:url" content="{{ setting(1)->link_website }}" />
-    <meta property="og:image" content="{{ asset('storage/img/'.SiteHelper::seo_setting()->og_img) }}" />
+    <meta property="og:image" content="{{ asset('storage/public/img/'.SiteHelper::seo_setting()->og_img) }}" />
     <title>@yield('title')</title>
     <link rel="shortcut icon"
-        href="{{ setting(1)->img_fav != null ? asset('storage/img').'/'.setting(1)->img_fav : asset('assets/images/not_found.jpg') }}">
+        href="{{ setting(1)->img_fav != null ? asset('storage/public/img').'/'.setting(1)->img_fav : asset('assets/images/not_found.jpg') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend') }}/css/plugins.css">
 
     @stack('page-css-front')

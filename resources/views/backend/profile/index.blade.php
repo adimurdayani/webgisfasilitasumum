@@ -30,7 +30,7 @@
     <div class="row">
         <div class="col-lg-4 col-xl-4">
             <div class="card-box text-center">
-                <img src="{{ Auth::user()->img_user == null ? asset('assets/images/not_found.jpg') : asset('storage/img/'.Auth::user()->img_user) }}"
+                <img src="{{ Auth::user()->img_user == null ? asset('assets/images/not_found.jpg') : asset('storage/public/img/'.Auth::user()->img_user) }}"
                     class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
 
                 <h4 class="mb-0">{{ Auth::user()->name }}</h4>

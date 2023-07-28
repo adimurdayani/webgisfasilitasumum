@@ -12,7 +12,7 @@
 
     <!-- App favicon -->
     <link rel="shortcut icon"
-        href="{{ setting(1)->img_fav != null ? asset('storage/img').'/'.setting(1)->img_fav : asset('assets/images/not_found.jpg') }}">
+        href="{{ setting(1)->img_fav != null ? asset('storage/public/img').'/'.setting(1)->img_fav : asset('assets/images/not_found.jpg') }}">
 
     <link href="{{ asset('assets') }}/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet"
         type="text/css" />

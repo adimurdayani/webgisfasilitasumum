@@ -163,7 +163,7 @@
                 <div class="card-box">
                     <h4 class="header-title mb-3">OG Image</h4>
                     <div class="text-center mb-4">
-                        <img src="{{ $seo_setting->og_img != null ? asset('storage/img').'/'.$seo_setting->og_img : asset('assets/images/not_found.jpg') }}"
+                        <img src="{{ $seo_setting->og_img != null ? asset('storage/public/img').'/'.$seo_setting->og_img : asset('assets/images/not_found.jpg') }}"
                             class="img-thumbnail" alt="profile-image">
                     </div>
 

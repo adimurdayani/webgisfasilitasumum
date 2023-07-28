@@ -13,7 +13,7 @@
                             <figure class="rounded">
                                 <a href="{{ route('home.news.detail',$item_populer->slug) }}" class="views-add"
                                     data-idpost="{{ $item_populer->id }}">
-                                    <img src="{{ asset('storage/img/'.$item_populer->image) }}"
+                                    <img src="{{ asset('storage/public/img/'.$item_populer->image) }}"
                                         alt="{{ $item_populer->title }}" title="{{ $item_populer->title }}"
                                         loading="lazy">
                                 </a>

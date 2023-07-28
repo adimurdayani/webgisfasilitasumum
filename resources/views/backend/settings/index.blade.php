@@ -43,7 +43,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="text-center mb-4">
-                                    <img src="{{ $generalSetting->img_sm != null ? asset('storage/img').'/'.$generalSetting->img_sm : asset('assets/images/not_found.jpg') }}"
+                                    <img src="{{ $generalSetting->img_sm != null ? asset('storage/public/img').'/'.$generalSetting->img_sm : asset('assets/images/not_found.jpg') }}"
                                         class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
                                 </div>
 
@@ -61,7 +61,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="text-center mb-4">
-                                    <img src="{{ $generalSetting->img_lg != null ? asset('storage/img').'/'.$generalSetting->img_lg : asset('assets/images/not_found.jpg') }}"
+                                    <img src="{{ $generalSetting->img_lg != null ? asset('storage/public/img').'/'.$generalSetting->img_lg : asset('assets/images/not_found.jpg') }}"
                                         class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
                                 </div>
 
@@ -81,7 +81,7 @@
                         <hr>
 
                         <div class="text-center mb-4">
-                            <img src="{{ $generalSetting->img_user != null ? asset('storage/img').'/'.$generalSetting->img_user : asset('assets/images/not_found.jpg') }}"
+                            <img src="{{ $generalSetting->img_user != null ? asset('storage/public/img').'/'.$generalSetting->img_user : asset('assets/images/not_found.jpg') }}"
                                 class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
                         </div>
 
@@ -98,7 +98,7 @@
                         </form>
                         <hr>
                         <div class="text-center mb-4">
-                            <img src="{{ $generalSetting->img_nota != null ? asset('storage/img').'/'.$generalSetting->img_nota : asset('assets/images/not_found.jpg') }}"
+                            <img src="{{ $generalSetting->img_nota != null ? asset('storage/public/img').'/'.$generalSetting->img_nota : asset('assets/images/not_found.jpg') }}"
                                 class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
                         </div>
                         <form action="{{ route('app.settings.upload-nota',$generalSetting->id) }}" method="post">
@@ -114,7 +114,7 @@
                         </form>
                         <hr>
                         <div class="text-center mb-4">
-                            <img src="{{ $generalSetting->img_fav != null ? asset('storage/img').'/'.$generalSetting->img_fav : asset('assets/images/not_found.jpg') }}"
+                            <img src="{{ $generalSetting->img_fav != null ? asset('storage/public/img').'/'.$generalSetting->img_fav : asset('assets/images/not_found.jpg') }}"
                                 class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
                         </div>
 

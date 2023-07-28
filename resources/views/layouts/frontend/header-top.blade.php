@@ -2,13 +2,15 @@
     <nav class="navbar navbar-expand-lg center-logo transparent navbar-light">
         <div class="container flex-lg-row flex-nowrap align-items-center">
             <div class="navbar-brand w-100">
-                <a href="./index.html">
-                    <img src="./assets/img/logo.png" srcset="./assets/img/logo@2x.png 2x" alt="" />
+                <a href="/">
+                    <img src="{{ setting(1)->img_fav == null ? asset('assets/images/not_found.jpg') : asset('storage/public/img/', setting(1)->img_fav) }}"
+                        srcset="{{ setting(1)->img_fav == null ? asset('assets/images/not_found.jpg') : asset('storage/public/img/', setting(1)->img_fav) }} 2x"
+                        alt="{{ setting(1)->app_name }}" />
                 </a>
             </div>
             <div class="navbar-collapse offcanvas offcanvas-nav offcanvas-start">
                 <div class="offcanvas-header d-lg-none">
-                    <h3 class="text-white fs-30 mb-0">Sandbox</h3>
+                    <h3 class="text-white fs-30 mb-0">WEBGIS</h3>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
                         aria-label="Close"></button>
                 </div>
@@ -23,14 +25,14 @@
                     <!-- /.navbar-nav -->
                     <div class="offcanvas-footer d-lg-none">
                         <div>
-                            <a href="mailto:first.last@email.com" class="link-inverse">info@email.com</a>
-                            <br /> 00 (123) 456 78 90 <br />
+                            <a href="mailto:{{ setting(1)->email }}" class="link-inverse">{{ setting(1)->email }}</a>
+                            <br /> {{ setting(1)->phone }} <br />
                             <nav class="nav social social-white mt-4">
-                                <a href="#"><i class="uil uil-twitter"></i></a>
-                                <a href="#"><i class="uil uil-facebook-f"></i></a>
-                                <a href="#"><i class="uil uil-dribbble"></i></a>
-                                <a href="#"><i class="uil uil-instagram"></i></a>
-                                <a href="#"><i class="uil uil-youtube"></i></a>
+                                <a href="{{ setting(1)->link_twitter }}"><i class="uil uil-twitter"></i></a>
+                                <a href="{{ setting(1)->link_facebook }}"><i class="uil uil-facebook-f"></i></a>
+                                <a href="{{ setting(1)->link_whatsapp }}"><i class="uil uil-whatsapp"></i></a>
+                                <a href="{{ setting(1)->link_instagram }}"><i class="uil uil-instagram"></i></a>
+                                <a href="{{ setting(1)->link_youtube }}"><i class="uil uil-youtube"></i></a>
                             </nav>
                             <!-- /.social -->
                         </div>

@@ -27,7 +27,7 @@ class GaleryController extends Controller
         $galeries = Galerie::orderBy('id', 'desc')->get();
         return DataTables::of($galeries)
             ->editColumn('title_image', function ($galeri) {
-                return '<div class="form-inline"><img src="' . asset('storage/img') . '/' . $galeri->image . '" class="img-thumbnail m-1" title="Img Post" width="20%"> ' . $galeri->title . '</div>';
+                return '<div class="form-inline"><img src="' . asset('storage/public/img') . '/' . $galeri->image . '" class="img-thumbnail m-1" title="Img Post" width="20%"> ' . $galeri->title . '</div>';
             })
             ->escapeColumns([])
             ->addColumn('tabs', function ($galeries) {

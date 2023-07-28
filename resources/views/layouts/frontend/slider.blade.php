@@ -5,7 +5,7 @@
             <div class="swiper-wrapper">
                 @foreach ($carousels as $carousel)
                 <div class="swiper-slide bg-overlay bg-overlay-400 bg-dark bg-image"
-                    data-image-src="{{ asset('storage/img/'.$carousel->image) }}">
+                    data-image-src="{{ asset('storage/public/img/'.$carousel->image) }}">
                     <div class="container h-100">
                         <div class="row h-100">
                             <div

@@ -5,8 +5,9 @@
 
         <!-- User box -->
         <div class="user-box text-center">
-            <img src="{{ Auth::user()->img_user == null ? asset('assets/images/not_found.jpg') : asset('storage/img/'.Auth::user()->img_user) }}"
-                alt="user-img" title="Mat Helme" class="rounded-circle avatar-md">
+            <img src="{{ Auth::user()->img_user == null ? asset('assets/images/not_found.jpg') : asset('storage/public/img/'.Auth::user()->img_user) }}"
+                alt="{{ Str::slug(Auth::user()->name) }}" title="{{ Auth::user()->name }}"
+                class="rounded-circle avatar-md">
             <div class="dropdown">
                 <a href="javascript: void(0);" class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block"
                     data-toggle="dropdown">{{ Auth::user()->name }}</a>

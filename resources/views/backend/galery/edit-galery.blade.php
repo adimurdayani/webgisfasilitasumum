@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="text-center mb-2">
-                                        <img src="{{ asset('storage/img/'.$galerie->image) }}"
+                                        <img src="{{ asset('storage/public/img/'.$galerie->image) }}"
                                             alt="{{ $galerie->image }}" class="img-thumbnail" width="30%">
                                     </div>
 

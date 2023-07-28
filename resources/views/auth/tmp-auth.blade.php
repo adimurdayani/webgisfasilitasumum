@@ -14,14 +14,14 @@
                             <div class="auth-logo">
                                 <a href="/" class="logo logo-dark text-center">
                                     <span class="logo-lg">
-                                        <img src="{{ setting('1')->img_lg != null ? asset('storage/img').'/'.setting('1')->img_lg : asset('assets/images/not_found.jpg') }}"
+                                        <img src="{{ setting('1')->img_lg != null ? asset('storage/public/img').'/'.setting('1')->img_lg : asset('assets/images/not_found.jpg') }}"
                                             alt="" height="50">
                                     </span>
                                 </a>
 
                                 <a href="/" class="logo logo-light text-center">
                                     <span class="logo-lg">
-                                        <img src="{{ setting('1')->img_lg != null ? asset('storage/img').'/'.setting('1')->img_lg : asset('assets/images/not_found.jpg') }}"
+                                        <img src="{{ setting('1')->img_lg != null ? asset('storage/public/img').'/'.setting('1')->img_lg : asset('assets/images/not_found.jpg') }}"
                                             alt="" height="50">
                                     </span>
                                 </a>

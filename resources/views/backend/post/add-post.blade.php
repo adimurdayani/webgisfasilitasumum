@@ -34,12 +34,14 @@
         <!-- end page title -->
 
         @if (count($errors) > 0)
+        @foreach ($errors as $error)
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            {{ $errors }}
+            {{ $error }}
         </div>
+        @endforeach
         @endif
 
         <form action="{{ route('app.posts.store') }}" method="post" enctype="multipart/form-data">

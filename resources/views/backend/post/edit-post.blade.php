@@ -34,12 +34,14 @@
         <!-- end page title -->
 
         @if (count($errors) > 0)
+        @foreach ($errors as $error)
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            {{ $errors }}
+            {{ $error }}
         </div>
+        @endforeach
         @endif
 
         <form action="{{ route('app.posts.update',$post->id) }}" method="post" enctype="multipart/form-data">
@@ -208,7 +210,7 @@
                         </div>
                         <div class="ribbon-content">
                             <div class="text-center">
-                                <img src="{{ asset('storage/img/'.$post->image) }}" class="img-thumbnail mb-2"
+                                <img src="{{ asset('storage/public/img/'.$post->image) }}" class="img-thumbnail mb-2"
                                     width="50%" alt="Image Post" loading="lazy">
                             </div>
 

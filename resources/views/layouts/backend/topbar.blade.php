@@ -23,7 +23,7 @@
             <li class="dropdown notification-list topbar-dropdown">
                 <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown"
                     href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <img src="{{ Auth::user()->img_user == null ? asset('assets/images/not_found.jpg') : asset('storage/img/'.Auth::user()->img_user) }}"
+                    <img src="{{ Auth::user()->img_user == null ? asset('assets/images/not_found.jpg') : asset('storage/public/img/'.Auth::user()->img_user) }}"
                         alt="user-image" class="rounded-circle">
                     <span class="pro-user-name ml-1">
                         {{ Auth::user()->name }} <i class="mdi mdi-chevron-down"></i>
@@ -62,12 +62,12 @@
         <div class="logo-box">
             <a href="{{ route('app.dashboard') }}" class="logo logo-dark text-center">
                 <span class="logo-sm">
-                    <img src="{{ setting('1')->img_sm != null ? asset('storage/img').'/'.setting('1')->img_sm : asset('assets/images/not_found.jpg') }}"
+                    <img src="{{ setting('1')->img_sm != null ? asset('storage/public/img').'/'.setting('1')->img_sm : asset('assets/images/not_found.jpg') }}"
                         alt="" height="22">
                     <!-- <span class="logo-lg-text-light">UBold</span> -->
                 </span>
                 <span class="logo-lg">
-                    <img src="{{ setting('1')->img_lg != null ? asset('storage/img').'/'.setting('1')->img_lg : asset('assets/images/not_found.jpg') }}"
+                    <img src="{{ setting('1')->img_lg != null ? asset('storage/public/img').'/'.setting('1')->img_lg : asset('assets/images/not_found.jpg') }}"
                         alt="" height="50">
                     <!-- <span class="logo-lg-text-light">U</span> -->
                 </span>
@@ -75,11 +75,11 @@
 
             <a href="{{ route('app.dashboard') }}" class="logo logo-light text-center">
                 <span class="logo-sm">
-                    <img src="{{ setting('1')->img_sm != null ? asset('storage/img').'/'.setting('1')->img_sm : asset('assets/images/not_found.jpg') }}"
+                    <img src="{{ setting('1')->img_sm != null ? asset('storage/public/img').'/'.setting('1')->img_sm : asset('assets/images/not_found.jpg') }}"
                         alt="" height="22">
                 </span>
                 <span class="logo-lg">
-                    <img src="{{ setting('1')->img_lg != null ? asset('storage/img').'/'.setting('1')->img_lg : asset('assets/images/not_found.jpg') }}"
+                    <img src="{{ setting('1')->img_lg != null ? asset('storage/public/img').'/'.setting('1')->img_lg : asset('assets/images/not_found.jpg') }}"
                         alt="" height="50">
                 </span>
             </a>
