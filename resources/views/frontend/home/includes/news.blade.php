@@ -28,7 +28,7 @@
                                             <figure class="card-img-top overlay overlay-1 hover-scale">
                                                 <a href="{{ route('home.news.detail',$post->slug) }}" class="views-add"
                                                     data-idpost="{{ $post->id }}">
-                                                    <img src="{{ asset('assets/frontend') }}/img/photos/b4.jpg"
+                                                    <img src="{{ $post->image == null ? asset('assets/images/not_found.jpg') : asset('storage/public/img/'. $post->image) }}"
                                                         alt="{{ $post->title }}" title="{{ $post->title }}" />
                                                 </a>
                                                 <figcaption>
