@@ -24,6 +24,25 @@
         padding: 10px;
         border-radius: 3px;
     }
+
+    /* Gaya untuk popup */
+    .custom-popup .leaflet-popup-content-wrapper {
+        width: 300px;
+        /* Ganti nilai lebar sesuai preferensi Anda */
+    }
+
+    /* Gaya untuk judul popup */
+    .custom-popup .leaflet-popup-content h5 {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    /* Gaya untuk konten popup */
+    .custom-popup .leaflet-popup-content p {
+        font-size: 16px;
+        line-height: 1.6;
+    }
 </style>
 @endpush
 
@@ -76,7 +95,7 @@
         </div> <!-- container -->
 
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <div class="card-box ribbon-box">
                     <div class="ribbon ribbon-blue float-left mb-3"><i class="mdi mdi-database mr-1"></i>
                         Data Table @yield('title')
@@ -102,7 +121,7 @@
                     </div>
                 </div> <!-- end card-box -->
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <div class="card-box ribbon-box">
                     <div class="ribbon ribbon-blue float-left mb-3"><i class="mdi mdi-database mr-1"></i>
                         Data Table File @yield('title')

@@ -80,17 +80,12 @@
                         <table class="table table-striped w-100" id="table-maps">
                             <thead>
                                 <tr>
-                                    <th class="text-center align-middle" rowspan="2">No.</th>
-                                    <th class="text-center align-middle" rowspan="2">Regions</th>
-                                    <th class="text-center align-middle" colspan="2">Populations</th>
-                                    <th class="text-center align-middle" rowspan="2">Description</th>
-                                    <th class="text-center align-middle" rowspan="2">Properties</th>
-                                    <th class="text-center align-middle" rowspan="2">Added At</th>
-                                    <th class="text-center align-middle" rowspan="2"></th>
-                                </tr>
-                                <tr>
-                                    <td class="text-center align-middle">Woman</td>
-                                    <td class="text-center align-middle">Man</td>
+                                    <th class="text-center">No.</th>
+                                    <th class="text-center">Kecamatan</th>
+                                    <th class="text-center">Kelurahan/Desa</th>
+                                    <th class="text-center">Properties</th>
+                                    <th class="text-center">Added At</th>
+                                    <th class="text-center"></th>
                                 </tr>
                             </thead>
                             <tbody></tbody>

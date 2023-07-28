@@ -12,6 +12,36 @@
 <link href="{{ asset('assets') }}/libs/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet"
     type="text/css" />
 
+<link href="{{ asset('assets') }}/filepond/filepond.css" rel="stylesheet" />
+<link href="{{ asset('assets') }}/filepond/filepond-plugin-image-preview.css" rel="stylesheet" />
+<style>
+    #coordinte_hide {
+        display: none;
+    }
+
+    #file_div {
+        display: none;
+    }
+
+    /* Gaya untuk popup */
+    .custom-popup .leaflet-popup-content-wrapper {
+        width: 300px;
+        /* Ganti nilai lebar sesuai preferensi Anda */
+    }
+
+    /* Gaya untuk judul popup */
+    .custom-popup .leaflet-popup-content h5 {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    /* Gaya untuk konten popup */
+    .custom-popup .leaflet-popup-content p {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+</style>
 @endpush
 
 @section('content')
@@ -62,11 +92,25 @@
                     </div>
 
                     <div class="ribbon-content">
-                        <form action="{{ route('app.coordinates.update',$coordinate->id) }}" method="post">
+                        <form action="{{ route('app.coordinates.update',$coordinate->id) }}" method="post"
+                            enctype="multipart/form-data">
                             @csrf
                             @method('put')
 
-                            <div id="coordinte_hide">
+                            <div class="form-group mb-3">
+                                <label for="type">Type Input Data <span class="text-danger">*</span></label>
+                                <select name="type" class="form-control"
+                                    onchange="showDiv('coordinte_hide','file_div', this)">
+                                    <option value="">-- Choose --</option>
+                                    @foreach ($type as $item_type)
+                                    <option value="{{ $item_type }}" {{ $coordinate->type == $item_type ? 'selected' :
+                                        '' }}>{{ $item_type }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div id="coordinte_hide"
+                                style="display: {{ $coordinate->type == 'coordinate'?'block':'' }}">
                                 <div class="form-group mb-3">
                                     <label for="region_id">Kecamatan <span class="text-danger">*</span></label>
                                     <select name="region_id"
@@ -75,8 +119,7 @@
                                         <option value="">-- Choose --</option>
                                         @foreach ($regions as $region)
                                         <option value="{{ $region->id }}" {{ $coordinate->region_id == $region->id ?
-                                            'selected'
-                                            : '' }}>{{ $region->name }}</option>
+                                            'selected' : '' }}>{{ $region->name }}</option>
                                         @endforeach
                                     </select>
 
@@ -88,17 +131,31 @@
                                 </div>
 
                                 <div class="form-group mb-3">
-                                    <label for="education_id">Pendidikan <span class="text-danger">*</span></label>
+                                    <label for="village_id">Kelurahan/Desa <span class="text-danger">*</span></label>
+                                    <select name="village_id"
+                                        class="form-control @error('village_id') is-invalid @enderror" required
+                                        data-toggle="select2">
+                                        <option value="{{ $coordinate->village_id }}" {{ $coordinate->region_id ==
+                                            $region->id ?
+                                            'selected' : '' }}>{{ $coordinate->village->name }}</option>
+                                    </select>
+
+                                    @error('village_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="education_id">Fasilitas Umum <span class="text-danger">*</span></label>
                                     <select name="education_id"
                                         class="form-control @error('education_id') is-invalid @enderror" required
                                         data-toggle="select2">
                                         <option value="">-- Choose --</option>
                                         @foreach ($educations as $education)
                                         <option value="{{ $education->id }}" {{ $coordinate->education_id ==
-                                            $education->id
-                                            ?
-                                            'selected'
-                                            : '' }}>{{ $education->name }}</option>
+                                            $education->id ? 'selected' : '' }}>{{ $education->name }}</option>
                                         @endforeach
                                     </select>
 
@@ -179,10 +236,78 @@
                                     @enderror
                                 </div>
 
+                                <div class="form-group mb-3">
+                                    <label for="geojson">Upload Gambar</label>
+                                    <input type="file" name="image">
+                                </div>
+
                                 <div class="text-right">
                                     <button type="submit" class="btn btn-rounded btn-sm btn-warning"><i
                                             class="fe-save"></i>
                                         Save Changes</button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <form action="{{ route('app.coordinates.update-file',$coordinate->id) }}" method="post"
+                            enctype="multipart/form-data">
+                            @csrf
+                            @method('put')
+                            <div id="file_div">
+
+                                <div class="form-group mb-3">
+                                    <label for="name">Name <span class="text-danger">*</span></label>
+                                    <input type="text" name="name" class="form-control" value="{{ old('name') }}"
+                                        placeholder="Enter name">
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="description">Description</label>
+                                    <textarea rows="5" name="description" class="form-control"
+                                        placeholder="Enter description">{!! old('description') !!}</textarea>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="color">Color Marker</label>
+                                    <input type="text" name="color"
+                                        class="form-control @error('color') is-invalid @enderror horizontal-colorpicker"
+                                        value="{{ '#8fff00' ?? old('color') }}">
+
+                                    @error('color')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="icon_marker">Icon Marker</label>
+                                    <input type="text" name="icon_marker"
+                                        class="form-control @error('icon_marker') is-invalid @enderror"
+                                        value="{{ old('icon_marker') }}">
+
+                                    @error('icon_marker')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="geojson">Upload File GeoJSON</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" name="geojson" required
+                                                accept="application/json,.geojson">
+                                            <label class="custom-file-label" for="geojson">Choose file</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="text-right">
+                                    <button type="submit" class="btn btn-rounded btn-sm btn-blue"><i
+                                            class="fe-save"></i>
+                                        Save</button>
                                 </div>
                             </div>
                         </form>

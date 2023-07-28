@@ -30,6 +30,7 @@ use App\Http\Controllers\Backend\ThemeController;
 use App\Http\Controllers\Backend\VisibilityController;
 use App\Http\Controllers\Backend\WidgetController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Backend\VillageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
@@ -116,6 +117,7 @@ Route::get('/map-list/create', [MapController::class, 'create'])->name('maps.cre
 Route::post('/map-list/store', [MapController::class, 'store'])->name('maps.store');
 Route::get('/map-list/{map}/edit', [MapController::class, 'edit'])->name('maps.edit');
 Route::put('/map-list/{map}/update', [MapController::class, 'update'])->name('maps.update');
+Route::get('/map-list/{region}/village', [MapController::class, 'village'])->name('maps.village');
 Route::delete('/map-list/delete', [MapController::class, 'delete'])->name('maps.delete');
 
 // Region
@@ -125,6 +127,14 @@ Route::post('/region/create', [RegionController::class, 'create'])->name('region
 Route::get('/region/show', [RegionController::class, 'show'])->name('regions.show');
 Route::post('/region/edit', [RegionController::class, 'edit'])->name('regions.edit');
 Route::delete('/region/delete', [RegionController::class, 'delete'])->name('regions.delete');
+
+// Village
+Route::get('/village', [VillageController::class, 'index'])->name('villages.index');
+Route::get('/village/load-data', [VillageController::class, 'load_data'])->name('villages.load-data');
+Route::post('/village/create', [VillageController::class, 'create'])->name('villages.create');
+Route::get('/village/{village}/edit', [VillageController::class, 'edit'])->name('villages.edit');
+Route::post('/village/update', [VillageController::class, 'update'])->name('villages.update');
+Route::delete('/village/delete', [VillageController::class, 'delete'])->name('villages.delete');
 
 // Education
 Route::get('/education', [EducationController::class, 'index'])->name('educations.index');
@@ -146,6 +156,8 @@ Route::get('/coordinate/{coordinate}/edit/type', [CoordinateController::class, '
 Route::put('/coordinate/{coordinate}/update', [CoordinateController::class, 'update'])->name('coordinates.update');
 Route::put('/coordinate/{coordinate}/update-file', [CoordinateController::class, 'update_file'])->name('coordinates.update-file');
 Route::delete('/coordinate/delete', [CoordinateController::class, 'delete'])->name('coordinates.delete');
+Route::post('/coordinate/tmp-upload', [CoordinateController::class, 'tmpupload_img'])->name('coordinates.tmpupload-img');
+Route::delete('/coordinate/tmp-upload', [CoordinateController::class, 'tmpdelete_img'])->name('coordinates.tmpdelete');
 
 // modules
 Route::get('/module', [ModuleController::class, 'index'])->name('modules.index');

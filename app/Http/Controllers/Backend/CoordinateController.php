@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Coordinate;
 use App\Models\Education;
+use App\Models\File;
 use App\Models\Map;
 use App\Models\Region;
 use Carbon\Carbon;
@@ -60,7 +61,7 @@ class CoordinateController extends Controller
         $regions = Region::orderBy('id', 'desc')->get();
         $coordinates = Coordinate::all();
         $maps = Map::all();
-        $type = ['file', 'coordinte'];
+        $type = ['file', 'coordinate'];
         return view('backend.map-latlng.add-coordinate', compact('educations', 'regions', 'coordinates', 'maps', 'type'));
     }
 
@@ -68,25 +69,41 @@ class CoordinateController extends Controller
     {
         $this->validate($request, [
             'region_id' => 'required|integer',
+            'village_id' => 'required|integer',
             'education_id' => 'required|integer',
             'name' => 'required|string|max:255',
             'lat' => 'required',
             'lon' => 'required',
         ]);
 
-        Coordinate::create([
-            'region_id' => $request->region_id,
-            'education_id' => $request->education_id,
-            'name' => $request->name,
-            'description' => $request->description,
-            'lat' => $request->lat,
-            'lon' => $request->lon,
-            'color' => $request->color,
-            'icon_marker' => $request->icon_marker,
-            'type' => 'coordinate',
-        ]);
-        Session::flash('success', 'Coordinate created successfully!');
-        return back();
+        $tmpfile_img = File::where('folder', $request->image)->first();
+
+        if ($tmpfile_img) {
+            Storage::copy('public/img/tmp/' . $tmpfile_img->folder . '/' . $tmpfile_img->file, 'public/img/' . $tmpfile_img->folder . '/' . $tmpfile_img->file);
+
+            Coordinate::create([
+                'region_id' => $request->region_id,
+                'village_id' => $request->village_id,
+                'education_id' => $request->education_id,
+                'name' => $request->name,
+                'description' => $request->description,
+                'lat' => $request->lat,
+                'lon' => $request->lon,
+                'color' => $request->color,
+                'icon_marker' => $request->icon_marker,
+                'type' => 'coordinate',
+                'image' => $tmpfile_img->folder . '/' . $tmpfile_img->file,
+            ]);
+
+            Storage::deleteDirectory('public/img/tmp/' . $tmpfile_img->folder);
+            $tmpfile_img->delete();
+
+            Session::flash('success', 'Coordinate created successfully!');
+            return back();
+        } else {
+            Session::flash('error', 'Coordinate gagal disimpan!');
+            return back();
+        }
     }
 
     public function store_file(Request $request)
@@ -125,9 +142,10 @@ class CoordinateController extends Controller
             Gate::authorize('app.coordinates.edit');
             $educations = Education::orderBy('id', 'desc')->get();
             $regions = Region::orderBy('id', 'desc')->get();
-            $coordinate = Coordinate::all();
+            $coordinates = Coordinate::all();
             $maps = Map::all();
-            return view('backend.map-latlng.edit-coordinate', compact('educations', 'regions', 'coordinates', 'maps', 'coordinate'));
+            $type = ['file', 'coordinate'];
+            return view('backend.map-latlng.edit-coordinate', compact('educations', 'regions', 'coordinates', 'maps', 'coordinate', 'type'));
         }
     }
 
@@ -148,22 +166,48 @@ class CoordinateController extends Controller
     {
         $this->validate($request, [
             'region_id' => 'required|integer',
+            'village_id' => 'required|integer',
             'education_id' => 'required|integer',
             'name' => 'required|string|max:255',
             'lat' => 'required',
             'lon' => 'required',
         ]);
 
-        $coordinate->update([
-            'region_id' => $request->region_id,
-            'education_id' => $request->education_id,
-            'name' => $request->name,
-            'description' => $request->description,
-            'lat' => $request->lat,
-            'lon' => $request->lon,
-            'color' => $request->color,
-            'icon_marker' => $request->icon_marker,
-        ]);
+        $tmpfile_img = File::where('folder', $request->image)->first();
+        if ($tmpfile_img) {
+            Storage::copy('public/img/tmp/' . $tmpfile_img->folder . '/' . $tmpfile_img->file, 'public/img/' . $tmpfile_img->folder . '/' . $tmpfile_img->file);
+            Storage::delete('public/img/' . $coordinate->image);
+
+            $coordinate->update([
+                'region_id' => $request->region_id,
+                'village_id' => $request->village_id,
+                'education_id' => $request->education_id,
+                'name' => $request->name,
+                'description' => $request->description,
+                'lat' => $request->lat,
+                'lon' => $request->lon,
+                'color' => $request->color,
+                'icon_marker' => $request->icon_marker,
+                'image' => $tmpfile_img->folder . '/' . $tmpfile_img->file,
+            ]);
+
+            Storage::deleteDirectory('public/img/tmp/' . $tmpfile_img->folder);
+            $tmpfile_img->delete();
+        } else {
+            $coordinate->update([
+                'region_id' => $request->region_id,
+                'village_id' => $request->village_id,
+                'education_id' => $request->education_id,
+                'name' => $request->name,
+                'description' => $request->description,
+                'lat' => $request->lat,
+                'lon' => $request->lon,
+                'color' => $request->color,
+                'icon_marker' => $request->icon_marker,
+            ]);
+        }
+
+
         Session::flash('success', 'Coordinate changed successfully!');
         return back();
     }
@@ -210,5 +254,35 @@ class CoordinateController extends Controller
             return response()->json(['success' => 'Coordinate deleted successfully!']);
         }
         return response()->json(['error' => 'Coordinate not found!']);
+    }
+
+    public function tmpupload_img(Request $request)
+    {
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $file_image = $image->getClientOriginalName();
+
+            $folder = uniqid('post', true);
+            $image->storeAs('public/img/tmp/' . $folder, $file_image);
+
+            File::create([
+                'folder' => $folder,
+                'file' => $file_image,
+            ]);
+            return $folder;
+        }
+
+        return response()->json(['error' => 'Image not found!']);
+    }
+
+    public function tmpdelete_img()
+    {
+        $tmp_file = File::where('folder', request()->getContent())->first();
+        if ($tmp_file) {
+            Storage::deleteDirectory('public/img/tmp/' . $tmp_file->folder);
+            $tmp_file->delete();
+            return response()->json(['success' => true]);
+        }
+        return response()->json(['error' => 'Image not found!']);
     }
 }

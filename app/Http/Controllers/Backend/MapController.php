@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Coordinate;
 use App\Models\Map;
 use App\Models\Region;
+use App\Models\Village;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -31,11 +32,8 @@ class MapController extends Controller
             ->addColumn('region', function ($maps) {
                 return $maps->region->name;
             })
-            ->addColumn('woman', function ($maps) {
-                return number_format($maps->woman, 0);
-            })
-            ->addColumn('man', function ($maps) {
-                return number_format($maps->man, 0);
+            ->addColumn('village', function ($maps) {
+                return $maps->village->name;
             })
             ->addColumn('created_at', function ($maps) {
                 return Carbon::parse($maps->created_at)->locale('id')->diffForHumans();
@@ -51,10 +49,21 @@ class MapController extends Controller
         return view('backend.maps.add-map', compact('regions', 'maps'));
     }
 
+    public function village(Region $region)
+    {
+        if ($region) {
+            $villages = Village::orderBy('id', 'desc')->where('region_id', $region->id)->get();
+            return response()->json($villages);
+        } else {
+            return response()->json(['error' => 'Data tidak ditemukan']);
+        }
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [
             'region_id' => 'required|integer',
+            'village_id' => 'required|integer',
         ]);
 
         if ($request->hasFile('geojson')) {
@@ -64,8 +73,7 @@ class MapController extends Controller
 
             Map::create([
                 'region_id' => $request->region_id,
-                'woman' => $request->woman,
-                'man' => $request->man,
+                'village_id' => $request->village_id,
                 'color' => $request->color,
                 'geojson' => $file_geojson
             ]);
@@ -95,6 +103,7 @@ class MapController extends Controller
     {
         $this->validate($request, [
             'region_id' => 'required|integer',
+            'village_id' => 'required|integer',
         ]);
 
         Storage::delete('public/geojson/' . $map->geojson);
@@ -106,8 +115,7 @@ class MapController extends Controller
 
             $map->update([
                 'region_id' => $request->region_id,
-                'woman' => $request->woman,
-                'man' => $request->man,
+                'village_id' => $request->village_id,
                 'color' => $request->color,
                 'geojson' => $file_geojson
             ]);
@@ -118,8 +126,7 @@ class MapController extends Controller
         } else {
             $map->update([
                 'region_id' => $request->region_id,
-                'woman' => $request->woman,
-                'man' => $request->man,
+                'village_id' => $request->village_id,
                 'color' => $request->color,
             ]);
             Session::flash('success', 'Map changed successfully!');

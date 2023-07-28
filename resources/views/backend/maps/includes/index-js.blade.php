@@ -9,7 +9,7 @@
 <script>
     L.mapbox.accessToken = 'pk.eyJ1IjoiYWRpbXVyZGF5YW5pIiwiYSI6ImNrcmdyNG9oazBrOTIydnFuc21kYW53YjIifQ.kKTX_r3f99B-LTG5XKmUHA';
     var map = L.mapbox.map('map')
-        .setView([-3.0149382,120.1824746], 9)
+        .setView([-2.83220731175784,120.19631465218663], 11)
         .addControl(L.mapbox.geocoderControl('mapbox.places',{
             autocomplete: true 
         }));
@@ -54,7 +54,57 @@
         }).addTo({{ $map->region->slug }});
 
         geoLayer.eachLayer(function(layer) {
-            layer.bindPopup("{{ $map->region->name }}");
+            var properties = layer.feature.properties;
+            var popupContent = `
+            <div class="container pt-3">
+                <table class="table table-bordered w-100">
+                    <thead>
+                        <tr>
+                            <th class="p-1">Provinsi</th>
+                            <th class="p-1">${properties.PROVINSI}</th>
+                        </tr>
+                        <tr>
+                            <th class="p-1">Kabupaten</th>
+                            <th class="p-1">${properties.KAB_KOTA}</th>
+                        </tr>
+                        <tr>
+                            <th class="p-1">Kecamatan</th>
+                            <th class="p-1">${properties.KECAMATAN}</th>
+                        </tr>
+                        <tr>
+                            <th class="p-1">Kelurahan/Desa</th>
+                            <th class="p-1">${properties.DESA_KELUR}</th>
+                        </tr>
+                        <tr>
+                            <th class="p-1">Jumlah Penduduk</th>
+                            <th class="p-1">${properties.JUMLAH_PEN}</th>
+                        </tr>
+                        <tr>
+                            <th class="p-1">Jumlah KK</th>
+                            <th class="p-1">${properties.JUMLAH_KK}</th>
+                        </tr>
+                        <tr>
+                            <th class="p-1">Jumlah Pria</th>
+                            <th class="p-1">${properties.PRIA}</th>
+                        </tr>
+                        <tr>
+                            <th class="p-1">Jumlah Perempuan</th>
+                            <th class="p-1">${properties.WANITA}</th>
+                        </tr>
+                        <tr>
+                            <th class="p-1">Luas Wilayah</th>
+                            <th class="p-1">${properties.LUAS_WILAY}</th>
+                        </tr>
+                        <tr>
+                            <th class="p-1">Kepadatan</th>
+                            <th class="p-1">${properties.KEPADATAN}</th>
+                        </tr>
+                    </thead>    
+                </table>
+            </div>
+            `;
+
+            layer.bindPopup(popupContent);
         });
     });
 
@@ -93,9 +143,7 @@
                     return meta.row + meta.settings._iDisplayStart + 1;
                 } },
                 { data: 'region', name: 'region' },
-                { data: 'woman', name: 'woman', className:'text-center' },
-                { data: 'man', name: 'man', className:'text-center' },
-                { data: 'description', name: 'description' },
+                { data: 'village', name: 'village' },
                 { data: 'color', name: 'color', className:'text-center' },
                 { data: 'created_at', name: 'created_at', className:'text-center' },
                 { data: 'id', name: 'id', className:'text-center', render:function(data){

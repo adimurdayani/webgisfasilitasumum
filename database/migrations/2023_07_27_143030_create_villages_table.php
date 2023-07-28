@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMapsTable extends Migration
+class CreateVillagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateMapsTable extends Migration
      */
     public function up()
     {
-        Schema::create('maps', function (Blueprint $table) {
+        Schema::create('villages', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('region_id');
             $table->foreign('region_id')->references('id')->on('regions')->onDelete('cascade');
-            $table->string('color')->nullable();
-            $table->string('geojson')->nullable();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateMapsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('maps');
+        Schema::dropIfExists('villages');
     }
 }

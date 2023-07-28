@@ -14,4 +14,9 @@ class Map extends Model
     {
         return $this->belongsTo(Region::class);
     }
+
+    public function village()
+    {
+        return $this->belongsTo(Village::class);
+    }
 }

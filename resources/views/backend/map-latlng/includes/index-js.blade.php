@@ -10,7 +10,7 @@
 <script>
     L.mapbox.accessToken = 'pk.eyJ1IjoiYWRpbXVyZGF5YW5pIiwiYSI6ImNrcmdyNG9oazBrOTIydnFuc21kYW53YjIifQ.kKTX_r3f99B-LTG5XKmUHA';
     var map = L.mapbox.map('map')
-        .setView([-3.0149382,120.1824746], 9)
+        .setView([-2.83220731175784,120.19631465218663], 11)
         .addControl(L.mapbox.geocoderControl('mapbox.places',{
             autocomplete: true 
         }));
@@ -53,15 +53,103 @@
                 }
             }
         }).addTo({{ $map->region->slug }});
+
+        geoLayer.eachLayer(function(layer) {
+            var properties = layer.feature.properties;
+            var popupContent = `
+            <div class="container pt-3">
+                <table class="table table-bordered w-100">
+                    <thead>
+                        <tr>
+                            <th class="p-1">Provinsi</th>
+                            <th class="p-1">${properties.PROVINSI}</th>
+                        </tr>
+                        <tr>
+                            <th class="p-1">Kabupaten</th>
+                            <th class="p-1">${properties.KAB_KOTA}</th>
+                        </tr>
+                        <tr>
+                            <th class="p-1">Kecamatan</th>
+                            <th class="p-1">${properties.KECAMATAN}</th>
+                        </tr>
+                        <tr>
+                            <th class="p-1">Kelurahan/Desa</th>
+                            <th class="p-1">${properties.DESA_KELUR}</th>
+                        </tr>
+                        <tr>
+                            <th class="p-1">Jumlah Penduduk</th>
+                            <th class="p-1">${properties.JUMLAH_PEN}</th>
+                        </tr>
+                        <tr>
+                            <th class="p-1">Jumlah KK</th>
+                            <th class="p-1">${properties.JUMLAH_KK}</th>
+                        </tr>
+                        <tr>
+                            <th class="p-1">Jumlah Pria</th>
+                            <th class="p-1">${properties.PRIA}</th>
+                        </tr>
+                        <tr>
+                            <th class="p-1">Jumlah Perempuan</th>
+                            <th class="p-1">${properties.WANITA}</th>
+                        </tr>
+                        <tr>
+                            <th class="p-1">Luas Wilayah</th>
+                            <th class="p-1">${properties.LUAS_WILAY}</th>
+                        </tr>
+                        <tr>
+                            <th class="p-1">Kepadatan</th>
+                            <th class="p-1">${properties.KEPADATAN}</th>
+                        </tr>
+                    </thead>    
+                </table>
+            </div>
+            `;
+
+            layer.bindPopup(popupContent);
+        });
     });
 
     @endforeach
     @endisset
 
-    @isset($coordinates)
-    @foreach ($coordinates as $item_coordinate)
+    @foreach ($coordinates as $item_coordinate)    
+
+    var overlytree =
+    [{
+        label: '<strong>Kecamatan</strong>',
+        children: [
+            @foreach ($regions as $region)  
+            {
+                label: '{{ $region->name }}',
+                layer: {{ $region->slug }}
+            },
+            @endforeach
+        ],
+    },{
+        label: '<strong>Fasilitas Umum</strong>',
+        children: [
+            {
+                label: '{{ $item_coordinate->education->name }}',
+                layer: {{ str_replace(" ","",$item_coordinate->name) }}
+            },
+        ],
+    }];
+
     @if ($item_coordinate->type == 'coordinate')
-    var {{ $item_coordinate->education->name }} = L.layerGroup().addTo(map);
+    var {{ str_replace(" ","",$item_coordinate->name) }} = L.layerGroup().addTo(map);
+
+    var popup = L.popup({
+        className: 'custom-popup'
+    })
+    .setContent(`
+        <div class="leaflet-popup-content">
+            <div class="text-center">
+                <img src="{{ asset('storage/img/'.$item_coordinate->image) }}" class="img-thumbnail w-100" loading="lazy">
+            </div>
+            <h5 class="text-center mt-2">{{ $item_coordinate->name }}</h5>
+            <p class="mt-0">{{ $item_coordinate->description }}</p>
+        </div>
+    `);
 
     var marker2 = L.marker([{{ $item_coordinate->lat.','.$item_coordinate->lon }}], {
         icon: L.mapbox.marker.icon({
@@ -69,9 +157,10 @@
             'marker-symbol': '{{ $item_coordinate->icon_marker }}',
             'marker-color': '{{ $item_coordinate->color }}'
         })
-    }).addTo({{ $item_coordinate->education->name }});
-    var content = "<div class='text-center'><strong>{{ $item_coordinate->name }}</strong></div> <hr> {{ $item_coordinate->description }}"
-    marker2.bindPopup(content);
+    }).addTo({{ str_replace(" ","",$item_coordinate->name) }});
+
+    marker2.bindPopup(popup);
+
     @else    
     L.mapbox.featureLayer("{{ asset('storage/geojson/'.$item_coordinate->geojson) }}").on('ready', function(e) {
         var clusterGroup = new L.MarkerClusterGroup({
@@ -102,8 +191,6 @@
     @endif
 
     @endforeach
-    @endisset
-
 
     var baseTree = [{
         label: '<strong>Layer Maps</strong>',
@@ -120,29 +207,7 @@
                 layer: googleSat
             }]
         }]
-    }];
-    var overlytree =
-    [{
-        label: '<strong>Kecamatan</strong>',
-        children: [
-            @foreach ($regions as $region)  
-            {
-                label: '{{ $region->name }}',
-                layer: {{ $region->slug }}
-            },
-            @endforeach
-        ],
-    },{
-        label: '<strong>Pendidikan</strong>',
-        children: [
-            @foreach ($educations as $education)  
-            {
-                label: '{{ $education->name }}',
-                layer: {{ $education->name }}
-            },
-            @endforeach
-        ],
-    }];
+    }];    
     
     var layerControl = L.control.layers.tree(baseTree,overlytree);
     layerControl.addTo(map);

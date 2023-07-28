@@ -15,6 +15,9 @@
 <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.css' rel='stylesheet' />
 <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.Default.css'
     rel='stylesheet' />
+
+<link href="{{ asset('assets') }}/filepond/filepond.css" rel="stylesheet" />
+<link href="{{ asset('assets') }}/filepond/filepond-plugin-image-preview.css" rel="stylesheet" />
 <style>
     #coordinte_hide {
         display: none;
@@ -22,6 +25,25 @@
 
     #file_div {
         display: none;
+    }
+
+    /* Gaya untuk popup */
+    .custom-popup .leaflet-popup-content-wrapper {
+        width: 300px;
+        /* Ganti nilai lebar sesuai preferensi Anda */
+    }
+
+    /* Gaya untuk judul popup */
+    .custom-popup .leaflet-popup-content h5 {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    /* Gaya untuk konten popup */
+    .custom-popup .leaflet-popup-content p {
+        font-size: 16px;
+        line-height: 1.6;
     }
 </style>
 @endpush
@@ -73,7 +95,7 @@
                     </div>
 
                     <div class="ribbon-content">
-                        <form action="{{ route('app.coordinates.store') }}" method="post">
+                        <form action="{{ route('app.coordinates.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group mb-3">
@@ -107,7 +129,22 @@
                                 </div>
 
                                 <div class="form-group mb-3">
-                                    <label for="education_id">Pendidikan <span class="text-danger">*</span></label>
+                                    <label for="village_id">Kelurahan/Desa <span class="text-danger">*</span></label>
+                                    <select name="village_id"
+                                        class="form-control @error('village_id') is-invalid @enderror" required
+                                        data-toggle="select2">
+                                        <option value="">-- Choose --</option>
+                                    </select>
+
+                                    @error('village_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="education_id">Fasilitas Umum <span class="text-danger">*</span></label>
                                     <select name="education_id"
                                         class="form-control @error('education_id') is-invalid @enderror" required
                                         data-toggle="select2">
@@ -192,6 +229,11 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="geojson">Upload Gambar</label>
+                                    <input type="file" name="image" required>
                                 </div>
 
                                 <div class="text-right">

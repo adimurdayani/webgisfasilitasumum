@@ -14,8 +14,18 @@ class Coordinate extends Model
     {
         return $this->belongsTo(Education::class);
     }
+
+    public function educations()
+    {
+        return $this->hasMany(Education::class);
+    }
+
     public function region()
     {
         return $this->belongsTo(Region::class);
+    }
+    public function village()
+    {
+        return $this->belongsTo(Village::class);
     }
 }

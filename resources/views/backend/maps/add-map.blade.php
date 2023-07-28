@@ -2,6 +2,10 @@
 @section('title','Create Maps')
 
 @push('page-css')
+
+<link href="{{ asset('assets') }}/libs/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet"
+    type="text/css" />
+
 <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
 <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.mapbox.css'
     rel='stylesheet' />
@@ -64,7 +68,7 @@
                             <div class="form-group mb-3">
                                 <label for="region_id">Kecamatan <span class="text-danger">*</span></label>
                                 <select name="region_id" class="form-control @error('region_id') is-invalid @enderror"
-                                    required data-toggle="select2">
+                                    data-toggle="select2">
                                     <option value="">-- Choose --</option>
                                     @foreach ($regions as $region)
                                     <option value="{{ $region->id }}">{{ $region->name }}</option>
@@ -78,27 +82,24 @@
                                 @enderror
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <label for="woman">Jumlah Perempuan</label>
-                                        <input type="number" name="woman" class="form-control"
-                                            value="{{ '0' ?? old('woman') }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <label for="man">Jumlah Laki-Laki</label>
-                                        <input type="number" name="man" class="form-control"
-                                            value="{{ '0' ?? old('man') }}">
-                                    </div>
-                                </div>
+                            <div class="form-group mb-3">
+                                <label for="village_id">Kelurahan/Desa <span class="text-danger">*</span></label>
+                                <select name="village_id" class="form-control @error('village_id') is-invalid @enderror"
+                                    data-toggle="select2">
+                                    <option value="">-- Choose --</option>
+                                </select>
+
+                                @error('village_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
 
                             <div class="form-group mb-3">
                                 <label for="color">Color Property</label>
-                                <input type="text" name="color" class="form-control" placeholder="Enter color layer"
-                                    value="{{ old('color') }}">
+                                <input type="text" name="color" class="form-control horizontal-colorpicker"
+                                    placeholder="Enter color layer" value="{{ '#8fff00' ?? old('color') }}">
                             </div>
 
                             <div class="form-group mb-3">

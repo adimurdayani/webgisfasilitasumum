@@ -5,18 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Region extends Model
+class Village extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function maps()
+    public function region()
     {
-        return $this->hasMany(Map::class);
-    }
-
-    public function village()
-    {
-        return $this->hasMany(Village::class);
+        return $this->belongsTo(Region::class);
     }
 }
