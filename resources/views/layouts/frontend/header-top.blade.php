@@ -4,7 +4,7 @@
             <div class="navbar-brand w-100">
                 <a href="/">
                     <img src="{{ setting(1)->img_fav == null ? asset('assets/images/not_found.jpg') : asset('storage/public/img/'. setting(1)->img_fav) }}"
-                        srcset="{{ setting(1)->img_fav == null ? asset('assets/images/not_found.jpg') : asset('storage/public/img/'. setting(1)->img_fav) }} 6x"
+                        srcset="{{ setting(1)->img_fav == null ? asset('assets/images/not_found.jpg') : asset('storage/public/img/'. setting(1)->img_fav) }} 1x"
                         alt="{{ setting(1)->app_name }}" />
                 </a>
             </div>
