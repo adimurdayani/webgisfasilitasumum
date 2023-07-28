@@ -30,7 +30,22 @@ class PostController extends Controller
         $posts = Post::with(['user', 'visibilities'])->orderBy('id', 'desc')->get();
         return DataTables::of($posts)
             ->editColumn('title_image', function ($post) {
-                return '<div class="form-inline"><img src="' . asset('storage/public/img') . '/' . $post->image . '" class="img-thumbnail m-1" title="Img Post" width="20%"> ' . $post->title . '</div>';
+                if ($post->image == null) {
+                    return '<a href="/" class="text-body">
+                    <img src="' . asset('assets/images/not_found.jpg') . '" class="img-thumbnail avatar-xl" title="' . $post->slug . '" >' . Str::limit($post->title, 20) . '</a>';
+                } else {
+                    return '<a href="/home/news/' . $post->slug . '/detail" class="text-body">
+                    <img src="' . asset('storage/public/img') . '/' . $post->image . '" class="img-thumbnail avatar-xl" title="' . $post->slug . '" >' . Str::limit($post->title, 20) . '</a>';
+                }
+            })
+            ->escapeColumns([])
+            ->editColumn('publish', function ($post) {
+                if ($post->publish == "Publish") {
+                    # code...
+                    return '<div class="badge badge-primary">Published</div>';
+                } else {
+                    return '<div class="badge badge-warning">Draf</div>';
+                }
             })
             ->escapeColumns([])
             ->addColumn('category', function ($post) {
@@ -43,10 +58,12 @@ class PostController extends Controller
                 return $post;
             })
             ->addColumn('created_at', function ($post) {
-                return Carbon::parse($post->created_at)->locale('id')->diffForHumans();
+                return Carbon::parse($post->created_at)->locale('id')
+                    ->settings(['formatFunction' => 'translatedFormat'])
+                    ->format('l, j F Y');
             })
             ->addColumn('button', function ($post) {
-                if ($post->type == 'video') {
+                if ($post->type == 'Video') {
                     return '<div class="btn-group"> 
                     <button type="button" class="btn btn-sm btn-blue dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Other <i class="mdi mdi-chevron-down"></i> </button>
                         <div class="dropdown-menu">

@@ -25,7 +25,7 @@
                 cache:false,
             },
             columns: [
-                { "data": null,"sortable": false, className:'text-center',render: function (data, type, row, meta) {
+                { "data": 'id', name:'id' ,"sortable": false, className:'text-center',render: function (data, type, row, meta) {
                     return meta.row + meta.settings._iDisplayStart + 1;
                 } },
                 { data: 'title_image'},
@@ -33,7 +33,6 @@
                 { data: 'category', name: 'category', className:'text-center', render:function(data){
                     return '<div class="badge badge-success">'+data+'</div>'; 
                 } },
-                { data: 'user_name', name: 'user_name' },
                 { data: 'is_active.visibility', name: 'is_active.visibility', className:'text-center', render:function(data,row,value){                    
                     if (value.is_active == true) {
                         var element = '';
@@ -50,13 +49,16 @@
 
                     }
                 } },
-                { data: 'views', name: 'views',className:'text-center' },                
+                { data: 'publish', name: 'publish',className:'text-center' },                
+                { data: 'views', name: 'views',className:'text-center' }, 
+                { data: 'user_name', name: 'user_name' },               
                 { data: 'created_at', name: 'created_at' },                
                 { data: 'button', name: 'button', className:'text-center', orderable: false, searchable: false},
             ],          
             search: {
                 "regex": true
             },
+            "order": [[ 0, "desc" ]]
         });
 
         $("#table-posts").on('click','.hapus-data[data-id]',function(e){
@@ -64,8 +66,8 @@
 
             var id = $(this).data("id");
             Swal.fire({
-                title:"Apakah anda yakin?",
-                text:"Anda akan menghapus data tersebut secara permanen!",
+                title:"{{ __('Are you sure?') }}",
+                text:"{{ __('You will delete the data permanently!') }}",
                 type:"warning",
                 showCancelButton:!0,
                 confirmButtonText:"Yes, delete it!",

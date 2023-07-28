@@ -24,9 +24,11 @@
         FilePond.registerPlugin(FilePondPluginImagePreview);
         FilePond.registerPlugin(FilePondPluginImageTransform);
 
-        FilePond.create(document.querySelector('input[type="file"]'), {
+        FilePond.create(document.querySelector('input[name="image"]'));
+        FilePond.create(document.querySelector('input[name="img_thumb_video"]'));
+        FilePond.setOptions({
             allowFileSizeValidation:true,
-            maxFileSize:1000000,
+            maxFileSize:2000000,
             imageValidateSizeMaxWidth:600000,
             acceptedFileTypes: ['image/png','image/jpg','image/jpeg', 'image/svg'],      
             imageResizeTargetWidth: 600,
@@ -35,8 +37,8 @@
                 thumb_medium_: (transforms) => {
                     transforms.resize = {
                         size: {
-                            width: 960,
-                            height: 600,
+                            width: 370,
+                            height: 250,
                         },
                     };
                     return transforms;
@@ -46,15 +48,9 @@
             new Promise((resolve, reject) => {
                 resolve(type);
             }),
-        });
-
-        const input_img = document.querySelector('input[type="file"]');        
-        const pond_img = FilePond.create(input_img);
-
-        FilePond.setOptions({
             server:{
-                process: '{{ route("app.posts.tmp-upload-img") }}',
-                revert: '{{ route("app.posts.tmp-delete-img") }}',
+                process: '{{ route("app.posts.tmpupload-video") }}',
+                revert: '{{ route("app.posts.tmpdelete-video") }}',
                 headers:{
                     'X-CSRF-TOKEN':'{{ csrf_token() }}'
                 }

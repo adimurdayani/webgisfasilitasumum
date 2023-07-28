@@ -7,7 +7,6 @@
 <script src="{{ asset('assets') }}/filepond/filepond-plugin-image-transform.js"></script>
 
 <script src="{{ asset('assets') }}/filepond/filepond.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <script src="{{ asset('assets/') }}/libs/select2/js/select2.min.js"></script>
 <script src="{{ asset('assets/') }}/libs/flatpickr/flatpickr.min.js"></script>
@@ -24,9 +23,10 @@
         FilePond.registerPlugin(FilePondPluginImagePreview);
         FilePond.registerPlugin(FilePondPluginImageTransform);
 
-        FilePond.create(document.querySelector('input[type="file"]'), {
+        FilePond.create(document.querySelector('input[name="image"]'));
+        FilePond.setOptions({
             allowFileSizeValidation:true,
-            maxFileSize:1000000,
+            maxFileSize:2000000,
             imageValidateSizeMaxWidth:600000,
             acceptedFileTypes: ['image/png','image/jpg','image/jpeg', 'image/svg'],      
             imageResizeTargetWidth: 600,
@@ -35,8 +35,8 @@
                 thumb_medium_: (transforms) => {
                     transforms.resize = {
                         size: {
-                            width: 960,
-                            height: 600,
+                            width: 370,
+                            height: 250,
                         },
                     };
                     return transforms;
@@ -46,12 +46,6 @@
             new Promise((resolve, reject) => {
                 resolve(type);
             }),
-        });
-
-        const input_img = document.querySelector('input[type="file"]');        
-        const pond_img = FilePond.create(input_img);
-
-        FilePond.setOptions({
             server:{
                 process: '{{ route("app.posts.tmp-upload-img") }}',
                 revert: '{{ route("app.posts.tmp-delete-img") }}',
