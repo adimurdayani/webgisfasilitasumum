@@ -144,7 +144,7 @@
     .setContent(`
         <div class="leaflet-popup-content">
             <div class="text-center">
-                <img src="{{ asset('storage/img/'.$item_coordinate->image) }}" class="img-thumbnail w-100" loading="lazy">
+                <img src="{{ asset('storage/public/img/'.$item_coordinate->image) }}" class="img-thumbnail w-100" loading="lazy">
             </div>
             <h5 class="text-center mt-2">{{ $item_coordinate->name }}</h5>
             <p class="mt-0">{{ $item_coordinate->description }}</p>
@@ -162,7 +162,7 @@
     marker2.bindPopup(popup);
 
     @else    
-    L.mapbox.featureLayer("{{ asset('storage/geojson/'.$item_coordinate->geojson) }}").on('ready', function(e) {
+    L.mapbox.featureLayer("{{ asset('storage/public/geojson/'.$item_coordinate->geojson) }}").on('ready', function(e) {
         var clusterGroup = new L.MarkerClusterGroup({
         iconCreateFunction: function(cluster) {
 

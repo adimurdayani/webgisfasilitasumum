@@ -49,7 +49,7 @@
 
     @isset($maps)
     @foreach ($maps as $map)
-    $.getJSON("{{ asset('storage/geojson/'.$map->geojson) }}", function(data) {
+    $.getJSON("{{ asset('storage/public/geojson/'.$map->geojson) }}", function(data) {
         var geoLayer = L.geoJson(data, {
             style: function(feature) {
                 return {
@@ -76,7 +76,7 @@
     .setContent(`
         <div class="leaflet-popup-content">
             <div class="text-center">
-                <img src="{{ asset('storage/img/'.$coordinate->image) }}" class="img-thumbnail w-100" loading="lazy">
+                <img src="{{ asset('storage/public/img/'.$coordinate->image) }}" class="img-thumbnail w-100" loading="lazy">
             </div>
             <h5 class="text-center mt-2">{{ $coordinate->name }}</h5>
             <p class="mt-0">{{ $coordinate->description }}</p>
@@ -95,7 +95,7 @@
 
     @else
     
-    L.mapbox.featureLayer("{{ asset('storage/geojson/'.$coordinate->geojson) }}").on('ready', function(e) {
+    L.mapbox.featureLayer("{{ asset('storage/public/geojson/'.$coordinate->geojson) }}").on('ready', function(e) {
         var clusterGroup = new L.MarkerClusterGroup({
         iconCreateFunction: function(cluster) {
 

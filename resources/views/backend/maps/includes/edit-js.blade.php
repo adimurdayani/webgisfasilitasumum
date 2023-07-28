@@ -30,7 +30,7 @@
 
     @isset($maps)
     @foreach ($maps as $map)
-    $.getJSON("{{ asset('storage/geojson/'.$map->geojson) }}", function(data) {
+    $.getJSON("{{ asset('storage/public/geojson/'.$map->geojson) }}", function(data) {
         var geoLayer = L.geoJson(data, {
             style: function(feature) {
                 return {

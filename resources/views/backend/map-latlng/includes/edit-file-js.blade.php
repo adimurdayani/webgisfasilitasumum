@@ -32,7 +32,7 @@
 
     @isset($maps)
     @foreach ($maps as $map)
-    $.getJSON("{{ asset('storage/geojson/'.$map->geojson) }}", function(data) {
+    $.getJSON("{{ asset('storage/public/geojson/'.$map->geojson) }}", function(data) {
         var geoLayer = L.geoJson(data, {
             style: function(feature) {
                 return {
@@ -51,7 +51,7 @@
     @endforeach
     @endisset
  
-    L.mapbox.featureLayer("{{ asset('storage/geojson/'.$coordinate->geojson) }}").on('ready', function(e) {
+    L.mapbox.featureLayer("{{ asset('storage/public/geojson/'.$coordinate->geojson) }}").on('ready', function(e) {
         var clusterGroup = new L.MarkerClusterGroup({
         iconCreateFunction: function(cluster) {
 
