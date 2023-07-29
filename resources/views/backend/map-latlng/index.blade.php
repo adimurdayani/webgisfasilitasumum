@@ -85,7 +85,7 @@
 
                     <div class="ribbon-content">
 
-                        <div id="map" style="height: 700px;">
+                        <div id="map" style="height: 600px;">
 
                         </div>
                     </div>

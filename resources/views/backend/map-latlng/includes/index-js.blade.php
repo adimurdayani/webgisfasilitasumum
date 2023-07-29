@@ -265,7 +265,7 @@
     };
     makePopups(wilayah);
             
-    layerControl.setOverlayTree(wilayah).collapseTree(true).expandSelected(false);
+    layerControl.setOverlayTree(wilayah).collapseTree(false).expandSelected(false);
 </script>
 <script>
     $(document).ready(function(){
