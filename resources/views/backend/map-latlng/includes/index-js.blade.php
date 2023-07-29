@@ -160,14 +160,9 @@
         });
         e.target.eachLayer(function(addLayer) {  
             clusterGroup.addLayer(addLayer);
-            
-            if (addLayer.feature.properties.NAMOBJ) {
-                var content = '<div><strong>' + addLayer.feature.properties.NAMOBJ + '</strong><br><small class="text-muted">'+ addLayer.feature.properties.REMARK +'</small></div>';
+            var properties = addLayer.feature.properties;
+            var content = '<div><strong>' + properties.NAMOBJ + '</strong><br><small class="text-muted">'+ properties.REMARK +'</small></div>';
                 addLayer.bindPopup(content);
-            }else{
-                var content2 = '<div><strong>' + addLayer.feature.properties.Name + '</strong><br></small></div>';
-                addLayer.bindPopup(content2);
-            }
         });
         map.addLayer(clusterGroup);
     });
