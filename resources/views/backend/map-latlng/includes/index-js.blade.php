@@ -174,8 +174,35 @@
         
     @endforeach
 
-    var overlytree =
-    [
+    var baseTree = [
+        {
+            label: '<strong>Layer Maps</strong>',
+            children: [
+                    {
+                    label: 'Maps',
+                    children: [{
+                        label: 'OpenStreetMap',
+                        layer: osm
+                    }, {
+                        label: 'Google Map',
+                        layer: googleStreets
+                    }, {
+                        label: 'Satellite',
+                        layer: googleSat
+                    }]
+                }
+            ]
+        }
+    ];  
+    
+    var layerControl = L.control.layers.tree(baseTree,{
+                collapsed: false,
+            });
+    layerControl.addTo(map).collapseTree(true).expandSelected(true);
+
+    
+
+    var wilayah = [
         {
             label: '<strong>Layer Wilayah</strong>',
             children: [
@@ -212,29 +239,9 @@
                 ]
             }]
         }
-    ];
-
-    var baseTree = [{
-        label: '<strong>Layer Maps</strong>',
-        children: [{
-            label: 'Maps',
-            children: [{
-                label: 'OpenStreetMap',
-                layer: osm
-            }, {
-                label: 'Google Map',
-                layer: googleStreets
-            }, {
-                label: 'Satellite',
-                layer: googleSat
-            }]
-        }]
-    }];    
-    
-    var layerControl = L.control.layers.tree(baseTree,overlytree,{
-                collapsed: false,
-            });
-    layerControl.addTo(map).collapseTree().expandSelected().collapseTree(true);
+    ];  
+            
+    layerControl.setOverlayTree(wilayah).collapseTree(true).expandSelected(false);
 </script>
 <script>
     $(document).ready(function(){
