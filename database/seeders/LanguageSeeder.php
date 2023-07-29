@@ -20,5 +20,11 @@ class LanguageSeeder extends Seeder
             'status' => 1,
             'flag' => 'us',
         ]);
+        Language::create([
+            'name' => 'Indonesia',
+            'code' => 'id',
+            'status' => 0,
+            'flag' => 'id',
+        ]);
     }
 }

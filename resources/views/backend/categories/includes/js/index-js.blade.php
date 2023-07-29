@@ -1,3 +1,7 @@
+@push('js-scripts')
+<script src="{{ asset('assets') }}/libs/jquery-tabledit/jquery.tabledit.min.js"></script>
+<script src="{{ asset('assets') }}/libs/x-editable/bootstrap-editable/js/bootstrap-editable.min.js"></script>
+@endpush
 @push('page-scripts')
 <script>
     $.ajaxSetup({
@@ -7,7 +11,7 @@
     });
     
     $(document).ready(function(){
-        $('#table-category').DataTable({
+        var tableCategory = $('#table-category').DataTable({
             language:
             {
                 paginate:
@@ -31,6 +35,7 @@
                 cache:false,
             },
             columns: [
+                { data: 'id', name: 'id',className:'text-hide' },
                 { "data": null,"sortable": false, className:'text-center',render: function (data, type, row, meta) {
                     return meta.row + meta.settings._iDisplayStart + 1;
                 } },
@@ -45,122 +50,98 @@
                     }
                 } },         
                 { data: 'created_at', name: 'created_at',className:'text-center' },                
-                { data: 'id', name: 'id', className:'text-center', render:function(data,row,value){
-                    return '<div class="btn-group">'+
-                                    '<button type="button" class="btn btn-sm btn-blue dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> Other <i class="mdi mdi-chevron-down"></i> </button>'+
-                                    '<div class="dropdown-menu">'+
-                                        '<a href="/app/categories/'+value.id+'/edit" class="dropdown-item"><i class="fe-edit"></i> Edit</a>'+
-                                        '<button type="button" class="dropdown-item hapus-data" data-id="'+value.id+'"><i class="mdi mdi-trash-can"></i> Hapus</button>'+
-                                    '</div>'+
-                                '</div>';
-                } },
+                
             ],          
             search: {
                 "regex": true
-            },
-            "order": [[ 3, "desc" ]]
-        });
-
-        $("#table-category").on('click','.hapus-data[data-id]',function(e){
-            e.preventDefault();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': '{{csrf_token()}}'
-                }
-            });
-
-            var id = $(this).data("id");
-            Swal.fire({
-                title:"Apakah anda yakin?",
-                text:"Anda akan menghapus data tersebut secara permanen!",
-                type:"warning",
-                showCancelButton:!0,
-                confirmButtonText:"Yes, delete it!",
-                cancelButtonText:"No, cancel!",
-                confirmButtonClass:"btn btn-sm btn-success mt-2",                    
-                cancelButtonClass:"btn btn-sm btn-danger ml-2 mt-2",
-                buttonsStyling:!1
-            }).then((result)=>{
-                if (result.value) {
-                    $.ajax({
-                        url: "{{ route('app.categories.destroy') }}",
-                        type: 'DELETE',
-                        dataType: "JSON",
-                        data: {
-                            "id": id,
-                        },
-                        success: function (response){
-                            if (response.success) {
-                                $('#table-category').DataTable().ajax.reload();
-                                Swal.fire({
-                                    title:"Sukses!",
-                                    text:response.success,
-                                    type:"success",
-                                    timer:700
-                                });
-                            }else{
-                                Swal.fire({
-                                    title:"Error!",
-                                    text:response.error,
-                                    type:"error",
-                                    timer:700
-                                });
-                            }
-                        }
-                    });
-                }else if (result.dismiss === swal.DismissReason.cancel) {}
-
-            })
-        });
-        $('.simpan').click(function(){
-            var title = $('input[name="title"]').val();
-            var description = $('textarea[name="description"]').val();
-            var keywords = $('input[name="keywords"]').val();
-
-            if (title == "") {
-                Swal.fire({
-                    title:"Error!",
-                    text:"Field title is required!",
-                    type:"error",
-                    timer:700
-                });
-            }else{
-                $.ajax({
-                    url: "{{ route('app.categories.create') }}",
-                    type: 'POST',
-                    dataType: "JSON",
-                    data: {
-                        "title": title,
-                        "description": description,
-                        "keywords": keywords,
-                    },
-                    success: function (response){
-                        if (response.success) {
-                            $('#table-category').DataTable().ajax.reload();
-                            $('#tambah').modal('hide');
-                            $('input[name="title"]').val('');
-                            $('input[name="keywords"]').val('');
-                            $('textarea[name="description"]').val('');
-                            Swal.fire({
-                                title:"Sukses!",
-                                text:response.success,
-                                type:"success",
-                                timer:700
-                            });
-                        }else{
-                            console.log(response.errors);
-                            Swal.fire({
-                                title:"Error!",
-                                text:response.errors.description,
-                                type:"error",
-                                timer:700
-                            });
-                        }
-                    }
-                });
             }
         });
-        $('[data-toggle="select2"]').select2();
+
+        //inline edit table
+        tableCategory.on('draw.dt', function() {
+            $('#table-category').Tabledit({
+                url: '{{ route("app.categories.update") }}',
+                dataType: 'json',
+                cache: false,
+                columns: {
+                    identifier: [0, "id"],
+                    editable: [
+                        [2, "title"],
+                        [4, "description"],
+                    ]
+                },
+                buttons: {
+                    edit: {
+                        class: "btn btn-success",
+                        html: '<span class="mdi mdi-pencil"></span>',
+                        action: "edit"
+                    },
+                    delete: {
+                        class: "btn btn-danger",
+                        html: '<span class="mdi mdi-trash-can"></span>',
+                        action: "delete"
+                    }
+                },
+                inputClass: "form-control",
+                saveButton: 1,
+                deleteButton: 1,
+                autoFocus: !1,
+                restoreButton: false,
+                onSuccess: function(data) {
+                    $('#table-category').DataTable().ajax.reload();
+                },
+                onError: function() {
+                    Swal.fire({
+                        title: "Error!",
+                        text: "An error occurred. Please try again.",
+                        type: "error",
+                    });
+                }
+            });
+        });
+
+        $('#addFormCategory').on('submit',function(e){
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                url: "{{ route('app.categories.create') }}",
+                method: 'POST',
+                dataType: "JSON",
+                processData: false,
+                contentType: false,
+                cache: false,
+                data: formData,
+                success: function (response){
+                    if (response.success) {
+                        $('#table-category').DataTable().ajax.reload();
+                        $('#add-category').modal('hide');
+                        $("#addFormCategory")[0].reset();
+                        Swal.fire({
+                            title:"Sukses!",
+                            text:response.success,
+                            type:"success",
+                            timer:700
+                        }).then(() => { 
+                            $("#addFormCategory")[0].reset();
+                        });
+                    }else{
+                        let errorMessage = response.error && response.error.title ? response.error.title[0] : "Something went wrong!";
+                        Swal.fire({
+                            title:"Warning!",
+                            html: '<span class="text-danger">' + errorMessage + '</span>',
+                            type:"warning",
+                        });
+                    }
+                },
+                error: function() {
+                    Swal.fire({
+                        title: "Error!",
+                        text: "An error occurred. Please try again.",
+                        type: "error",
+                    });
+                }
+            });
+        });
         
         @if(Session::has('error'))
             Swal.fire({

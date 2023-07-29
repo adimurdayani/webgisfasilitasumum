@@ -22,7 +22,7 @@ class CategoryController extends Controller
 
     public function load_data()
     {
-        $categories = Categorie::all();
+        $categories = Categorie::orderBy('id', 'desc')->get();
         return DataTables::of($categories)
             ->addColumn('created_at', function ($categories) {
                 return Carbon::parse($categories->created_at)->locale('id')->diffForHumans();
@@ -40,7 +40,9 @@ class CategoryController extends Controller
             return response()->json(['errors' => $validasi->errors()]);
         }
 
-        if ($request->ajax()) {
+        if (!$request->ajax()) {
+            return response()->json(['errors' => 'Unauthorized']);
+        } else {
             Categorie::create([
                 'title' => $request->title,
                 'slug' => Str::slug($request->title),
@@ -52,42 +54,41 @@ class CategoryController extends Controller
         }
     }
 
-    public function edit(Categorie $categorie)
+    public function update(Request $request)
     {
-        if (!$categorie) {
-            Session::flash('error', 'Category not found!');
-            return redirect()->back();
-        } else {
-            Gate::authorize('app.categories.edit');
-            return view('backend.categories.edit', compact('categorie'));
+        if ($request->action == 'edit') {
+            $validator = Validator::make($request->all(), [
+                'title' => 'required||string|max:255',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json(['error' => $validator->errors()]);
+            }
+
+            if (!$request->ajax()) {
+                return response()->json(['error' => 'Unauthorized!']);
+            } else {
+                $category = Categorie::find($request->id)->update([
+                    'title' => $request->title,
+                    'slug' => Str::slug($request->title),
+                    'description' => $request->title,
+                ]);
+
+                if ($category) {
+                    return response()->json(['success' => 'Category updated successfully!']);
+                }
+            }
+            return response()->json(['error' => 'Something wen wrong!']);
         }
-    }
 
-    public function update(Request $request, Categorie $categorie)
-    {
-        $this->validate($request, [
-            'title' => 'required|string|max:255',
-        ]);
-
-        $categorie->update([
-            'title' => $request->title,
-            'slug' => Str::slug($request->title),
-            'description' => $request->description,
-            'keywords' => $request->keywords,
-            'is_active' => $request->is_active,
-        ]);
-
-        Session::flash('success', 'Category changed successfully');
-        return back();
-    }
-
-    public function delete(Request $request)
-    {
-        if ($request->ajax()) {
-            Categorie::where('id', $request->id)->delete();
-
-            return response()->json(['success' => 'Category successfully deleted!']);
+        if ($request->action == 'delete') {
+            if (!$request->ajax()) {
+                return response()->json(['error' => 'Unauthorized!']);
+            } else {
+                Categorie::find($request->id)->delete();
+                return response()->json(['success' => 'Category deleted successfully!']);
+            }
+            return response()->json(['error' => 'Something wen wrong!']);
         }
-        return response()->json(['errors' => 'ID Category not found!']);
     }
 }

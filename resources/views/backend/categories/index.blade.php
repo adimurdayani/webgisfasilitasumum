@@ -1,6 +1,9 @@
 @extends('layouts.backend.admin')
 @section('title','Category')
-
+@push('page-css')
+<link href="{{ asset('assets') }}/libs/x-editable/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet"
+    type="text/css" />
+@endpush
 @section('content')
 
 <div class="content">
@@ -38,13 +41,13 @@
                         <table class="table table-striped w-100" id="table-category">
                             <thead>
                                 <tr>
+                                    <th style="width: 0px"></th>
                                     <th class="text-center">No.</th>
                                     <th class="text-center">Title</th>
                                     <th class="text-center">Slug</th>
                                     <th class="text-center">Description</th>
                                     <th class="text-center">Status</th>
                                     <th class="text-center">Added Date</th>
-                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>

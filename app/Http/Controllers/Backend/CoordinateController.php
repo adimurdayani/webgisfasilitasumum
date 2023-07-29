@@ -25,7 +25,8 @@ class CoordinateController extends Controller
         $regions = Region::orderBy('id', 'desc')->get();
         $educations = Education::orderBy('id', 'desc')->get();
         $coordinates = Coordinate::orderBy('id', 'desc')->get();
-        return view('backend.map-latlng.index', compact('coordinates', 'maps', 'regions', 'educations'));
+        $coordinatesGroup = Coordinate::select('education_id')->groupBy('education_id')->get();
+        return view('backend.map-latlng.index', compact('coordinates', 'maps', 'regions', 'educations', 'coordinatesGroup'));
     }
 
     public function load_data()

@@ -139,6 +139,11 @@ class PermissionSeeder extends Seeder
         ]);
         Permission::updateOrCreate([
             'module_id' => $moduleAppMaps->id,
+            'name' => 'Access Village',
+            'slug' => 'app.villages.index'
+        ]);
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppMaps->id,
             'name' => 'Create Maps',
             'slug' => 'app.maps.create'
         ]);
@@ -170,57 +175,6 @@ class PermissionSeeder extends Seeder
             'module_id' => $moduleAppEducation->id,
             'name' => 'Access Education',
             'slug' => 'app.educations.index'
-        ]);
-
-        $moduleAppDocuments = Module::updateOrCreate(['name' => 'Page Documents']);
-        Permission::updateOrCreate([
-            'module_id' => $moduleAppDocuments->id,
-            'name' => 'Access Documents',
-            'slug' => 'app.documents.index'
-        ]);
-        Permission::updateOrCreate([
-            'module_id' => $moduleAppDocuments->id,
-            'name' => 'Create Documents',
-            'slug' => 'app.documents.create'
-        ]);
-        Permission::updateOrCreate([
-            'module_id' => $moduleAppDocuments->id,
-            'name' => 'Edit Documents',
-            'slug' => 'app.documents.edit'
-        ]);
-
-        $moduleAppQuickWins = Module::updateOrCreate(['name' => 'Page QuickWins']);
-        Permission::updateOrCreate([
-            'module_id' => $moduleAppQuickWins->id,
-            'name' => 'Access QuickWins',
-            'slug' => 'app.quick-wins.index'
-        ]);
-        Permission::updateOrCreate([
-            'module_id' => $moduleAppQuickWins->id,
-            'name' => 'Create QuickWins',
-            'slug' => 'app.quick-wins.create'
-        ]);
-        Permission::updateOrCreate([
-            'module_id' => $moduleAppQuickWins->id,
-            'name' => 'Edit QuickWins',
-            'slug' => 'app.quick-wins.edit'
-        ]);
-
-        $moduleAppRegulasi = Module::updateOrCreate(['name' => 'Page Regulasi']);
-        Permission::updateOrCreate([
-            'module_id' => $moduleAppRegulasi->id,
-            'name' => 'Access Regulasi',
-            'slug' => 'app.regulasis.index'
-        ]);
-        Permission::updateOrCreate([
-            'module_id' => $moduleAppRegulasi->id,
-            'name' => 'Create Regulasi',
-            'slug' => 'app.regulasis.create'
-        ]);
-        Permission::updateOrCreate([
-            'module_id' => $moduleAppRegulasi->id,
-            'name' => 'Edit Regulasi',
-            'slug' => 'app.regulasis.edit'
         ]);
 
         // Role

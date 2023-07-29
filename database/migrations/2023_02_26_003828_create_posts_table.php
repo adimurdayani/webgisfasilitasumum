@@ -32,8 +32,8 @@ class CreatePostsTable extends Migration
             $table->string('meta_keywords');
             $table->string('meta_description');
             $table->string('meta_tag');
-            $table->string('publish');
-            $table->string('type')->nullable();
+            $table->enum('publish', ['Publish', 'Draf'])->default('Publish');
+            $table->enum('type', ['Article', 'Video'])->default('Article');
             $table->boolean('is_active');
             $table->integer('views')->unsigned()->nullable();
             $table->timestamps();

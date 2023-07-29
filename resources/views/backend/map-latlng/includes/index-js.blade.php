@@ -41,7 +41,7 @@
 
     @isset($maps)
     @foreach ($maps as $map)
-    var {{ $map->region->slug }} = L.layerGroup().addTo(map);
+    var {{ str_replace(" ","",$map->village->name) }} = L.layerGroup().addTo(map);
     $.getJSON("{{ asset('storage/geojson/'.$map->geojson) }}", function(data) {
         var geoLayer = L.geoJson(data, {
             style: function(feature) {
@@ -52,7 +52,7 @@
                     fillColor: '{{ $map->color }}'
                 }
             }
-        }).addTo({{ $map->region->slug }});
+        }).addTo({{ str_replace(" ","",$map->village->name) }});
 
         geoLayer.eachLayer(function(layer) {
             var properties = layer.feature.properties;
@@ -112,36 +112,17 @@
     @endforeach
     @endisset
 
-    @foreach ($coordinates as $item_coordinate)    
+    @foreach ($educations as $education)        
+    var {{ str_replace(" ","",$education->name) }} = L.layerGroup().addTo(map); ;
+    @endforeach
 
-    var overlytree =
-    [{
-        label: '<strong>Kecamatan</strong>',
-        children: [
-            @foreach ($regions as $region)  
-            {
-                label: '{{ $region->name }}',
-                layer: {{ $region->slug }}
-            },
-            @endforeach
-        ],
-    },{
-        label: '<strong>Fasilitas Umum</strong>',
-        children: [
-            {
-                label: '{{ $item_coordinate->education->name }}',
-                layer: {{ str_replace(" ","",$item_coordinate->name) }}
-            },
-        ],
-    }];
+    @foreach ($coordinates as $item_coordinate)
 
     @if ($item_coordinate->type == 'coordinate')
-    var {{ str_replace(" ","",$item_coordinate->name) }} = L.layerGroup().addTo(map);
 
     var popup = L.popup({
         className: 'custom-popup'
-    })
-    .setContent(`
+    }).setContent(`
         <div class="leaflet-popup-content">
             <div class="text-center">
                 <img src="{{ asset('storage/public/img/'.$item_coordinate->image) }}" class="img-thumbnail w-100" loading="lazy">
@@ -151,26 +132,23 @@
         </div>
     `);
 
-    var marker2 = L.marker([{{ $item_coordinate->lat.','.$item_coordinate->lon }}], {
+    L.marker([{{ $item_coordinate->lat.','.$item_coordinate->lon }}], {
         icon: L.mapbox.marker.icon({
             'marker-size': 'large',
             'marker-symbol': '{{ $item_coordinate->icon_marker }}',
             'marker-color': '{{ $item_coordinate->color }}'
         })
-    }).addTo({{ str_replace(" ","",$item_coordinate->name) }});
-
-    marker2.bindPopup(popup);
+    }).bindPopup(popup).addTo({{ str_replace(" ","",$item_coordinate->education->name) }});
 
     @else    
     L.mapbox.featureLayer("{{ asset('storage/public/geojson/'.$item_coordinate->geojson) }}").on('ready', function(e) {
         var clusterGroup = new L.MarkerClusterGroup({
         iconCreateFunction: function(cluster) {
-
-            var mark = L.mapbox.marker.icon({
+                var mark = L.mapbox.marker.icon({
                     'marker-symbol': '{{ $item_coordinate->icon_marker }}',
                     'marker-color': '{{ $item_coordinate->color }}'
                 })
-            return mark;
+                return mark;
             }
         });
         e.target.eachLayer(function(addLayer) {  
@@ -189,8 +167,48 @@
 
 
     @endif
-
+        
     @endforeach
+
+    var overlytree =
+    [
+        {
+            label: '<strong>Layer Wilayah</strong>',
+            children: [
+                @foreach ($regions as $region)  
+                {   
+                    label: '{{ $region->name }}',
+                    selectAllCheckbox: 'Un/select all',
+                    children: [
+                        @foreach ($region->village as $village) 
+                        {
+                            label: '{{ $village->name }}',
+                            layer: {{ str_replace(" ","",$village->name) }},
+                            name:'{{ $village->name }}'
+                        },
+                        @endforeach
+                    ]
+                },
+                @endforeach
+            ]
+        },
+        {
+            label: '<strong>Layer Fasilitas</strong>',
+            children: [{   
+                label: 'Fasilitas Umum',
+                selectAllCheckbox: 'Un/select all',
+                children: [  
+                    @foreach ($educations as $ed)
+                    {
+                        label: '{{ $ed->name }}',
+                        layer: {{ str_replace(" ","",$ed->name) }}, 
+                        name:'{{ $ed->name }}'
+                    },                 
+                    @endforeach
+                ]
+            }]
+        }
+    ];
 
     var baseTree = [{
         label: '<strong>Layer Maps</strong>',

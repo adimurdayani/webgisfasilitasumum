@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Visitor;
+use Carbon\Carbon;
 
 if (!function_exists('visits')) {
 
@@ -63,5 +64,22 @@ if (!function_exists('visits')) {
     function setIp($key, $default = null)
     {
         return Visitor::getIp($key, $default);
+    }
+
+    function total_visitor()
+    {
+        return Visitor::count();
+    }
+
+    function visit_yesterday()
+    {
+        return Visitor::whereDate('created_at', Carbon::yesterday()->format('Y-m-d H:i:s'))->count();
+    }
+
+    function visitor_month()
+    {
+        $startDate = Carbon::now()->subMonth()->startOfMonth()->toDateString();
+        $endDate = Carbon::now()->subMonth()->endOfMonth()->toDateString();
+        return Visitor::whereBetween('created_at', [$startDate, $endDate])->count();
     }
 }

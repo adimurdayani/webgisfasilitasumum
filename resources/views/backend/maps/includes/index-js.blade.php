@@ -61,19 +61,19 @@
                     <thead>
                         <tr>
                             <th class="p-1">Provinsi</th>
-                            <th class="p-1">${properties.PROVINSI}</th>
+                            <th class="p-1 text-lowercase">${properties.PROVINSI}</th>
                         </tr>
                         <tr>
                             <th class="p-1">Kabupaten</th>
-                            <th class="p-1">${properties.KAB_KOTA}</th>
+                            <th class="p-1 text-lowercase">${properties.KAB_KOTA}</th>
                         </tr>
                         <tr>
                             <th class="p-1">Kecamatan</th>
-                            <th class="p-1">${properties.KECAMATAN}</th>
+                            <th class="p-1 text-lowercase">${properties.KECAMATAN}</th>
                         </tr>
                         <tr>
                             <th class="p-1">Kelurahan/Desa</th>
-                            <th class="p-1">${properties.DESA_KELUR}</th>
+                            <th class="p-1 text-lowercase">${properties.DESA_KELUR}</th>
                         </tr>
                         <tr>
                             <th class="p-1">Jumlah Penduduk</th>

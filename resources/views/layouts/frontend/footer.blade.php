@@ -50,7 +50,8 @@
                     <h4 class="widget-title text-white mb-3">Category</h4>
                     <ul class="unordered-list text-reset bullet-white ">
                         @foreach (SiteHelper::categories() as $category)
-                        <li><a href="#">{{ $category->title }} ({{ $category->posts->count() }})</a></li>
+                        <li><a href="/home/news?category={{ $category->slug }}">{{ $category->title }} ({{
+                                $category->posts->count() }})</a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -58,9 +59,10 @@
                 <div class="widget">
                     <h4 class="widget-title text-white mb-3">Visitor Statistic</h4>
                     <ul class="list-unstyled text-reset mb-0">
-                        <li>Kunjungan ({{ pengunjung(date('Y-m-d H:i:s')) }})</li>
-                        <li>Pengunjung ({{ number_format(pengunjung(),0) }})</li>
-                        <li>Total Pengunjung ({{ number_format(visits(),0) }})</li>
+                        <li>Kunjungan ({{ number_format(visits(),0) }})</li>
+                        <li>Kemarin ({{ number_format(visit_yesterday(),0) }})</li>
+                        <li>Bulan Ini ({{ number_format(visitor_month(),0) }})</li>
+                        <li>Total ({{ number_format(total_visitor(),0) }})</li>
                     </ul>
                 </div>
                 <!-- /.widget -->
@@ -102,7 +104,7 @@
             <!-- /column -->
         </div>
         <!--/.row -->
-        <p class="mt-6 mb-0 text-center">© 2022 - {{ date('Y'). ' '. setting(1)->copyright_text }}
+        <p class="mt-6 mb-0 text-center">© {{ date('Y'). ' '. setting(1)->copyright_text }}
         </p>
     </div>
     <!-- /.container -->

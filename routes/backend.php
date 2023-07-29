@@ -64,8 +64,7 @@ Route::post('/tag/create', [TagController::class, 'create'])->name('tags.create'
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/load-data', [CategoryController::class, 'load_data'])->name('categories.load-data');
 Route::post('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
-Route::get('/categories/{categorie}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
-Route::put('/categories/{categorie}/update', [CategoryController::class, 'update'])->name('categories.update');
+Route::post('/categories/update', [CategoryController::class, 'update'])->name('categories.update');
 Route::delete('/categories/delete', [CategoryController::class, 'delete'])->name('categories.destroy');
 
 // sub categories
