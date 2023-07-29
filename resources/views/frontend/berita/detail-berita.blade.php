@@ -13,7 +13,7 @@
 
 @section('content-front')
 <section class="wrapper image-wrapper bg-image bg-overlay text-white"
-    data-image-src="{{ asset('storage/img').'/'.$post->image }}">
+    data-image-src="{{ asset('storage/public/img').'/'.$post->image }}">
     <div class="container pt-18 pb-15 pt-md-20 pb-md-19 text-center">
         <div class="row">
             <div class="col-md-10 col-xl-8 mx-auto">
@@ -73,8 +73,8 @@
                                 '':'hidden=hidden' }}>
                                 <a href="{{ route('home.news.detail',$post->slug) }}" data-idpost="{{ $post->id }}"
                                     class="views-add">
-                                    <img src="{{ asset('storage/img').'/'.$post->image }}" alt="{{ $post->title }}"
-                                        title="{{ $post->title }}" loading="lazy" />
+                                    <img src="{{ asset('storage/public/img').'/'.$post->image }}"
+                                        alt="{{ $post->title }}" title="{{ $post->title }}" loading="lazy" />
                                 </a>
 
                                 <div class="text-center"><small><i>{{ $post->title }}</i></small></div>
@@ -149,7 +149,7 @@
                                 <figure class="card-img-top overlay overlay-1 hover-scale">
                                     <a href="{{ route('home.news.detail',$category->slug) }}" class="views-add"
                                         data-idpost="{{ $category->id }}">
-                                        <img src="{{ asset('storage/img').'/'.$category->image }}"
+                                        <img src="{{ asset('storage/public/img').'/'.$category->image }}"
                                             alt="{{ $category->title }}" loading="lazy" />
                                     </a>
                                     <figcaption>
