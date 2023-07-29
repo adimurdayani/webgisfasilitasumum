@@ -158,11 +158,11 @@
                 return mark;
             }
         });
-        e.target.eachLayer(function(addLayer) {  
-            clusterGroup.addLayer(addLayer);
-            var properties = addLayer.feature.properties;
-            var content = '<div><strong>' + properties.NAMOBJ + '</strong><br><small class="text-muted">'+ properties.REMARK +'</small></div>';
-                addLayer.bindPopup(content);
+        e.target.eachLayer(function(layer) {  
+            clusterGroup.addLayer(layer);
+            var properties = layer.feature.properties;            
+            var content = '<div><strong>' + properties.REMARK + '</strong><br><small class="text-muted">'+ properties.NAMOBJ +'</small></div>';
+                layer.bindPopup(content);
         });
         map.addLayer(clusterGroup);
     });
