@@ -181,6 +181,7 @@
             label: '<strong>Layer Wilayah</strong>',
             children: [
                 @foreach ($regions as $region)  
+                @if ($region->name == "Lamasi Timur")
                 {   
                     label: '{{ $region->name }}',
                     selectAllCheckbox: 'Un/select all',
@@ -194,6 +195,7 @@
                         @endforeach
                     ]
                 },
+                @endif
                 @endforeach
             ]
         },
