@@ -164,12 +164,54 @@
         
     @endforeach
 
-    var overlytree =
-    [
+    var baseTree = [
+        {
+            label: '<strong>Layer Maps</strong>',
+            children: [
+                    {
+                    label: 'Maps',
+                    children: [{
+                        label: 'OpenStreetMap',
+                        layer: osm
+                    }, {
+                        label: 'Google Map',
+                        layer: googleStreets
+                    }, {
+                        label: 'Satellite',
+                        layer: googleSat
+                    }]
+                }
+            ]
+        }
+    ];  
+    
+    var layerControl = L.control.layers.tree(baseTree,null,{
+                collapsed: false,
+            });
+    layerControl.addTo(map).collapseTree().expandSelected();
+
+    var hasAllUnSelected = function() {
+        return function(ev, domNode, treeNode, map) {
+            var anySelected = false;
+            function iterate(node)
+            {
+                if (node.layer && !node.radioGroup) {
+                    anySelected = anySelected || map.hasLayer(node.layer);
+                }
+                if (node.children && !anySelected) {
+                    node.children.forEach(function(element) { iterate(element); });
+                }
+            }
+            iterate(treeNode);
+            return !anySelected;
+        };
+    };
+
+    var wilayah = [
         {
             label: '<strong>Layer Wilayah</strong>',
             children: [
-                @foreach ($regions as $region)
+                @foreach ($regions as $region)  
                 {   
                     label: '{{ $region->name }}',
                     selectAllCheckbox: 'Un/select all',
@@ -182,7 +224,7 @@
                         },
                         @endforeach
                     ]
-                }
+                },
                 @endforeach
             ]
         },
@@ -202,26 +244,17 @@
                 ]
             }]
         }
-    ];
-
-    var baseTree = [{
-        label: '<strong>Layer Maps</strong>',
-        children: [{
-            label: 'Maps',
-            children: [{
-                label: 'OpenStreetMap',
-                layer: osm
-            }, {
-                label: 'Google Map',
-                layer: googleStreets
-            }, {
-                label: 'Satellite',
-                layer: googleSat
-            }]
-        }]
-    }];    
-    
-    var layerControl = L.control.layers.tree(baseTree,overlytree);
-    layerControl.addTo(map);
+    ];  
+    var makePopups = function(node) {
+        if (node.layer) {
+            node.layer.bindPopup(node.label);
+        }
+        if (node.children) {
+            node.children.forEach(function(element) { makePopups(element); });
+        }
+    };
+    makePopups(wilayah);
+            
+    layerControl.setOverlayTree(wilayah).collapseTree(true).expandSelected(true);
 </script>
 @endpush
