@@ -26,7 +26,7 @@
                 <figure class="rounded">
                     <a href="{{ route('home.news.detail',$beritaBaru->slug) }}" data-idpost="{{ $beritaBaru->id }}"
                         class="views-add">
-                        <img src="{{ asset('storage/img/'.$beritaBaru->image) }}" alt="{{ $beritaBaru->title }}"
+                        <img src="{{ asset('storage/public/img/'.$beritaBaru->image) }}" alt="{{ $beritaBaru->title }}"
                             loading="lazy" />
                     </a>
                 </figure>
@@ -64,7 +64,7 @@
                 <figure class="rounded">
                     <a href="{{ route('home.news.detail',$post->slug) }}" class="views-add"
                         data-idpost="{{ $post->id }}">
-                        <img src="{{ asset('storage/img/'.$post->image) }}" alt="{{ $post->title }}" />
+                        <img src="{{ asset('storage/public/img/'.$post->image) }}" alt="{{ $post->title }}" />
                     </a>
                 </figure>
                 <div class="post-content">
