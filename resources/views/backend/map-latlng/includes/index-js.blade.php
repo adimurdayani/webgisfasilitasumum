@@ -1,4 +1,5 @@
 @push('js-scripts')
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet-src.js" crossorigin=""></script>
 <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
 <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js'></script>
 <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
@@ -195,27 +196,10 @@
         }
     ];  
     
-    var layerControl = L.control.layers.tree(baseTree,null,{
+    var layerControl = L.control.layers.tree(baseTree,{
                 collapsed: false,
             });
     layerControl.addTo(map).collapseTree().expandSelected();
-
-    var hasAllUnSelected = function() {
-        return function(ev, domNode, treeNode, map) {
-            var anySelected = false;
-            function iterate(node)
-            {
-                if (node.layer && !node.radioGroup) {
-                    anySelected = anySelected || map.hasLayer(node.layer);
-                }
-                if (node.children && !anySelected) {
-                    node.children.forEach(function(element) { iterate(element); });
-                }
-            }
-            iterate(treeNode);
-            return !anySelected;
-        };
-    };
 
     var wilayah = [
         {
@@ -255,15 +239,6 @@
             }]
         }
     ];  
-    var makePopups = function(node) {
-        if (node.layer) {
-            node.layer.bindPopup(node.label);
-        }
-        if (node.children) {
-            node.children.forEach(function(element) { makePopups(element); });
-        }
-    };
-    makePopups(wilayah);
             
     layerControl.setOverlayTree(wilayah).collapseTree(false).expandSelected(false);
 </script>

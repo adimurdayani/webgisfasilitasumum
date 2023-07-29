@@ -7,7 +7,7 @@
                     <div class="card shadow-lg">
                         <div class="row gx-0">
                             <div id="map" style="height: 700px;"
-                                class="col-lg-12 map map-full bg-image bg-cover rounded-top rounded-lg-start d-none d-md-block">
+                                class="col-lg-12 map map-full rounded-top rounded-lg-start">
 
                             </div>
                             <!-- /.map -->

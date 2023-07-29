@@ -14,11 +14,18 @@
     <title>@yield('title')</title>
     <link rel="shortcut icon"
         href="{{ setting(1)->img_fav != null ? asset('storage/public/img').'/'.setting(1)->img_fav : asset('assets/images/not_found.jpg') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend') }}/css/plugins.css">
+
+    @stack('page-css-front')
+
+    <link rel="stylesheet" href="{{ asset('assets/frontend') }}/css/style.css">
+
     <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.mapbox.css'
         rel='stylesheet' />
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/css/font-awesome.min.css'
         rel='stylesheet' />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" crossorigin="" />
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css'
         rel='stylesheet' />
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.css'
@@ -26,11 +33,6 @@
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.Default.css'
         rel='stylesheet' />
     <link rel="stylesheet" href="{{ asset('assets/leaflet/L.Control.Layers.Tree.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/frontend') }}/css/plugins.css">
-
-    @stack('page-css-front')
-
-    <link rel="stylesheet" href="{{ asset('assets/frontend') }}/css/style.css">
 
 
     <style>
@@ -82,8 +84,11 @@
             <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
         </svg>
     </div>
-    <!-- Vendor js -->
-    <script src="{{ asset('assets') }}/js/vendor.min.js"></script>
+
+    <script src="{{ asset('assets/frontend') }}/js/plugins.js"></script>
+    <script src="{{ asset('assets/frontend') }}/js/theme.js"></script>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet-src.js" crossorigin=""></script>
     <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js'>
     </script>
@@ -91,9 +96,6 @@
     <script src="{{ asset('assets/leaflet/L.Control.Layers.Tree.js') }}"></script>
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/leaflet.markercluster.js'>
     </script>
-
-    <script src="{{ asset('assets/frontend') }}/js/plugins.js"></script>
-    <script src="{{ asset('assets/frontend') }}/js/theme.js"></script>
 
     @stack('js-scripts-front')
     @stack('page-scripts-front')

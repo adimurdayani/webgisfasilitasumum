@@ -185,27 +185,10 @@
         }
     ];  
     
-    var layerControl = L.control.layers.tree(baseTree,null,{
+    var layerControl = L.control.layers.tree(baseTree,{
                 collapsed: false,
             });
     layerControl.addTo(map).collapseTree().expandSelected();
-
-    var hasAllUnSelected = function() {
-        return function(ev, domNode, treeNode, map) {
-            var anySelected = false;
-            function iterate(node)
-            {
-                if (node.layer && !node.radioGroup) {
-                    anySelected = anySelected || map.hasLayer(node.layer);
-                }
-                if (node.children && !anySelected) {
-                    node.children.forEach(function(element) { iterate(element); });
-                }
-            }
-            iterate(treeNode);
-            return !anySelected;
-        };
-    };
 
     var wilayah = [
         {
@@ -245,15 +228,6 @@
             }]
         }
     ];  
-    var makePopups = function(node) {
-        if (node.layer) {
-            node.layer.bindPopup(node.label);
-        }
-        if (node.children) {
-            node.children.forEach(function(element) { makePopups(element); });
-        }
-    };
-    makePopups(wilayah);
             
     layerControl.setOverlayTree(wilayah).collapseTree(true).expandSelected(false);
 </script>
