@@ -31,13 +31,16 @@
     L.control.scale().addTo(map);
     map.scrollWheelZoom.disable();
 
-    @foreach ($maps as $map)       
-    var {{ str_replace(" ","",$map->village->name) }} = L.layerGroup().addTo(map);
+    @foreach ($regions as $region)       
+    @foreach ($region->village as $village)       
+    var {{ str_replace(" ","",$village->name) }};
+    @endforeach
     @endforeach
     
     @isset($maps)
     @foreach ($maps as $map)
     $.getJSON("{{ asset('storage/public/geojson/'.$map->geojson) }}", function(data) {
+        {{ str_replace(" ","",$map->village->name) }} = L.layerGroup().addTo(map);
         var geoLayer = L.geoJson(data, {
             
             pointToLayer: function(feature,latlng){
