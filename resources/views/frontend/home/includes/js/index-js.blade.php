@@ -183,8 +183,9 @@
                         },
                         @endforeach
                     ]
-                },                    
+                }                   
                 @endif
+                , 
                 @endforeach
             ]
         },
