@@ -231,8 +231,10 @@
         }]
     }];    
     
-    var layerControl = L.control.layers.tree(baseTree,overlytree);
-    layerControl.addTo(map);
+    var layerControl = L.control.layers.tree(baseTree,overlytree,{
+                collapsed: false,
+            });
+    layerControl.addTo(map).collapseTree().expandSelected().collapseTree(true);
 </script>
 <script>
     $(document).ready(function(){
