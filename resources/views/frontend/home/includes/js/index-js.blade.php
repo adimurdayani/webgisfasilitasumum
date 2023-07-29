@@ -170,7 +170,6 @@
             label: '<strong>Layer Wilayah</strong>',
             children: [
                 @foreach ($regions as $region)
-                @if ($region->name === "Kecamatan Lamasi Timur")
                 {   
                     label: '{{ $region->name }}',
                     selectAllCheckbox: 'Un/select all',
@@ -183,9 +182,7 @@
                         },
                         @endforeach
                     ]
-                }                   
-                @endif
-                , 
+                }
                 @endforeach
             ]
         },
