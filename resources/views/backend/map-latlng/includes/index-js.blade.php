@@ -4,9 +4,9 @@
 <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
 <script src="{{ asset('assets/leaflet/L.Control.Layers.Tree.js') }}"></script>
 <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/leaflet.markercluster.js'></script>
-@push('page-scripts')
 @endpush
 
+@push('page-scripts')
 <script>
     L.mapbox.accessToken = 'pk.eyJ1IjoiYWRpbXVyZGF5YW5pIiwiYSI6ImNrcmdyNG9oazBrOTIydnFuc21kYW53YjIifQ.kKTX_r3f99B-LTG5XKmUHA';
     var map = L.mapbox.map('map')
@@ -39,10 +39,16 @@
     L.control.scale().addTo(map);
     map.scrollWheelZoom.disable();
 
+    @foreach ($regions as $region)       
+    @foreach ($region->village as $village)       
+    var {{ str_replace(" ","",$village->name) }};
+    @endforeach
+    @endforeach
+
     @isset($maps)
     @foreach ($maps as $map)
-    var {{ str_replace(" ","",$map->village->name) }} = L.layerGroup().addTo(map);
-    $.getJSON("{{ asset('storage/geojson/'.$map->geojson) }}", function(data) {
+    {{ str_replace(" ","",$map->village->name) }} = L.layerGroup().addTo(map);
+    $.getJSON("{{ asset('storage/public/geojson/'.$map->geojson) }}", function(data) {
         var geoLayer = L.geoJson(data, {
             style: function(feature) {
                 return {
@@ -113,7 +119,7 @@
     @endisset
 
     @foreach ($educations as $education)        
-    var {{ str_replace(" ","",$education->name) }} = L.layerGroup().addTo(map); ;
+    var {{ str_replace(" ","",$education->name) }} = L.layerGroup().addTo(map);
     @endforeach
 
     @foreach ($coordinates as $item_coordinate)
@@ -164,8 +170,6 @@
         });
         map.addLayer(clusterGroup);
     });
-
-
     @endif
         
     @endforeach

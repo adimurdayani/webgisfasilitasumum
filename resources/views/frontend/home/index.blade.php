@@ -11,20 +11,6 @@
 <meta property="og:description" content="{{ SiteHelper::seo_setting()->about_site }}" />
 @endpush
 
-@push('page-css-front')
-<link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
-<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.mapbox.css'
-    rel='stylesheet' />
-<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/css/font-awesome.min.css'
-    rel='stylesheet' />
-<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css'
-    rel='stylesheet' />
-<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.css' rel='stylesheet' />
-<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v1.0.0/MarkerCluster.Default.css'
-    rel='stylesheet' />
-<link rel="stylesheet" href="{{ asset('assets/leaflet/L.Control.Layers.Tree.css') }}">
-@endpush
-
 @section('content-front')
 
 <section id="home">

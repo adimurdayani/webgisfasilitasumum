@@ -27,28 +27,19 @@
     googleSat.addTo(map);
 
     L.control.fullscreen().addTo(map);
-    L.control.locate().addTo(map);
     L.control.scale().addTo(map);
     map.scrollWheelZoom.disable();
-
     @foreach ($regions as $region)       
     @foreach ($region->village as $village)       
     var {{ str_replace(" ","",$village->name) }};
     @endforeach
     @endforeach
-    
+
     @isset($maps)
     @foreach ($maps as $map)
+    {{ str_replace(" ","",$map->village->name) }} = L.layerGroup().addTo(map);
     $.getJSON("{{ asset('storage/public/geojson/'.$map->geojson) }}", function(data) {
-        {{ str_replace(" ","",$map->village->name) }} = L.layerGroup().addTo(map);
         var geoLayer = L.geoJson(data, {
-            
-            pointToLayer: function(feature,latlng){
-                return L.marker(latlng);
-            },
-            onEachFeature:  function(feature, layer) {
-                layer.bindPopup(feature.properties.name);
-            },
             style: function(feature) {
                 return {
                     opacity: 0.6,
@@ -58,6 +49,7 @@
                 }
             }
         }).addTo({{ str_replace(" ","",$map->village->name) }});
+
         geoLayer.eachLayer(function(layer) {
             var properties = layer.feature.properties;
             var popupContent = `
@@ -66,43 +58,43 @@
                     <thead>
                         <tr>
                             <th class="p-1">Provinsi</th>
-                            <td class="p-1 text-lowercase">${properties.PROVINSI}</td>
+                            <th class="p-1">${properties.PROVINSI}</th>
                         </tr>
                         <tr>
                             <th class="p-1">Kabupaten</th>
-                            <td class="p-1 text-lowercase">${properties.KAB_KOTA}</td>
+                            <th class="p-1">${properties.KAB_KOTA}</th>
                         </tr>
                         <tr>
                             <th class="p-1">Kecamatan</th>
-                            <td class="p-1 text-lowercase">${properties.KECAMATAN}</td>
+                            <th class="p-1">${properties.KECAMATAN}</th>
                         </tr>
                         <tr>
                             <th class="p-1">Kelurahan/Desa</th>
-                            <td class="p-1 text-lowercase">${properties.DESA_KELUR}</td>
+                            <th class="p-1">${properties.DESA_KELUR}</th>
                         </tr>
                         <tr>
                             <th class="p-1">Jumlah Penduduk</th>
-                            <td class="p-1">${properties.JUMLAH_PEN}</td>
+                            <th class="p-1">${properties.JUMLAH_PEN}</th>
                         </tr>
                         <tr>
                             <th class="p-1">Jumlah KK</th>
-                            <td class="p-1">${properties.JUMLAH_KK}</td>
+                            <th class="p-1">${properties.JUMLAH_KK}</th>
                         </tr>
                         <tr>
                             <th class="p-1">Jumlah Pria</th>
-                            <td class="p-1">${properties.PRIA}</td>
+                            <th class="p-1">${properties.PRIA}</th>
                         </tr>
                         <tr>
                             <th class="p-1">Jumlah Perempuan</th>
-                            <td class="p-1">${properties.WANITA}</td>
+                            <th class="p-1">${properties.WANITA}</th>
                         </tr>
                         <tr>
                             <th class="p-1">Luas Wilayah</th>
-                            <td class="p-1">${properties.LUAS_WILAY}</td>
+                            <th class="p-1">${properties.LUAS_WILAY}</th>
                         </tr>
                         <tr>
                             <th class="p-1">Kepadatan</th>
-                            <td class="p-1">${properties.KEPADATAN}</td>
+                            <th class="p-1">${properties.KEPADATAN}</th>
                         </tr>
                     </thead>    
                 </table>
@@ -116,9 +108,8 @@
     @endforeach
     @endisset
 
-    
     @foreach ($educations as $education)        
-    var {{ str_replace(" ","",$education->name) }} = L.layerGroup().addTo(map); ;
+    var {{ str_replace(" ","",$education->name) }} = L.layerGroup().addTo(map);
     @endforeach
 
     @foreach ($coordinates as $item_coordinate)
@@ -169,8 +160,6 @@
         });
         map.addLayer(clusterGroup);
     });
-
-
     @endif
         
     @endforeach
@@ -181,7 +170,6 @@
             label: '<strong>Layer Wilayah</strong>',
             children: [
                 @foreach ($regions as $region)  
-                @if ($region->name == "Kecamatan Lamasi Timur")
                 {   
                     label: '{{ $region->name }}',
                     selectAllCheckbox: 'Un/select all',
@@ -195,7 +183,6 @@
                         @endforeach
                     ]
                 },
-                @endif
                 @endforeach
             ]
         },
@@ -217,7 +204,6 @@
         }
     ];
 
-
     var baseTree = [{
         label: '<strong>Layer Maps</strong>',
         children: [{
@@ -233,7 +219,7 @@
                 layer: googleSat
             }]
         }]
-    }];
+    }];    
     
     var layerControl = L.control.layers.tree(baseTree,overlytree);
     layerControl.addTo(map);

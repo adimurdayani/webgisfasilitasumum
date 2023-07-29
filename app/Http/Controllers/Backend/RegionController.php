@@ -15,7 +15,7 @@ class RegionController extends Controller
 {
     public function index()
     {
-        Gate::authorize('app.regulasis.index');
+        Gate::authorize('app.regions.index');
         return view('backend.region.index');
     }
 
