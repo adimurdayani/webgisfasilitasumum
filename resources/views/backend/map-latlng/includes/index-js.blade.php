@@ -39,58 +39,6 @@
     L.control.locate().addTo(map);
     L.control.scale().addTo(map);
     map.scrollWheelZoom.disable();
-
-    @foreach ($educations as $education)        
-    var {{ str_replace(" ","",$education->name) }} = L.layerGroup().addTo(map);
-    @endforeach
-
-    @foreach ($coordinates as $item_coordinate)
-
-    @if ($item_coordinate->type == 'coordinate')
-
-    var popup = L.popup({
-        className: 'custom-popup'
-    }).setContent(`
-        <div class="leaflet-popup-content">
-            <div class="text-center">
-                <img src="{{ asset('storage/public/img/'.$item_coordinate->image) }}" class="img-thumbnail w-100" loading="lazy">
-            </div>
-            <h5 class="text-center mt-2">{{ $item_coordinate->name }}</h5>
-            <p class="mt-0">{{ $item_coordinate->description }}</p>
-        </div>
-    `);
-
-    L.marker([{{ $item_coordinate->lat.','.$item_coordinate->lon }}], {
-        icon: L.mapbox.marker.icon({
-            'marker-size': 'large',
-            'marker-symbol': '{{ $item_coordinate->icon_marker }}',
-            'marker-color': '{{ $item_coordinate->color }}'
-        })
-    }).bindPopup(popup).addTo({{ str_replace(" ","",$item_coordinate->education->name) }});
-
-    @else    
-    L.mapbox.featureLayer("{{ asset('storage/public/geojson/'.$item_coordinate->geojson) }}").on('ready', function(e) {
-        var clusterGroup = new L.MarkerClusterGroup({
-        iconCreateFunction: function(cluster) {
-                var mark = L.mapbox.marker.icon({
-                    'marker-symbol': '{{ $item_coordinate->icon_marker }}',
-                    'marker-color': '{{ $item_coordinate->color }}'
-                })
-                return mark;
-            }
-        });
-        e.target.eachLayer(function(layer) {  
-            clusterGroup.addLayer(layer);
-            var properties = layer.feature.properties;            
-            var content = '<div><strong>' + properties.REMARK + '</strong><br><small class="text-muted">'+ properties.NAMOBJ +'</small></div>';
-                layer.bindPopup(content);
-        });
-        map.addLayer(clusterGroup);
-    });
-    @endif
-        
-    @endforeach
-
     
 
     @foreach ($regions as $region)       
@@ -171,6 +119,59 @@
 
     @endforeach
     @endisset
+
+    @foreach ($educations as $education)        
+    var {{ str_replace(" ","",$education->name) }} = L.layerGroup().addTo(map);
+    @endforeach
+
+    @foreach ($coordinates as $item_coordinate)
+
+    @if ($item_coordinate->type == 'coordinate')
+
+    var popup = L.popup({
+        className: 'custom-popup'
+    }).setContent(`
+        <div class="leaflet-popup-content">
+            <div class="text-center">
+                <img src="{{ asset('storage/public/img/'.$item_coordinate->image) }}" class="img-thumbnail w-100" loading="lazy">
+            </div>
+            <h5 class="text-center mt-2">{{ $item_coordinate->name }}</h5>
+            <p class="mt-0">{{ $item_coordinate->description }}</p>
+        </div>
+    `);
+
+    L.marker([{{ $item_coordinate->lat.','.$item_coordinate->lon }}], {
+        icon: L.mapbox.marker.icon({
+            'marker-size': 'large',
+            'marker-symbol': '{{ $item_coordinate->icon_marker }}',
+            'marker-color': '{{ $item_coordinate->color }}'
+        })
+    }).bindPopup(popup).addTo({{ str_replace(" ","",$item_coordinate->education->name) }});
+
+    @else    
+    L.mapbox.featureLayer("{{ asset('storage/public/geojson/'.$item_coordinate->geojson) }}").on('ready', function(e) {
+        var clusterGroup = new L.MarkerClusterGroup({
+        iconCreateFunction: function(cluster) {
+                var mark = L.mapbox.marker.icon({
+                    'marker-symbol': '{{ $item_coordinate->icon_marker }}',
+                    'marker-color': '{{ $item_coordinate->color }}'
+                })
+                return mark;
+            }
+        });
+        e.target.eachLayer(function(layer) {  
+            clusterGroup.addLayer(layer);
+            var properties = layer.feature.properties;            
+            var content = '<div><strong>' + properties.REMARK + '</strong><br><small class="text-muted">'+ properties.NAMOBJ +'</small></div>';
+                layer.bindPopup(content);
+        });
+        map.addLayer(clusterGroup);
+    });
+    @endif
+        
+    @endforeach
+
+    
 
     var baseTree = [
         {
