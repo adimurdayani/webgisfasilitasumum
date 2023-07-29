@@ -20,8 +20,6 @@
 
     <link rel="stylesheet" href="{{ asset('assets/frontend') }}/css/style.css">
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" crossorigin="" />
-
     <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.mapbox.css'
         rel='stylesheet' />
@@ -89,7 +87,6 @@
     <script src="{{ asset('assets/frontend') }}/js/plugins.js"></script>
     <script src="{{ asset('assets/frontend') }}/js/theme.js"></script>
 
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet-src.js" crossorigin=""></script>
     <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js'>
     </script>

@@ -180,11 +180,6 @@
             ]
         }
     ];  
-    
-    var layerControl = L.control.layers.tree(baseTree,{
-                collapsed: false,
-            });
-    layerControl.addTo(map).collapseTree().expandSelected();
 
     var wilayah = [
         {
@@ -224,7 +219,9 @@
             }]
         }
     ];  
-            
-    layerControl.setOverlayTree(wilayah).collapseTree(true).expandSelected(false);
+    var layerControl = L.control.layers.tree(baseTree,wilayah,{
+                collapsed: true,
+            });
+    layerControl.addTo(map).collapseTree(true).expandSelected();
 </script>
 @endpush

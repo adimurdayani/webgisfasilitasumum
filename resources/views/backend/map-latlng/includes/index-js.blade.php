@@ -1,5 +1,4 @@
 @push('js-scripts')
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet-src.js" crossorigin=""></script>
 <script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
 <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js'></script>
 <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
@@ -171,8 +170,6 @@
         
     @endforeach
 
-    
-
     var baseTree = [
         {
             label: '<strong>Layer Maps</strong>',
@@ -194,10 +191,6 @@
         }
     ];  
     
-    var layerControl = L.control.layers.tree(baseTree,{
-                collapsed: false,
-            });
-    layerControl.addTo(map).collapseTree().expandSelected();
 
     var wilayah = [
         {
@@ -238,7 +231,11 @@
         }
     ];  
             
-    layerControl.setOverlayTree(wilayah).collapseTree(true).expandSelected(false);
+    
+    var layerControl = L.control.layers.tree(baseTree,wilayah,{
+                collapsed: true,
+            });
+    layerControl.addTo(map).collapseTree(true).expandSelected();
 </script>
 <script>
     $(document).ready(function(){
