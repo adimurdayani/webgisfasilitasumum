@@ -22,11 +22,10 @@ class CoordinateController extends Controller
         Gate::authorize('app.coordinates.index');
 
         $maps = Map::all();
-        $regions = Region::orderBy('id', 'desc')->get();
+        $regions = Region::where('name', 'Kecamatan Lamasi Timur')->get();
         $educations = Education::orderBy('id', 'desc')->get();
         $coordinates = Coordinate::orderBy('id', 'desc')->get();
-        $coordinatesGroup = Coordinate::select('education_id')->groupBy('education_id')->get();
-        return view('backend.map-latlng.index', compact('coordinates', 'maps', 'regions', 'educations', 'coordinatesGroup'));
+        return view('backend.map-latlng.index', compact('coordinates', 'maps', 'regions', 'educations'));
     }
 
     public function load_data()

@@ -15,8 +15,7 @@ class AddVillageIdToCoordinatesTable extends Migration
     {
         Schema::table('coordinates', function (Blueprint $table) {
             $table->unsignedBigInteger('village_id')->after('region_id');
-            $table->foreign('village_id')->references('id')->on('villages')->onDelete('cascade');
-            $table->string('image')->after('geojson');
+            $table->string('image')->nullable()->after('geojson');
         });
     }
 
@@ -28,7 +27,6 @@ class AddVillageIdToCoordinatesTable extends Migration
     public function down()
     {
         Schema::table('coordinates', function (Blueprint $table) {
-            $table->dropForeign('coordinates_village_id_foreign');
             $table->dropColumn('village_id');
             $table->dropColumn('image');
         });
