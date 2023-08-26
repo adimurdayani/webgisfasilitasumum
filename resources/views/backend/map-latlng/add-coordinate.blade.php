@@ -251,6 +251,39 @@
                             <div id="file_div">
 
                                 <div class="form-group mb-3">
+                                    <label for="region_id">Kecamatan <span class="text-danger">*</span></label>
+                                    <select name="region_id"
+                                        class="form-control @error('region_id') is-invalid @enderror" required
+                                        data-toggle="select2">
+                                        <option value="">-- Choose --</option>
+                                        @foreach ($regions as $region)
+                                        <option value="{{ $region->id }}">{{ $region->name }}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('region_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="village_id">Kelurahan/Desa <span class="text-danger">*</span></label>
+                                    <select name="village_id"
+                                        class="form-control @error('village_id') is-invalid @enderror" required
+                                        data-toggle="select2">
+                                        <option value="">-- Choose --</option>
+                                    </select>
+
+                                    @error('village_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group mb-3">
                                     <label for="name">Name <span class="text-danger">*</span></label>
                                     <input type="text" name="name" class="form-control" value="{{ old('name') }}"
                                         placeholder="Enter name">
