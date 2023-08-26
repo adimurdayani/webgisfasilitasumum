@@ -61,43 +61,7 @@
                     <thead>
                         <tr>
                             <th class="p-1">Provinsi</th>
-                            <th class="p-1 text-lowercase">${properties.PROVINSI}</th>
-                        </tr>
-                        <tr>
-                            <th class="p-1">Kabupaten</th>
-                            <th class="p-1 text-lowercase">${properties.KAB_KOTA}</th>
-                        </tr>
-                        <tr>
-                            <th class="p-1">Kecamatan</th>
-                            <th class="p-1 text-lowercase">${properties.KECAMATAN}</th>
-                        </tr>
-                        <tr>
-                            <th class="p-1">Kelurahan/Desa</th>
-                            <th class="p-1 text-lowercase">${properties.DESA_KELUR}</th>
-                        </tr>
-                        <tr>
-                            <th class="p-1">Jumlah Penduduk</th>
-                            <th class="p-1">${properties.JUMLAH_PEN}</th>
-                        </tr>
-                        <tr>
-                            <th class="p-1">Jumlah KK</th>
-                            <th class="p-1">${properties.JUMLAH_KK}</th>
-                        </tr>
-                        <tr>
-                            <th class="p-1">Jumlah Pria</th>
-                            <th class="p-1">${properties.PRIA}</th>
-                        </tr>
-                        <tr>
-                            <th class="p-1">Jumlah Perempuan</th>
-                            <th class="p-1">${properties.WANITA}</th>
-                        </tr>
-                        <tr>
-                            <th class="p-1">Luas Wilayah</th>
-                            <th class="p-1">${properties.LUAS_WILAY}</th>
-                        </tr>
-                        <tr>
-                            <th class="p-1">Kepadatan</th>
-                            <th class="p-1">${properties.KEPADATAN}</th>
+                            <th class="p-1 text-lowercase">${properties.name}</th>
                         </tr>
                     </thead>    
                 </table>

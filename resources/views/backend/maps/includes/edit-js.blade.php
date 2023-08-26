@@ -50,20 +50,7 @@
                     <thead>
                         <tr>
                             <th class="p-1">Provinsi</th>
-                            <th class="p-1">${properties.PROVINSI}</th>
-                        </tr>
-                        <tr>
-                            <th class="p-1">Kabupaten</th>
-                            <th class="p-1">${properties.KAB_KOTA}</th>
-                        </tr>
-                        <tr>
-                            <th class="p-1">Kecamatan</th>
-                            <th class="p-1">${properties.KECAMATAN}</th>
-                        </tr>
-                        <tr>
-                            <th class="p-1">Kelurahan/Desa</th>
-                            <th class="p-1">${properties.DESA_KELUR}</th>
-                        </tr>
+                            <th class="p-1">${properties.name}</th>
                     </thead>    
                 </table>
             </div>
