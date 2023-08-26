@@ -68,7 +68,7 @@
                 <table class="table table-bordered w-100">
                     <thead>
                         <tr>
-                            <th class="p-1">Provinsi</th>
+                            <th class="p-1">Desa</th>
                             <th class="p-1">${properties.name}</th>
                         </tr>
                     </thead>    
@@ -125,7 +125,7 @@
         e.target.eachLayer(function(layer) {  
             clusterGroup.addLayer(layer);
             var properties = layer.feature.properties;            
-            var content = '<div><strong>' + properties.name + '</strong></div>';
+            var content = '<div><strong>' + properties.Name + '</strong></div>';
                 layer.bindPopup(content);
         });
         map.addLayer(clusterGroup);

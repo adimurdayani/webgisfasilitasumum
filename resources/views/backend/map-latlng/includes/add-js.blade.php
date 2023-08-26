@@ -115,7 +115,7 @@
             clusterGroup.addLayer(layer);
             
             var properties = layer.feature.properties;            
-            var content = '<div><strong>' + properties.name + '</strong></div>';
+            var content = '<div><strong>' + properties.Name + '</strong></div>';
                 layer.bindPopup(content);
         });
         map.addLayer(clusterGroup);

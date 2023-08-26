@@ -49,7 +49,7 @@
                 <table class="table table-bordered w-100">
                     <thead>
                         <tr>
-                            <th class="p-1">Provinsi</th>
+                            <th class="p-1">Desa</th>
                             <th class="p-1">${properties.name}</th>
                     </thead>    
                 </table>
