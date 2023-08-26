@@ -59,43 +59,7 @@
                     <thead>
                         <tr>
                             <th class="p-1">Provinsi</th>
-                            <th class="p-1">${properties.PROVINSI}</th>
-                        </tr>
-                        <tr>
-                            <th class="p-1">Kabupaten</th>
-                            <th class="p-1">${properties.KAB_KOTA}</th>
-                        </tr>
-                        <tr>
-                            <th class="p-1">Kecamatan</th>
-                            <th class="p-1">${properties.KECAMATAN}</th>
-                        </tr>
-                        <tr>
-                            <th class="p-1">Kelurahan/Desa</th>
-                            <th class="p-1">${properties.DESA_KELUR}</th>
-                        </tr>
-                        <tr>
-                            <th class="p-1">Jumlah Penduduk</th>
-                            <th class="p-1">${properties.JUMLAH_PEN}</th>
-                        </tr>
-                        <tr>
-                            <th class="p-1">Jumlah KK</th>
-                            <th class="p-1">${properties.JUMLAH_KK}</th>
-                        </tr>
-                        <tr>
-                            <th class="p-1">Jumlah Pria</th>
-                            <th class="p-1">${properties.PRIA}</th>
-                        </tr>
-                        <tr>
-                            <th class="p-1">Jumlah Perempuan</th>
-                            <th class="p-1">${properties.WANITA}</th>
-                        </tr>
-                        <tr>
-                            <th class="p-1">Luas Wilayah</th>
-                            <th class="p-1">${properties.LUAS_WILAY}</th>
-                        </tr>
-                        <tr>
-                            <th class="p-1">Kepadatan</th>
-                            <th class="p-1">${properties.KEPADATAN}</th>
+                            <th class="p-1">${properties.name}</th>
                         </tr>
                     </thead>    
                 </table>
@@ -151,7 +115,7 @@
         e.target.eachLayer(function(layer) {  
             clusterGroup.addLayer(layer);            
             var properties = layer.feature.properties;            
-            var content = '<div><strong>' + properties.REMARK + '</strong><br><small class="text-muted">'+ properties.NAMOBJ +'</small></div>';
+            var content = '<div><strong>' + properties.name + '</strong></div>';
             layer.bindPopup(content);
         });
         map.addLayer(clusterGroup);
