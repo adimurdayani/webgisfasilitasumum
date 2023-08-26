@@ -30,7 +30,7 @@ class VillageController extends Controller
             ->addColumn('region', function ($villages) {
                 return $villages->region->name;
             })
-            ->make(true);
+            ->toJson();
     }
 
     public function create(Request $request)

@@ -30,7 +30,7 @@ class CountryController extends Controller
             ->addColumn('created_at', function ($languages) {
                 return Carbon::parse($languages->created_at)->locale('id')->diffForHumans();
             })
-            ->make(true);
+            ->toJson();
     }
 
     public function create()

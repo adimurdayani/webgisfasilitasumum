@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box">
-                    <h4 class="page-title">@yield('title')</h4>
+                    <h4 class="page-title">{{ __('Dashboard') }}</h4>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
                             <div class="text-right">
                                 <h3 class="mt-1"><span data-plugin="counterup">{{ number_format(visits(),0) }}</span>
                                 </h3>
-                                <p class="text-muted mb-1 text-truncate">{{ __('Total Visits') }}</p>
+                                <p class="text-muted mb-1 text-truncate">{{__('Total Visits')}}</p>
                             </div>
                         </div>
                     </div> <!-- end row-->
@@ -75,7 +75,7 @@
                                 <h3 class="text-dark mt-1"><span data-plugin="counterup">{{
                                         number_format(post('publish'),0) }}</span>
                                 </h3>
-                                <p class="text-muted mb-1 text-truncate">{{ __('Post Publish') }}</p>
+                                <p class="text-muted mb-1 text-truncate">{{__('Post Publish')}}</p>
                             </div>
                         </div>
                     </div> <!-- end row-->

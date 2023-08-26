@@ -82,7 +82,7 @@ class PostController extends Controller
                 }
             })
             ->escapeColumns([])
-            ->make(true);
+            ->toJson();
     }
 
     public function create()

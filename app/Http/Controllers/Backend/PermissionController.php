@@ -29,7 +29,7 @@ class PermissionController extends Controller
                 $time = Carbon::parse($permisions->created_at)->locale('id')->diffForHumans();
                 return $time;
             })
-            ->make(true);
+            ->toJson();
     }
 
     public function create(Request $request)

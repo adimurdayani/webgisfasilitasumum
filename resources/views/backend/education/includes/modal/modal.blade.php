@@ -55,10 +55,10 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">{{ __('Close')
-                    }}</button>
-                <button type="button" class="btn btn-warning waves-effect waves-light update">{{ __('Save Changes')
-                    }}</button>
+                <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">
+                    {{ __('Close') }}</button>
+                <button type="button" class="btn btn-warning waves-effect waves-light update">
+                    {{ __('Save Changes') }}</button>
             </div>
         </div>
     </div>

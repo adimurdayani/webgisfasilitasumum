@@ -26,12 +26,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card-box ribbon-box">
-                    <div class="ribbon ribbon-blue float-left mb-4"><i class="mdi mdi-database mr-1"></i> {{__('Data
-                        Table')}} @yield('title')</div>
+                    <div class="ribbon ribbon-blue float-left mb-4"><i class="mdi mdi-database mr-1"></i> Data Table
+                        @yield('title')</div>
 
                     <h5 class="text-blue mb-4 mt-0 float-right">
                         <a href="#" data-target="#tambah" data-toggle="modal"><i class="mdi mdi-plus"></i>
-                            {{ __('Create New') }} @yield('title')</a>
+                            {{ __('Create') }} @yield('title')</a>
                     </h5>
 
                     <div class="table-responsive">

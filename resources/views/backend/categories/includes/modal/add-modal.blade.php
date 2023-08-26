@@ -4,7 +4,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">{{ __('Create New') }} @yield('title')</h4>
+                <h4 class="modal-title">{{ __('Create New Category') }}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <form id="addFormCategory" action="{{ route('app.categories.create') }}" method="post">

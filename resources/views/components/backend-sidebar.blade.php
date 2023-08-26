@@ -4,7 +4,7 @@
         @foreach(SiteHelper::menu() as $m)
 
         @if (SiteHelper::access_menu($m->id, Auth::user()->role_id))
-        <li class="menu-title">{{ $m->name }}</li>
+        <li class="menu-title">{{ __($m->name) }}</li>
         @endif
 
         @foreach (SiteHelper::submenu($m->id) as $sm)
@@ -16,7 +16,7 @@
 
             <a href="#{{ $sm->url }}" data-toggle="{{ $sm->collapse }}">
                 <i class="{{ $sm->icon }}"></i>
-                <span> {{ $sm->title }} </span>
+                <span> {{ __($sm->title) }} </span>
                 <span {{ $sm->collapse != null ? 'class=menu-arrow':'' }}></span>
             </a>
             <div class="collapse" id="{{ $sm->url }}">
@@ -25,7 +25,7 @@
 
                     @if (SiteHelper::access_menuitem($mi->id, Auth::user()->role_id))
                     <li>
-                        <a href="{{ $mi->url }}">{{ $mi->title }}</a>
+                        <a href="{{ $mi->url }}">{{ __($mi->title) }}</a>
                     </li>
 
                     @endif
@@ -37,7 +37,7 @@
             @else
             <a href="{{ $sm->url }}">
                 <i class="{{ $sm->icon }}"></i>
-                <span> {{ $sm->title }} </span>
+                <span> {{ __($sm->title) }} </span>
             </a>
             @endif
 

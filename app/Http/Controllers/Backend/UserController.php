@@ -24,7 +24,7 @@ class UserController extends Controller
     public function load_data()
     {
         $user = User::all();
-        return DataTables::of($user)->make(true);
+        return DataTables::of($user)->toJson();
     }
 
     public function create()

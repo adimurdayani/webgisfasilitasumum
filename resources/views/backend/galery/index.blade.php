@@ -33,7 +33,8 @@
 
                     <h5 class="text-blue float-right mb-4 mt-0">
                         <a href="{{ route('app.galeries.create') }}"><i class="mdi mdi-plus"></i>
-                            {{__('Create New')}} @yield('title')</a>
+                            {{ __('Create Galery') }}
+                        </a>
                     </h5>
 
                     <div class="table-responsive">
@@ -41,10 +42,10 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">No.</th>
-                                    <th class="text-center">{{__('Image')}}</th>
-                                    <th class="text-center">{{__('Tab')}}</th>
-                                    <th class="text-center">{{__('Added At')}}</th>
-                                    <th class="text-center">{{__('Action')}}</th>
+                                    <th class="text-center">{{ __('Image') }}</th>
+                                    <th class="text-center">{{ __('Tab') }}</th>
+                                    <th class="text-center">{{ __('Added At') }}</th>
+                                    <th class="text-center">{{ __('Action') }}</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>

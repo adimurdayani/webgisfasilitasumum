@@ -32,7 +32,7 @@ class SubCategoryController extends Controller
             ->addColumn('created_at', function ($sub_category) {
                 return Carbon::parse($sub_category->created_at)->locale('id')->diffForHumans();
             })
-            ->make(true);
+            ->toJson();
     }
 
     public function create(Request $request)

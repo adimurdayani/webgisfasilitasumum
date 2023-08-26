@@ -25,7 +25,7 @@ class ModuleController extends Controller
         return DataTables::of($modules)
             ->addColumn('created_at', function ($modules) {
                 return Carbon::parse($modules->created_at)->locale('id')->diffForHumans();;
-            })->make(true);
+            })->toJson();
     }
 
     public function create(Request $request)

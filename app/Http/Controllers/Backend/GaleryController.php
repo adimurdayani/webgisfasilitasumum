@@ -36,7 +36,7 @@ class GaleryController extends Controller
             ->addColumn('created_at', function ($galeries) {
                 return Carbon::parse($galeries->created_at)->locale('id')->diffForHumans();
             })
-            ->make(true);
+            ->toJson();
     }
 
     public function create()

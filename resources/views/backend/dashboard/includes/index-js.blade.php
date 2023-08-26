@@ -67,7 +67,7 @@
     options={
         series:[
             {
-                name:"{{__('Current Month Visits')}}",
+                name:"{{ __('Current Month Visits') }}",
                 type:"area",
                 data:{!! json_encode($jml_visit) !!}
             },

@@ -25,7 +25,7 @@ class TapController extends Controller
             ->addColumn('created_at', function ($tabs) {
                 return Carbon::parse($tabs->created_at)->locale('id')->diffForHumans();
             })
-            ->make(true);
+            ->toJson();
     }
 
     public function create(Request $request)

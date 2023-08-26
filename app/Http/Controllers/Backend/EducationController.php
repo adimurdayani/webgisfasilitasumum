@@ -25,7 +25,7 @@ class EducationController extends Controller
             ->addColumn('created_at', function ($quick_win) {
                 return Carbon::parse($quick_win->created_at)->locale('id')->diffForHumans();
             })
-            ->make(true);
+            ->toJson();
     }
 
     public function create(Request $request)

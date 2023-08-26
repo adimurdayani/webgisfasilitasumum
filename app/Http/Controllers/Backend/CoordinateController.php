@@ -41,7 +41,7 @@ class CoordinateController extends Controller
             ->addColumn('created_at', function ($coordinate) {
                 return Carbon::parse($coordinate->created_at)->locale('id')->diffForHumans();
             })
-            ->make(true);
+            ->toJson();
     }
 
     public function load_file()
@@ -51,7 +51,7 @@ class CoordinateController extends Controller
             ->addColumn('created_at', function ($coordinate) {
                 return Carbon::parse($coordinate->created_at)->locale('id')->diffForHumans();
             })
-            ->make(true);
+            ->toJson();
     }
 
     public function create()

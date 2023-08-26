@@ -35,8 +35,7 @@
 
                     <h5 class="text-blue float-right mb-4 mt-0">
                         <a href="#" data-toggle="modal" data-target="#tambah"><i class="mdi mdi-plus"></i>
-                            {{ __('Add') }} @yield('title')
-                        </a>
+                            {{ __('Create Category') }}</a>
                     </h5>
 
                     <div class="table-responsive">

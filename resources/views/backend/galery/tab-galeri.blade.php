@@ -33,7 +33,11 @@
 
                     <h5 class="text-blue float-right mb-4 mt-0">
                         <a href="#" data-target="#tambah" data-toggle="modal"><i class="mdi mdi-plus"></i>
+<<<<<<< HEAD
                             {{ __('Create New') }} @yield('title')</a>
+=======
+                            {{ __('Create Tab') }}</a>
+>>>>>>> ca68f19 (update controller)
                     </h5>
                     <div class="table-responsive">
                         <table class="table table-striped w-100" id="table-tabgalery">

@@ -13,11 +13,11 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">{{__('Dashboard')}}</a>
+                            <li class="breadcrumb-item">
+                                <a href="{{ route('app.dashboard') }}">{{ __('Dashboard') }}</a>
                             </li>
                             <li class="breadcrumb-item">
-                                <a href="{{ route('app.categories.index') }}">
-                                    {{ __('List Category') }}</a>
+                                <a href="{{ route('app.categories.index') }}">{{ __('List Category') }}</a>
                             </li>
                             <li class="breadcrumb-item active">@yield('title')</li>
                         </ol>
@@ -85,8 +85,13 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-sm btn-warning"><i class="fe-save"></i> {{ __('Save
+                            <<<<<<< HEAD <button type="submit" class="btn btn-sm btn-warning"><i class="fe-save"></i> {{
+                                __('Save
                                 Changes') }}</button>
+                                =======
+                                <button type="submit" class="btn btn-sm btn-warning"><i class="fe-save"></i>
+                                    {{ __('Save Changes') }}</button>
+                                >>>>>>> ca68f19 (update controller)
 
                         </form>
                     </div>

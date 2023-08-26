@@ -33,7 +33,7 @@ class WidgetController extends Controller
             ->addColumn('created_at', function ($widgets) {
                 return Carbon::parse($widgets->created_at)->locale('id')->diffForHumans();
             })
-            ->make(true);
+            ->toJson();
     }
 
     public function create()

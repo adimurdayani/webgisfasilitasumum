@@ -38,7 +38,7 @@ class MapController extends Controller
             ->addColumn('created_at', function ($maps) {
                 return Carbon::parse($maps->created_at)->locale('id')->diffForHumans();
             })
-            ->make(true);
+            ->toJson();
     }
 
     public function create()

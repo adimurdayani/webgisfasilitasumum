@@ -31,7 +31,7 @@ class RoleController extends Controller
             ->addColumn('roles', function ($role) {
                 return $role;
             })
-            ->make(true);
+            ->toJson();
     }
 
     public function create()

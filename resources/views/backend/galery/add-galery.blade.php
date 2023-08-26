@@ -18,10 +18,16 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">{{ __('Dashboard') }}</a>
+                            <li class="breadcrumb-item">
+                                <a href="{{ route('app.dashboard') }}">
+                                    {{ __('Dashboard') }}
+                                </a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{ route('app.galeries.index') }}">{{ __('List Galery')
-                                    }}</a></li>
+                            <li class="breadcrumb-item">
+                                <a href="{{ route('app.galeries.index') }}">
+                                    {{ __('Galery') }}
+                                </a>
+                            </li>
                             <li class="breadcrumb-item active">@yield('title')</li>
                         </ol>
                     </div>
@@ -34,7 +40,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card-box ribbon-box">
-                    <div class="ribbon ribbon-blue float-left mb-4"><i class="mdi mdi-plus mr-1"></i>
+                    <div class="ribbon ribbon-blue float-left mb-4"><i class="mdi mdi-plus mr-1"></i> Data Table
                         @yield('title')</div>
 
                     <div class="float-right mb-4 mt-0">
