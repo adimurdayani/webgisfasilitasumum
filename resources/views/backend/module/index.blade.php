@@ -1,5 +1,5 @@
 @extends('layouts.backend.admin')
-@section('title','Modules')
+@section('title',__('Modules'))
 
 @push('page-css')
 <link href="{{ asset('assets') }}/libs/x-editable/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet"
@@ -18,7 +18,8 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">{{ __('Dashboard') }}</a>
+                            </li>
                             <li class="breadcrumb-item active">@yield('title')</li>
                         </ol>
                     </div>
@@ -44,9 +45,9 @@
                                 <tr>
                                     <th style="width: 0px;"></th>
                                     <th class="text-center">No.</th>
-                                    <th class="text-center">Name</th>
-                                    <th class="text-center">Created At</th>
-                                    <th class="text-center"></th>
+                                    <th class="text-center">{{__('Name')}}</th>
+                                    <th class="text-center">{{__('Created At')}}</th>
+                                    <th class="text-center">{{ __('Action') }}</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>

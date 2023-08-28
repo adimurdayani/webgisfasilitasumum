@@ -1,5 +1,5 @@
 @extends('layouts.backend.admin')
-@section('title','Edit Video')
+@section('title',__('Edit Video'))
 
 @push('page-css')
 <link href="{{ asset('assets') }}/filepond/filepond.css" rel="stylesheet" />
@@ -21,8 +21,10 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('app.posts.index') }}">List Posts</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">{{__('Dashboard')}}</a>
+                            </li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.posts.index') }}">{{__('List
+                                    Post')}}</a></li>
                             <li class="breadcrumb-item active">@yield('title')</li>
                         </ol>
                     </div>
@@ -50,14 +52,15 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="card-box ribbon-box">
-                        <div class="ribbon ribbon-warning float-left mb-4"><i class="mdi mdi-text-box mr-1"></i> Content
-                            Post
+                        <div class="ribbon ribbon-warning float-left mb-4"><i class="mdi mdi-text-box mr-1"></i>
+                            {{__('Content
+                            Post')}}
                         </div>
 
                         <div class="float-right mb-4 mt-0">
                             <a href="{{ route('app.posts.index') }}" class="text-secondary"><i
                                     class="mdi mdi-view-list"></i>
-                                List Posts</a>
+                                {{__('List Post')}}</a>
                         </div>
                         <div class="ribbon-content">
 

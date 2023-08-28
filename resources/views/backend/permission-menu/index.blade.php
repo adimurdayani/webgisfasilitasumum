@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Permission Menus')
+@section('title',__('Permission Menus'))
 
 @section('content')
 
@@ -13,7 +13,8 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">{{__('Dashboard')}}</a>
+                            </li>
                             <li class="breadcrumb-item active">@yield('title')</li>
                         </ol>
                     </div>
@@ -27,20 +28,20 @@
             <div class="col-lg-12">
                 <div class="card-box ribbon-box">
                     <div class="ribbon ribbon-blue float-left mb-3"><i class="mdi mdi-database mr-1"></i>
-                        Data Table Permissions
+                        {{__('Data Table')}} @yield('title')
                     </div>
                     <a href="javascript:void(0);" data-target="#tambah" data-toggle="modal"
-                        class="btn btn-rounded btn-blue mt-0 float-right"><i class="mdi mdi-plus"></i> Create
-                        Permission</a>
+                        class="btn btn-rounded btn-blue mt-0 float-right"><i class="mdi mdi-plus"></i>
+                        {{ __('Create New') }} @yield('title')</a>
 
                     <div class="ribbon-content table-responsive">
                         <table class="table table-striped w-100" id="table-permission">
                             <thead>
                                 <tr>
                                     <th class="text-center">No.</th>
-                                    <th class="text-center">Name</th>
-                                    <th class="text-center">Created At</th>
-                                    <th class="text-center">Action</th>
+                                    <th class="text-center">{{ __('Name') }}</th>
+                                    <th class="text-center">{{ __('Created At') }}</th>
+                                    <th class="text-center">{{ __('Action') }}</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>

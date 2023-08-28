@@ -1,5 +1,5 @@
 @extends('layouts.backend.admin')
-@section('title','Edit Category')
+@section('title',__('Edit Category'))
 
 @section('content')
 
@@ -13,8 +13,12 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('app.categories.index') }}">Category</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">{{__('Dashboard')}}</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{{ route('app.categories.index') }}">
+                                    {{ __('List Category') }}</a>
+                            </li>
                             <li class="breadcrumb-item active">@yield('title')</li>
                         </ol>
                     </div>
@@ -32,7 +36,7 @@
                     <div class="float-right mb-4 mt-0">
                         <a href="{{ route('app.categories.index') }}" class="text-secondary"><i
                                 class="mdi mdi-view-list"></i>
-                            List Category</a>
+                            {{ __('List Category') }}</a>
                     </div>
                     <div class="ribbon-content">
 
@@ -40,7 +44,7 @@
                             @csrf
                             @method('PUT')
                             <div class="form-group mb-3">
-                                <label for="title">Title <span class="text-danger">*</span></label>
+                                <label for="title">{{ __('Title') }} <span class="text-danger">*</span></label>
                                 <input type="text" name="title"
                                     class="form-control @error('title') is-invalid @enderror"
                                     value="{{ $categorie->title }}">
@@ -53,35 +57,36 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="keywords">Keywords</label>
+                                <label for="keywords">{{ __('Keywords') }}</label>
                                 <input type="text" name="keywords" class="form-control"
                                     value="{{ $categorie->keywords }}">
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="description">Description</label>
+                                <label for="description">{{ __('Description') }}</label>
                                 <textarea name="description"
                                     class="form-control">{{ $categorie->description }}</textarea>
                             </div>
 
-                            <h4 class="header-title mt-5 mt-sm-0">Status</h4>
+                            <h4 class="header-title mt-5 mt-sm-0">{{ __('Status') }}</h4>
                             <div class="mt-3 mb-3">
                                 <div class="custom-control custom-radio">
                                     <input type="radio" id="customRadio1" name="is_active" value="1" {{
                                         $categorie->is_active == true ? 'checked' : '' }}
                                     class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadio1">Active
+                                    <label class="custom-control-label" for="customRadio1">{{ __('Active') }}
                                     </label>
                                 </div>
                                 <div class="custom-control custom-radio">
                                     <input type="radio" id="customRadio2" name="is_active" value="0" {{
                                         $categorie->is_active == false ? 'checked' : '' }} class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadio2">Non-Active</label>
+                                    <label class="custom-control-label" for="customRadio2">{{ __('Non-Active')
+                                        }}</label>
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-sm btn-warning"><i class="fe-save"></i> Save
-                                Changes</button>
+                            <button type="submit" class="btn btn-sm btn-warning"><i class="fe-save"></i> {{ __('Save
+                                Changes') }}</button>
 
                         </form>
                     </div>

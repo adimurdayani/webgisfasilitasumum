@@ -8,8 +8,8 @@
                 </div>
                 <!--/column -->
                 <div class="col-lg-5">
-                    <h2 class="fs-15 text-uppercase text-line text-primary text-center mb-3">Get In Touch</h2>
-                    <h3 class="display-5 mb-7">Got any questions? Don't hesitate to get in touch.</h3>
+                    <h2 class="fs-15 text-uppercase text-line text-primary text-center mb-3">Tempat Penelitian</h2>
+                    <h3 class="display-5 mb-7">Kontak Peneliti.</h3>
                     <div class="d-flex flex-row">
                         <div>
                             <div class="icon text-primary fs-28 me-4 mt-n1">
@@ -17,7 +17,7 @@
                             </div>
                         </div>
                         <div>
-                            <h5 class="mb-1">Address</h5>
+                            <h5 class="mb-1">{{__('Address')}}</h5>
                             <address>{{ setting(1)->address }}</address>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                             </div>
                         </div>
                         <div>
-                            <h5 class="mb-1">Phone</h5>
+                            <h5 class="mb-1">{{ __('Phone') }}</h5>
                             <p>{{ setting(1)->phone }}</p>
                         </div>
                     </div>

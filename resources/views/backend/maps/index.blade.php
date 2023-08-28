@@ -1,5 +1,5 @@
 @extends('layouts.backend.admin')
-@section('title','List Maps')
+@section('title',__('List Maps'))
 
 @push('page-css')
 <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
@@ -36,7 +36,8 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">{{__('Dashboard')}}</a>
+                            </li>
                             <li class="breadcrumb-item active">@yield('title')</li>
                         </ol>
                     </div>
@@ -50,12 +51,12 @@
             <div class="col-lg-12">
                 <div class="card-box ribbon-box">
                     <div class="ribbon ribbon-blue float-left mb-4"><i class="mdi mdi-map-marker mr-1"></i>
-                        Maps
+                        {{__('Maps')}}
                     </div>
 
                     <h5 class="text-blue mb-4 mt-0 float-right">
                         <a href="{{ route('app.maps.create') }}"><i class="mdi mdi-plus"></i>
-                            Create Maps Regions</a>
+                            {{__('Create Maps Regions')}}</a>
                     </h5>
 
                     <div class="ribbon-content">
@@ -73,7 +74,7 @@
             <div class="col-lg-12">
                 <div class="card-box ribbon-box">
                     <div class="ribbon ribbon-blue float-left mb-3"><i class="mdi mdi-database mr-1"></i>
-                        Data Table @yield('title')
+                        {{__('Data Table')}} @yield('title')
                     </div>
 
                     <div class="ribbon-content table-responsive">
@@ -81,11 +82,11 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">No.</th>
-                                    <th class="text-center">Kecamatan</th>
-                                    <th class="text-center">Kelurahan/Desa</th>
-                                    <th class="text-center">Properties</th>
-                                    <th class="text-center">Added At</th>
-                                    <th class="text-center"></th>
+                                    <th class="text-center">{{ __('Region') }}</th>
+                                    <th class="text-center">{{ __('Village') }}</th>
+                                    <th class="text-center">{{ __('Properties') }}</th>
+                                    <th class="text-center">{{ __('Added At') }}</th>
+                                    <th class="text-center">{{ __('Action') }}</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>

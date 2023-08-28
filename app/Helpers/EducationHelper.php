@@ -12,6 +12,6 @@ if (!function_exists('education')) {
      */
     function education($key)
     {
-        // return Education::where('')
+        return Education::where('name', $key)->first();
     }
 }

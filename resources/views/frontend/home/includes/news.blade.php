@@ -2,6 +2,7 @@
     <div class="wrapper bg-gray">
 
         <div class="container py-5 py-md-5">
+
             <div class="row">
                 <div class="col-lg-9 col-xl-8 col-xxl-7 mx-auto">
                     <h2 class="fs-15 text-uppercase text-primary text-center">Our News</h2>

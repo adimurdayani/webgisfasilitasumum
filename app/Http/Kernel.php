@@ -39,6 +39,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\AuthGate::class,
             \App\Http\Middleware\UserUniqueFileFolder::class,
+            \App\Http\Middleware\SetLocaleMiddleware::class,
         ],
 
         'api' => [

@@ -1,5 +1,5 @@
 @extends('layouts.backend.admin')
-@section('title','Create Maps')
+@section('title',__('Create Maps'))
 
 @push('page-css')
 
@@ -27,8 +27,10 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('app.maps.index') }}">List Maps</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">{{ __('Dashboard') }}</a>
+                            </li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.maps.index') }}">{{ __('List Maps')
+                                    }}</a></li>
                             <li class="breadcrumb-item active">@yield('title')</li>
                         </ol>
                     </div>
@@ -47,7 +49,7 @@
 
                     <div class="float-right mb-4 mt-0">
                         <a href="{{ route('app.maps.index') }}" class="text-secondary"><i class="mdi mdi-view-list"></i>
-                            List Maps</a>
+                            {{ __('List Maps') }}</a>
                     </div>
 
                     <div class="ribbon-content">
@@ -59,17 +61,17 @@
             <div class="col-lg-4">
                 <div class="card-box ribbon-box">
                     <div class="ribbon ribbon-blue float-left mb-3"><i class="mdi mdi-plus mr-1"></i>
-                        Form Content
+                        {{__("Form Content")}}
                     </div>
 
                     <div class="ribbon-content">
                         <form action="{{ route('app.maps.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group mb-3">
-                                <label for="region_id">Kecamatan <span class="text-danger">*</span></label>
+                                <label for="region_id">{{__('Religion')}} <span class="text-danger">*</span></label>
                                 <select name="region_id" class="form-control @error('region_id') is-invalid @enderror"
                                     data-toggle="select2">
-                                    <option value="">-- Choose --</option>
+                                    <option value="">-- {{ __('Choose') }} --</option>
                                     @foreach ($regions as $region)
                                     <option value="{{ $region->id }}">{{ $region->name }}</option>
                                     @endforeach
@@ -83,10 +85,10 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="village_id">Kelurahan/Desa <span class="text-danger">*</span></label>
+                                <label for="village_id">{{ __('Village') }} <span class="text-danger">*</span></label>
                                 <select name="village_id" class="form-control @error('village_id') is-invalid @enderror"
                                     data-toggle="select2">
-                                    <option value="">-- Choose --</option>
+                                    <option value="">-- {{ __('Choose') }} --</option>
                                 </select>
 
                                 @error('village_id')
@@ -97,25 +99,25 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="color">Color Property</label>
+                                <label for="color">{{ __('Color Property') }}</label>
                                 <input type="text" name="color" class="form-control horizontal-colorpicker"
                                     placeholder="Enter color layer" value="{{ '#8fff00' ?? old('color') }}">
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="geojson">Upload File GeoJSON</label>
+                                <label for="geojson">{{ __('Upload File GeoJSON') }}</label>
                                 <div class="input-group">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" name="geojson"
                                             accept="application/json,.geojson">
-                                        <label class="custom-file-label" for="geojson">Choose file</label>
+                                        <label class="custom-file-label" for="geojson">{{ __('Choose file') }}</label>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="text-right">
                                 <button type="submit" class="btn btn-rounded btn-sm btn-blue"><i class="fe-save"></i>
-                                    Save</button>
+                                    {{__('Save')}}</button>
                             </div>
                         </form>
                     </div>

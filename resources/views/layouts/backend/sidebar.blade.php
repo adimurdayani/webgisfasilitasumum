@@ -16,7 +16,7 @@
                     <!-- item-->
                     <a href="{{ route('app.profile.index') }}" class="dropdown-item notify-item">
                         <i class="fe-user mr-1"></i>
-                        <span>Profile</span>
+                        <span>{{__("Profile")}}</span>
                     </a>
 
                     <!-- item-->
@@ -25,7 +25,7 @@
                         <a href="{{ route('logout') }}" class="dropdown-item notify-item" onclick="event.preventDefault();
                     this.closest('form').submit();">
                             <i class="fe-log-out"></i>
-                            <span>Logout</span>
+                            <span>{{ __('Logout') }}</span>
                         </a>
                     </form>
 

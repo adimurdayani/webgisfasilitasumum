@@ -32,13 +32,13 @@
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                     <!-- item-->
                     <div class="dropdown-header noti-title">
-                        <h6 class="text-overflow m-0">Welcome !</h6>
+                        <h6 class="text-overflow m-0">{{__('Welcome')}} !</h6>
                     </div>
 
                     <!-- item-->
                     <a href="{{ route('app.profile.index') }}" class="dropdown-item notify-item">
                         <i class="fe-user"></i>
-                        <span>Profile</span>
+                        <span>{{__('Profile')}}</span>
                     </a>
 
                     <div class="dropdown-divider"></div>
@@ -49,7 +49,7 @@
                         <a href="{{ route('logout') }}" class="dropdown-item notify-item" onclick="event.preventDefault();
                     this.closest('form').submit();">
                             <i class="fe-log-out"></i>
-                            <span>Logout</span>
+                            <span>{{ __('Logout') }}</span>
                         </a>
                     </form>
 
@@ -107,20 +107,20 @@
             <li class="dropdown d-none d-xl-block">
                 <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"
                     role="button" aria-haspopup="false" aria-expanded="false">
-                    Create New
+                    {{ __('Create New') }}
                     <i class="mdi mdi-chevron-down"></i>
                 </a>
                 <div class="dropdown-menu">
                     <!-- item-->
                     <a href="{{ route('app.posts.create') }}" class="dropdown-item">
                         <i class="fe-share mr-1"></i>
-                        <span>Create Post</span>
+                        <span>{{ __('Create New Post') }}</span>
                     </a>
 
                     <!-- item-->
                     <a href="{{ route('app.galeries.create') }}" class="dropdown-item">
                         <i class="fe-image mr-1"></i>
-                        <span>Create Galery</span>
+                        <span>{{ __("Create New Galery") }}</span>
                     </a>
 
                     <div class="dropdown-divider"></div>

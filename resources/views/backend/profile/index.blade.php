@@ -1,5 +1,5 @@
 @extends('layouts.backend.admin')
-@section('title','Profile')
+@section('title',__('Profile'))
 
 @push('page-css')
 <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
@@ -37,17 +37,19 @@
                 <p class="text-muted">{{ Auth::user()->email }}</p>
 
                 <div class="text-left mt-3">
-                    <h4 class="font-13 text-uppercase">About Me :</h4>
-                    <p class="text-muted mb-2 font-13"><strong>Full Name :</strong> <span class="ml-2">{{
+                    <h4 class="font-13 text-uppercase">{{ __('About Me') }} :</h4>
+                    <p class="text-muted mb-2 font-13"><strong>{{ __('Full Name') }} :</strong> <span class="ml-2">{{
                             Auth::user()->name }}</span></p>
 
-                    <p class="text-muted mb-2 font-13"><strong>Mobile :</strong><span class="ml-2">{{ $config_web->phone
+                    <p class="text-muted mb-2 font-13"><strong>{{__('Mobile')}} :</strong><span class="ml-2">{{
+                            $config_web->phone
                             }}</span></p>
 
-                    <p class="text-muted mb-2 font-13"><strong>Email :</strong> <span class="ml-2 ">{{
+                    <p class="text-muted mb-2 font-13"><strong>{{__('Email')}} :</strong> <span class="ml-2 ">{{
                             Auth::user()->email }}</span></p>
 
-                    <p class="text-muted mb-1 font-13"><strong>Location :</strong> <span class="ml-2">INDONESIA</span>
+                    <p class="text-muted mb-1 font-13"><strong>{{__('Location')}} :</strong> <span
+                            class="ml-2">INDONESIA</span>
                     </p>
                 </div>
 
@@ -78,14 +80,15 @@
                 <ul class="nav nav-pills navtab-bg nav-justified">
                     <li class="nav-item">
                         <a href="#settings" data-toggle="tab" aria-expanded="true" class="nav-link active">
-                            Settings
+                            {{ __('Settings') }}
                         </a>
                     </li>
                 </ul>
                 <div class="tab-content">
 
                     <div class="tab-pane  show active" id="settings">
-                        <h5 class="mb-4 text-uppercase bg-light p-2"><i class="mdi mdi-image mr-1"></i> Image
+                        <h5 class="mb-4 text-uppercase bg-light p-2"><i class="mdi mdi-image mr-1"></i> {{ __('Image')
+                            }}
                         </h5>
 
                         <form action="{{ route('app.profile.upload-img',Auth::user()->id) }}" method="post">
@@ -106,7 +109,7 @@
                             @method('PUT')
 
                             <h5 class="mb-4 text-uppercase bg-light p-2"><i class="mdi mdi-account-circle mr-1"></i>
-                                Personal Info
+                                {{ __('Personal Info') }}
                             </h5>
                             <div class="row">
                                 <div class="col-md-12">

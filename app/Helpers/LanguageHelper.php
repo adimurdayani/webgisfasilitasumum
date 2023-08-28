@@ -14,4 +14,10 @@ if (!function_exists('language')) {
     {
         return Language::where('status', 1)->get();
     }
+
+    function language_result()
+    {
+        $languages = Language::where('status', 1)->first();
+        return $languages;
+    }
 }

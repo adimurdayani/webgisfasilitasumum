@@ -1,5 +1,5 @@
 @extends('layouts.backend.admin')
-@section('title','List Coordinates')
+@section('title',__('Coordinates'))
 
 @push('page-css')
 <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
@@ -58,7 +58,8 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">{{__('Dashboard')}}</a>
+                            </li>
                             <li class="breadcrumb-item active">@yield('title')</li>
                         </ol>
                     </div>
@@ -79,7 +80,7 @@
                     <div class="text-right mt-0">
                         <h5 class="text-blue">
                             <a href="{{ route('app.coordinates.create') }}"><i class="mdi mdi-plus"></i>
-                                Create Coordinate</a>
+                                {{ __('Create New') }} @yield('title')</a>
                         </h5>
                     </div>
 
@@ -98,7 +99,7 @@
             <div class="col-lg-12">
                 <div class="card-box ribbon-box">
                     <div class="ribbon ribbon-blue float-left mb-3"><i class="mdi mdi-database mr-1"></i>
-                        Data Table @yield('title')
+                        {{ __('Data Table') }} @yield('title')
                     </div>
 
                     <div class="ribbon-content table-responsive">
@@ -106,14 +107,14 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">No.</th>
-                                    <th class="text-center">Regions</th>
-                                    <th class="text-center">Educations</th>
-                                    <th class="text-center">Title Place</th>
-                                    <th class="text-center">Description</th>
-                                    <th class="text-center">Color Marker</th>
-                                    <th class="text-center">Symbol Marker</th>
-                                    <th class="text-center">Added At</th>
-                                    <th class="text-center"></th>
+                                    <th class="text-center">{{ __('Region') }}</th>
+                                    <th class="text-center">{{ __('Education') }}</th>
+                                    <th class="text-center">{{ __('Title Place') }}</th>
+                                    <th class="text-center">{{ __('Description') }}</th>
+                                    <th class="text-center">{{ __('Color Marker') }}</th>
+                                    <th class="text-center">{{ __('Symbol Marker') }}</th>
+                                    <th class="text-center">{{ __('Added At') }}</th>
+                                    <th class="text-center">{{ __('Action') }}</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -124,7 +125,7 @@
             <div class="col-lg-12">
                 <div class="card-box ribbon-box">
                     <div class="ribbon ribbon-blue float-left mb-3"><i class="mdi mdi-database mr-1"></i>
-                        Data Table File @yield('title')
+                        {{ __('Data Table') }} File @yield('title')
                     </div>
 
                     <div class="ribbon-content table-responsive">
@@ -132,13 +133,13 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">No.</th>
-                                    <th class="text-center">Title Place</th>
-                                    <th class="text-center">Description</th>
-                                    <th class="text-center">Color Marker</th>
-                                    <th class="text-center">Symbol Marker</th>
-                                    <th class="text-center">File GeoJSON</th>
-                                    <th class="text-center">Added At</th>
-                                    <th class="text-center"></th>
+                                    <th class="text-center">{{ __('Title Place') }}</th>
+                                    <th class="text-center">{{ __('Description') }}</th>
+                                    <th class="text-center">{{ __('Color Marker') }}</th>
+                                    <th class="text-center">{{ __('Symbol Marker') }}</th>
+                                    <th class="text-center">{{ __('File GeoJSON') }}</th>
+                                    <th class="text-center">{{ __('Added At') }}</th>
+                                    <th class="text-center">{{ __('Action') }}</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>

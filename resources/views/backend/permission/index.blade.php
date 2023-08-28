@@ -1,5 +1,5 @@
 @extends('layouts.backend.admin')
-@section('title','Permission')
+@section('title',__('Permission'))
 
 @section('content')
 
@@ -13,7 +13,8 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">{{__('Dashboard')}}</a>
+                            </li>
                             <li class="breadcrumb-item active">@yield('title')</li>
                         </ol>
                     </div>
@@ -38,10 +39,10 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">No.</th>
-                                    <th class="text-center">Name</th>
-                                    <th class="text-center">Slug</th>
-                                    <th class="text-center">Created At</th>
-                                    <th class="text-center">Action</th>
+                                    <th class="text-center">{{__('Name')}}</th>
+                                    <th class="text-center">{{__('Slug')}}</th>
+                                    <th class="text-center">{{__('Created At')}}</th>
+                                    <th class="text-center">{{__('Action')}}</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>

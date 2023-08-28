@@ -67,12 +67,12 @@
     options={
         series:[
             {
-                name:"Current Month Visits",
+                name:"{{__('Current Month Visits')}}",
                 type:"area",
                 data:{!! json_encode($jml_visit) !!}
             },
             {
-                name:"Current Month Visitors",
+                name:"{{ __('Current Month Visitors') }}",
                 type:"line",
                 data:{!! json_encode($jml_visitor) !!}
             }
@@ -119,7 +119,7 @@
         yaxis:[
             {
                 title:{
-                    text:"Statistic"
+                    text:"{{ __('Statistic') }}"
                 }
             },
         ]
