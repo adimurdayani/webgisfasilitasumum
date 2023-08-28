@@ -22,7 +22,7 @@
 <script>
     L.mapbox.accessToken = 'pk.eyJ1IjoiYWRpbXVyZGF5YW5pIiwiYSI6ImNrcmdyNG9oazBrOTIydnFuc21kYW53YjIifQ.kKTX_r3f99B-LTG5XKmUHA';
     var map = L.mapbox.map('map')
-    .setView([-2.460127, 120.697060],11)
+    .setView([-2.492707, 120.759647],11)
     .addControl(L.mapbox.geocoderControl('mapbox.places', {
       autocomplete: true
     }));
@@ -37,7 +37,7 @@
     L.control.locate().addTo(map);
     L.control.scale().addTo(map);
 
-    var marker = L.marker(new L.LatLng(-2.460127, 120.697060), {
+    var marker = L.marker(new L.LatLng(-2.492707, 120.759647), {
         icon: L.mapbox.marker.icon({
             'marker-color': '#2F58CD',
             'marker-symbol': 'circle',

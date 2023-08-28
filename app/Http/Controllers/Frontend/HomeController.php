@@ -21,7 +21,7 @@ class HomeController extends Controller
         $posts = Post::where('categorie_id', $category->id)->skip(0)->take(10)->orderBy('id', 'desc')->get();
         $galeries = Galerie::orderBy('id', 'desc')->get();
         $visibility = visibility('Breaking');
-        $regions = Region::where('name', 'Kecamatan Lamasi Timur')->get();
+        $regions = Region::where('name', 'Desa Kalpataru')->get();
         $maps = Map::all();
         $educations = Education::all();
         $coordinates = Coordinate::all();
