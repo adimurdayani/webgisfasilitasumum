@@ -139,7 +139,7 @@
                                     <th class="text-center">{{ __('Symbol Marker') }}</th>
                                     <th class="text-center">{{ __('File GeoJSON') }}</th>
                                     <th class="text-center">{{ __('Added At') }}</th>
-                                    <th class="text-center">{{ __('Action') }}</th>
+                                    <th class="text-center"></th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
