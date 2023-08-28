@@ -41,7 +41,7 @@
 <!-- /section -->
 @include('frontend.home.includes.maps')
 @include('frontend.home.includes.news')
-@include('frontend.home.includes.about')
+{{-- @include('frontend.home.includes.about') --}}
 @include('frontend.home.includes.contact')
 @endsection
 

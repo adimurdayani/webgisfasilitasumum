@@ -20,7 +20,7 @@
                         <li class="nav-item"><a class="nav-link scroll active" href="#home">Home</a></li>
                         <li class="nav-item"><a class="nav-link scroll" href="#maps">Map</a></li>
                         <li class="nav-item"><a class="nav-link scroll" href="#news">News</a></li>
-                        <li class="nav-item"><a class="nav-link scroll" href="#about">About</a></li>
+                        {{-- <li class="nav-item"><a class="nav-link scroll" href="#about">About</a></li> --}}
                         <li class="nav-item"><a class="nav-link scroll" href="#contact">Contact</a></li>
                     </ul>
                     <!-- /.navbar-nav -->
