@@ -188,16 +188,23 @@
     // Iterasi dan menambahkan elemen legenda dengan event listener
     layers.forEach(layer => {
         const color = layer.color;
-        const villageName = layer.village.name;
+        const villageName = layer.village.name.toLowerCase();
 
         const item = document.createElement('div');
-        const key = document.createElement('span');
+        const key = document.createElement('small');
         key.className = 'legend-key';
         key.style.backgroundColor = color;
+        const ic = document.createElement('i');
+        ic.className = 'fa fa-road';
 
-        const value = document.createElement('span');
-        value.innerHTML = villageName;
-        item.appendChild(key);
+        const value = document.createElement('small');
+        value.innerHTML = " "+villageName; 
+        item.appendChild(key);       
+
+        if (villageName  === 'jalan lokal' || villageName  === 'jalan utama') {
+            item.appendChild(ic);
+        }
+
         item.appendChild(value);
         legend.appendChild(item);
 
