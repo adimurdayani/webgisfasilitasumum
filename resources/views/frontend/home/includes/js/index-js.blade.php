@@ -183,6 +183,26 @@
             }]
         }
     ];  
+    const layers = {!! json_encode($maps) !!};
+
+    // Iterasi dan menambahkan elemen legenda dengan event listener
+    layers.forEach(layer => {
+        const color = layer.color;
+        const villageName = layer.village.name;
+
+        const item = document.createElement('div');
+        const key = document.createElement('span');
+        key.className = 'legend-key';
+        key.style.backgroundColor = color;
+
+        const value = document.createElement('span');
+        value.innerHTML = villageName;
+        item.appendChild(key);
+        item.appendChild(value);
+        legend.appendChild(item);
+
+    });
+
     var layerControl = L.control.layers.tree(baseTree,wilayah,{
                 collapsed: true,
             });

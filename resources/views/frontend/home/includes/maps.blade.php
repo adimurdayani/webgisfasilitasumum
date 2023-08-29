@@ -53,6 +53,7 @@
                                 class="col-lg-12 map map-full rounded-top rounded-lg-start">
 
                             </div>
+                            <div class="map-overlay" id="legend"></div>
                             <!-- /.map -->
                         </div>
                         <!--/.row -->
