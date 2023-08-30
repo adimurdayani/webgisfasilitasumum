@@ -28,11 +28,11 @@
             <div class="col-lg-12">
                 <div class="card-box ribbon-box">
                     <div class="ribbon ribbon-blue float-left mb-3"><i class="mdi mdi-database mr-1"></i>
-                        Data Table Permissions
+                        {{ __('Data Table') }} @yield('title')
                     </div>
                     <h5 class="text-blue mt-0 float-right"><a href="javascript:void(0);" data-target="#tambah"
-                            data-toggle="modal"><i class="mdi mdi-plus"></i> Create
-                            Permission</a></h5>
+                            data-toggle="modal"><i class="mdi mdi-plus"></i> {{ __('Create New') }}
+                            @yield('title')</a></h5>
 
                     <div class="ribbon-content table-responsive">
                         <table class="table table-striped w-100" id="table-permission">

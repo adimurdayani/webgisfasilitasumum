@@ -1,5 +1,5 @@
 @extends('layouts.backend.admin')
-@section('title','Form Role')
+@section('title',$role->name)
 
 @section('content')
 
@@ -13,8 +13,10 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('app.roles.index') }}">Roles</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">{{ __('Dashboard') }}</a>
+                            </li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.roles.index') }}">{{ __('Roles') }}</a>
+                            </li>
                             <li class="breadcrumb-item active">@yield('title')</li>
                         </ol>
                     </div>
@@ -30,18 +32,14 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card-box ribbon-box">
-                        <div class="ribbon ribbon-warning float-left"><i class="mdi mdi-plus mr-1"></i>
-                            Create New Role
-                        </div>
-
                         <div class="float-right mt-0">
                             <a href="{{ route('app.roles.index') }}" class="text-secondary"><i class="fe-list"></i>
-                                List Role</a>
+                                {{ __('List Role') }}</a>
                         </div>
 
                         <div class="ribbon-content">
                             <div class="form-group mb-3">
-                                <label for="name">Name <span class="text-danger">*</span></label>
+                                <label for="name">{{__('Name')}} <span class="text-danger">*</span></label>
                                 <input type="text" name="name" id="name" placeholder="Enter name"
                                     value="{{ $role->name }}" class="form-control @error('name') is-invalid @enderror">
 
@@ -53,7 +51,7 @@
                             </div>
 
                             <div class="form-group mb-4">
-                                <label for="description">Description </label>
+                                <label for="description">{{__('Description')}} </label>
                                 <textarea name="description" id="description" cols="30" rows="5" class="form-control"
                                     placeholder="Enter description"></textarea>
                             </div>
@@ -69,7 +67,7 @@
                 <div class="col-lg-12">
                     <div class="card-box ribbon-box">
                         <div class="ribbon ribbon-warning float-left"><i class="mdi mdi-plus mr-1"></i>
-                            Manage Permission Pages for Role
+                            {{__('Manage Permission Pages for Role')}}
                         </div>
                         <div class="float-right mt-0">
                             <div class="custom-control custom-checkbox mb-3">
@@ -79,7 +77,7 @@
                         </div>
                         <div class="ribbon-content">
 
-                            <h4 class="header-title text-center">Permission Pages</h4>
+                            <h4 class="header-title text-center">{{__('Permission Pages')}}</h4>
                             <hr>
 
                             @error('permissions')

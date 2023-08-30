@@ -1,5 +1,5 @@
 @extends('layouts.backend.admin')
-@section('title','User Management')
+@section('title',__('User Management'))
 
 @push('page-css')
 <link href="{{ asset('assets') }}/libs/x-editable/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet"
@@ -18,7 +18,7 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">{{ __('Dashboard') }}</a></li>
                             <li class="breadcrumb-item active">@yield('title')</li>
                         </ol>
                     </div>
@@ -35,7 +35,7 @@
                         Data Table Users
                     </div>
                     <h5 class="text-blue float-right mt-0">
-                        <a href="{{ route('app.users.create') }}"><i class="mdi mdi-plus"></i> Create User</a>
+                        <a href="{{ route('app.users.create') }}"><i class="mdi mdi-plus"></i> {{ __('Create User') }}</a>
                     </h5>
 
                     <div class="table-responsive">
@@ -44,9 +44,9 @@
                                 <tr>
                                     <th style="width: 0px;"></th>
                                     <th class="text-center">No.</th>
-                                    <th class="text-center">Nama</th>
-                                    <th class="text-center">Email</th>
-                                    <th class="text-center">Status</th>
+                                    <th class="text-center">{{ __('Nama') }}</th>
+                                    <th class="text-center">{{ __('Email') }}</th>
+                                    <th class="text-center">{{ __('Status') }}</th>
                                     <th class="text-center"></th>
                                 </tr>
                             </thead>

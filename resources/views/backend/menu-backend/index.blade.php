@@ -65,17 +65,17 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card-box ribbon-box">
-                    <div class="ribbon ribbon-success float-left mb-4"><i class="mdi mdi-menu mr-1"></i> Menu
-                        Builder</div>
+                    <div class="ribbon ribbon-success float-left mb-4"><i class="mdi mdi-menu mr-1"></i> {{ __('Menu
+                        Builder') }}</div>
 
                     <div class="float-right mb-4 mt-0">
                         <button type="button" data-target="#tambah-submenu" data-toggle="modal"
                             class="btn btn-success btn-rounded"><i class="mdi mdi-plus"></i>
-                            Create Sub Menu</button>
+                            {{ __('Create Sub Menu') }}</button>
                     </div>
 
                     <div class="ribbon-content">
-                        <h4 class="header-title">Menu Structure</h4>
+                        <h4 class="header-title">{{ __('Menu Structure') }}</h4>
 
                         <div data-spy="scroll" data-target="#navbar-example3" data-offset="0" class="scrollspy-example"
                             style="height: 350px;">

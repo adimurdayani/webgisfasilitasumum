@@ -33,11 +33,10 @@
             <div class="col-lg-12">
                 <div class="card-box ribbon-box">
                     <div class="ribbon ribbon-blue float-left mb-3"><i class="mdi mdi-plus mr-1"></i>
-                        Data Table Modules
+                        {{ __('Data Table Modules') }}
                     </div>
                     <h5 class="text-blue float-right mt-0"><a href="#" data-target="#tambah" data-toggle="modal"><i
-                                class="mdi mdi-plus"></i> Create
-                            Module</a></h5>
+                                class="mdi mdi-plus"></i> {{ __('Create New') }} @yield('title')</a></h5>
 
                     <div class="ribbon-content table-responsive">
                         <table class="table table-striped w-100" id="table-module">

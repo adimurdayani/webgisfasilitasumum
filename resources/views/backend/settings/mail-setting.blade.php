@@ -1,5 +1,5 @@
 @extends('layouts.backend.admin')
-@section('title','Mail Settings')
+@section('title',__('Mail Settings'))
 
 @push('page-css')
 <link href="{{ asset('assets') }}/libs/x-editable/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet"
@@ -20,9 +20,10 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('app.settings.index') }}">General
-                                    Settings</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">{{ __('Dashboard') }}</a>
+                            </li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.settings.index') }}">{{ __('General
+                                    Settings') }}</a></li>
                             <li class="breadcrumb-item active">@yield('title')</li>
                         </ol>
                     </div>
@@ -39,7 +40,7 @@
             <div class="col-lg-8">
                 <div class="card-box ribbon-box">
                     <div class="ribbon ribbon-blue float-left mb-3"><i class="mdi mdi-home-city mr-1"></i>
-                        Mail Settings
+                        @yield('title')
                     </div>
                     <div class="ribbon-content">
                         @isset($mail)

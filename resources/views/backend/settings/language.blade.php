@@ -93,7 +93,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-4">
-                                    <button type="submit" class="btn btn-success">Add</button>
+                                    <button type="submit" class="btn btn-success">{{ __('Add') }}</button>
                                 </div>
                             </div>
                         </form>

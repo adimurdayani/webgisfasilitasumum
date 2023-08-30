@@ -1,5 +1,5 @@
 @extends('layouts.backend.admin')
-@section('title','Themes')
+@section('title',__('Themes'))
 
 @section('content')
 <div class="content">
@@ -12,7 +12,8 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">{{ __('Dashboard') }}</a>
+                            </li>
                             <li class="breadcrumb-item active">@yield('title')</li>
                         </ol>
                     </div>
@@ -25,7 +26,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card-box">
-                    <h4 class="header-title text-uppercase bg-light p-2">Theme Settings</h4>
+                    <h4 class="header-title text-uppercase bg-light p-2">{{ __('Theme Settings') }}</h4>
 
                     <div class="row">
                         <div class="col-md-6">

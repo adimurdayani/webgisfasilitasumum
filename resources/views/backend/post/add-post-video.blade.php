@@ -63,7 +63,7 @@
                         <div class="ribbon-content">
 
                             <div class="form-group mb-3">
-                                <label for="title">Title <span class="text-danger">*</span></label>
+                                <label for="title">{{ __('Title') }} <span class="text-danger">*</span></label>
                                 <input type="text" name="title"
                                     class="form-control @error('title') is-invalid @enderror" placeholder="Enter title"
                                     value="{{ old('title') }}" autofocus>
@@ -76,13 +76,13 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="sub_title">Sub Title</label>
+                                <label for="sub_title">{{ __('Sub Title') }}</label>
                                 <input type="text" name="sub_title" class="form-control" placeholder="Enter sub title"
                                     value="{{ old('sub_title') }}">
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="content">Content <span class="text-danger">*</span></label>
+                                <label for="content">{{ __('Content') }} <span class="text-danger">*</span></label>
                                 <textarea name="content" id="content" cols="30" rows="20"
                                     class="form-control @error('content') is-invalid @enderror ckeditor">{!! old('content') !!}</textarea>
 
@@ -98,24 +98,24 @@
 
                     <div class="card-box ribbon-box">
                         <div class="ribbon ribbon-blue float-left mb-4"><i class="mdi mdi-view-list mr-1"></i>
-                            Visibility
+                            {{ __('Visibility') }}
                         </div>
                         <div class="ribbon-content">
-                            <h4 class="header-title mt-5 mt-sm-0">Status</h4>
+                            <h4 class="header-title mt-5 mt-sm-0">{{ __('Status') }}</h4>
                             <div class="mt-3 form-inline mb-4">
                                 <div class="custom-control custom-radio mr-4">
                                     <input type="radio" id="customRadio1" name="is_active" value="1" checked
                                         class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadio1">Show</label>
+                                    <label class="custom-control-label" for="customRadio1">{{ __('Show') }}</label>
                                 </div>
                                 <div class="custom-control custom-radio">
                                     <input type="radio" id="customRadio2" name="is_active" value="0"
                                         class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadio2">Hide</label>
+                                    <label class="custom-control-label" for="customRadio2">{{ __('Hide') }}</label>
                                 </div>
                             </div>
 
-                            <h4 class="header-title mt-5 mt-sm-0">Visibility</h4>
+                            <h4 class="header-title mt-5 mt-sm-0">{{ __('Visibility') }}</h4>
                             <div class="mt-3">
                                 @foreach ($visibility as $v)
                                 <div class="custom-control custom-checkbox mb-2">
@@ -131,11 +131,12 @@
 
                     <div class="card-box ribbon-box">
                         <div class="ribbon ribbon-blue float-left mb-4"><i class="mdi mdi-text-box-outline mr-1"></i>
-                            SEO Details
+                            {{ __('SEO Details') }}
                         </div>
                         <div class="ribbon-content">
                             <div class="form-group mb-2">
-                                <label for="meta_title">Title <span class="text-muted">(Meta Title)</span></label>
+                                <label for="meta_title">{{ __('Title') }} <span class="text-muted">({{ __('Meta Title')
+                                        }})</span></label>
                                 <input type="text" name="meta_title" id="meta_title" value="{{ old('meta_title') }}"
                                     class="form-control @error('meta_title') is-invalid @enderror"
                                     placeholder="Enter meta title">
@@ -150,8 +151,9 @@
                             <div class="row mb-2">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="meta_keywords">Keywords <span class="text-muted">(Meta
-                                                Keywords)</span></label>
+                                        <label for="meta_keywords">{{ __('Keywords') }} <span class="text-muted">({{
+                                                __('Meta
+                                                Keywords') }})</span></label>
                                         <input type="text" name="meta_keywords" id="meta_keywords"
                                             value="{{ old('meta_keywords') }}"
                                             class="form-control @error('meta_keywords') is-invalid @enderror"
@@ -167,7 +169,8 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="meta_tag">Tags <span class="text-muted">(Meta tag)</span></label>
+                                        <label for="meta_tag">{{ __('Tags') }} <span class="text-muted">({{ __('Meta
+                                                tag') }})</span></label>
                                         <input type="text" name="meta_tag" id="selectize-tags"
                                             class="form-control @error('meta_tag') is-invalid @enderror"
                                             value="{{ old('meta_tag') }}" placeholder="Enter meta tags">
@@ -182,8 +185,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="meta_description">Description <span class="text-muted">(Meta
-                                        Description)</span></label>
+                                <label for="meta_description">{{ __('Description') }} <span class="text-muted">({{
+                                        __('Meta
+                                        Description') }})</span></label>
                                 <textarea name="meta_description" rows="5" cols="30"
                                     class="form-control @error('meta_description') is-invalid @enderror"
                                     placeholder="Enter meta description">{!! old('meta_description') !!}</textarea>
@@ -199,17 +203,19 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="card-box ribbon-box">
-                        <div class="ribbon ribbon-blue float-left mb-4"><i class="mdi mdi-image-album mr-1"></i> Image
+                        <div class="ribbon ribbon-blue float-left mb-4"><i class="mdi mdi-image-album mr-1"></i> {{
+                            __('Image') }}
                         </div>
                         <div class="ribbon-content">
                             <div class="form-group mt-3 mb-2">
-                                <label for="url_video" class="mb-0">Video Url <span class="text-danger">*</span></label>
+                                <label for="url_video" class="mb-0">{{ __('Video Url') }} <span
+                                        class="text-danger">*</span></label>
                                 <input type="text" name="url_video" id="url_video" class="form-control"
                                     placeholder="Enter video url" value="{{ old('url_video') }}">
                             </div>
 
                             <div class="form-group">
-                                <label for="image_description">Video Description <span
+                                <label for="image_description">{{ __('Video Description') }} <span
                                         class="text-danger">*</span></label>
                                 <input type="text" name="image_description"
                                     class="form-control @error('image_description') is-invalid @enderror"
@@ -223,29 +229,30 @@
                             </div>
 
                             <div class="form-group mt-3 mb-2">
-                                <label for="projectname" class="mb-0">Add Video Thumbnails <span
+                                <label for="projectname" class="mb-0">{{ __('Add Video Thumbnails') }} <span
                                         class="text-danger">*</span></label>
-                                <p class="text-muted font-14">Recommended images size 960x600 (px).</p>
+                                <p class="text-muted font-14">{{ __('Recommended images size') }} 960x600 (px).</p>
                                 <input type="file" name="img_thumb_video" id="img_thumb_video" required>
                             </div>
 
                             <div class="form-group mt-3 mb-2">
-                                <label for="image" class="mb-0">Post Thumbnails <span
+                                <label for="image" class="mb-0">{{ __('Post Thumbnails') }} <span
                                         class="text-danger">*</span></label>
-                                <p class="text-muted font-14">Recommended images size 960x600 (px).</p>
+                                <p class="text-muted font-14">{{ __('Recommended images size') }} 960x600 (px).</p>
                                 <input type="file" name="image" id="image" required>
                             </div>
                         </div>
                     </div> <!-- end card-box -->
                     <div class="card-box ribbon-box">
-                        <div class="ribbon ribbon-blue float-left mb-4"><i class="mdi mdi-view-list mr-1"></i> Category
+                        <div class="ribbon ribbon-blue float-left mb-4"><i class="mdi mdi-view-list mr-1"></i> {{
+                            __('Category') }}
                         </div>
                         <div class="ribbon-content">
                             <div class="form-group mb-2">
-                                <label for="id_categories">Category</label>
+                                <label for="id_categories">{{ __('Category') }}</label>
                                 <select name="id_categories" id="id_categories" class="form-control"
                                     data-toggle="select2">
-                                    <option value="">-- Select --</option>
+                                    <option value="">-- {{ __('Select') }} --</option>
                                     @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->title }}</option>
                                     @endforeach
@@ -253,18 +260,19 @@
                             </div>
 
                             <div class="form-group mb-2">
-                                <label for="id_subcategories">Sub Category</label>
+                                <label for="id_subcategories">{{ __('Sub Category') }}</label>
                                 <select name="id_subcategories" class="form-control" data-toggle="select2"></select>
                             </div>
                         </div>
                     </div> <!-- end card-box -->
 
                     <div class="card-box ribbon-box">
-                        <div class="ribbon ribbon-blue float-left mb-4"><i class="mdi mdi-publish mr-1"></i> Publish
+                        <div class="ribbon ribbon-blue float-left mb-4"><i class="mdi mdi-publish mr-1"></i> {{
+                            __('Publish') }}
                         </div>
                         <div class="ribbon-content">
                             <div class="form-group mb-2">
-                                <label for="publish">Publish</label>
+                                <label for="publish">{{ __('Publish') }}</label>
                                 <select name="publish" class="form-control">
                                     @foreach ($publises as $publish)
                                     <option value="{{ $publish }}">{{ $publish }}</option>
@@ -274,7 +282,7 @@
 
                             <div class="text-right">
                                 <button type="submit" class="btn btn-blue"><i class="mdi mdi-publish"></i>
-                                    Publish</button>
+                                    {{ __('Publish') }}</button>
                             </div>
                         </div>
                     </div> <!-- end card-box -->

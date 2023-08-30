@@ -1,5 +1,5 @@
 @extends('layouts.backend.admin')
-@section('title','Edit Language')
+@section('title',$language->name)
 @section('content')
 
 <div class="content">
@@ -12,9 +12,11 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('app.languages.index') }}">Language
-                                    Setting</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">{{__('Dashboard')}}</a>
+                            </li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.languages.index') }}">{{ __('List
+                                    Language
+                                    Setting') }}</a></li>
                             <li class="breadcrumb-item active">@yield('title')</li>
                         </ol>
                     </div>
@@ -32,18 +34,18 @@
                 <div class="col-lg-12">
                     <div class="card-box ribbon-box">
                         <div class="ribbon ribbon-warning float-left mb-4"><i class="mdi mdi-translate mr-1"></i>
-                            Language
+                            @yield('title')
                         </div>
 
                         <div class="float-right mb-4 mt-0">
                             <a href="{{ route('app.languages.index') }}" class="text-secondary"><i
                                     class="mdi mdi-view-list"></i>
-                                Language Settings</a>
+                                {{ __('List Language Settings') }}</a>
                         </div>
                         <div class="ribbon-content">
 
                             <div class="form-group mb-3">
-                                <label for="name">Name <span class="text-danger">*</span></label>
+                                <label for="name">{{ __('Name') }} <span class="text-danger">*</span></label>
                                 <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
                                     placeholder="Enter name" value="{{ old('name') ?? $language->name }}" autofocus>
 
@@ -55,7 +57,7 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="code">Code <span class="text-danger">*</span></label>
+                                <label for="code">{{ __('Code') }} <span class="text-danger">*</span></label>
                                 <input type="text" name="code" class="form-control @error('code') is-invalid @enderror"
                                     placeholder="en" value="{{ old('code') ?? $language->code }}">
 
@@ -67,7 +69,7 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="flag">Flag Code <span class="text-danger">*</span></label>
+                                <label for="flag">{{ __('Flag Code') }} <span class="text-danger">*</span></label>
                                 <select name="flag" id="flag" class="form-control @error('flag') is-invalid @enderror"
                                     data-toggle="select2">
                                     @foreach (countries() as $countryId => $name)
@@ -83,23 +85,23 @@
                                 @enderror
                             </div>
 
-                            <h4 class="header-title mt-5 mt-sm-0">Status</h4>
+                            <h4 class="header-title mt-5 mt-sm-0">{{ __('Status') }}</h4>
                             <div class="mt-3 mb-3">
                                 <div class="custom-control custom-radio">
                                     <input type="radio" id="customRadio1" name="status" value="1" {{ $language->status
                                     == true ? 'checked':'' }}
                                     class="custom-control-input">
-                                    <label class="custom-control-label" for="customRadio1">Active</label>
+                                    <label class="custom-control-label" for="customRadio1">{{ __('Active') }}</label>
                                 </div>
                                 <div class="custom-control custom-radio">
                                     <input type="radio" id="customRadio2" name="status" value="0"
                                         class="custom-control-input" {{ $language->status == false ? 'checked':'' }}>
-                                    <label class="custom-control-label" for="customRadio2">Inactive</label>
+                                    <label class="custom-control-label" for="customRadio2">{{ __('Inactive') }}</label>
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn  btn-sm btn-warning"><i class="fe-save"></i> Save
-                                Changes</button>
+                            <button type="submit" class="btn  btn-sm btn-warning"><i class="fe-save"></i> {{ __('Save
+                                Changes') }}</button>
                         </div>
                     </div> <!-- end card-box -->
 

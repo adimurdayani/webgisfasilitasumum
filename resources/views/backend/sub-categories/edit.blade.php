@@ -1,5 +1,5 @@
 @extends('layouts.backend.admin')
-@section('title','Edit Sub Category')
+@section('title',$subCategorie->title)
 
 @section('content')
 
@@ -13,9 +13,11 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('app.subcategories.index') }}">Sub
-                                    Category</a>
+                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">{{ __('Dashboard') }}</a>
+                            </li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.subcategories.index') }}">
+                                    {{ __("List Sub Category") }}
+                                </a>
                             </li>
                             <li class="breadcrumb-item active">@yield('title')</li>
                         </ol>
@@ -34,7 +36,7 @@
 
                     <div class="float-right mb-4 mt-0">
                         <a href="{{ route('app.subcategories.index') }}" class="text-secondary"><i class="fe-list"></i>
-                            Back to Sub Category</a>
+                            {{ __("List Sub Category") }}</a>
                     </div>
                     <div class="ribbon-content">
 
@@ -43,7 +45,7 @@
                             @method('PUT')
 
                             <div class="form-group mb-3">
-                                <label for="title">Title <span class="text-danger">*</span></label>
+                                <label for="title">{{ __('Category') }} <span class="text-danger">*</span></label>
                                 <select name="id_category" class="form-control" data-toggle="select2">
                                     @foreach ($categories as $category)
                                     <option value="{{ $category->id }}" {{ $category->id == $subCategorie->id ?
@@ -54,7 +56,7 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="title">Title <span class="text-danger">*</span></label>
+                                <label for="title">{{ __('Title') }} <span class="text-danger">*</span></label>
                                 <input type="text" name="title"
                                     class="form-control @error('title') is-invalid @enderror"
                                     value="{{ $subCategorie->title }}">
@@ -67,19 +69,19 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="keywords">Keywords</label>
+                                <label for="keywords">{{ __('Keywords') }}</label>
                                 <input type="text" name="keywords" class="form-control"
                                     value="{{ $subCategorie->keywords }}">
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="description">Description</label>
+                                <label for="description">{{ __('Description') }}</label>
                                 <textarea name="description"
                                     class="form-control">{{ $subCategorie->description }}</textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-sm btn-warning"><i class="fe-save"></i> Save
-                                Changes</button>
+                            <button type="submit" class="btn btn-sm btn-warning"><i class="fe-save"></i> {{ __('Save
+                                Changes') }}</button>
 
                         </form>
                     </div>

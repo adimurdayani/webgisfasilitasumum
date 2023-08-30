@@ -1,5 +1,5 @@
 @extends('layouts.backend.admin')
-@section('title','Company Settings')
+@section('title',__('Company Settings'))
 
 @push('page-css')
 <link href="{{ asset('assets') }}/libs/x-editable/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet"
@@ -20,9 +20,11 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('app.settings.index') }}">General
-                                    Settings</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">{{ __('Dashboard') }}</a>
+                            </li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.settings.index') }}">
+                                    {{__('General Settings')}}
+                                </a></li>
                             <li class="breadcrumb-item active">@yield('title')</li>
                         </ol>
                     </div>
@@ -39,14 +41,14 @@
             <div class="col-lg-8">
                 <div class="card-box ribbon-box">
                     <div class="ribbon ribbon-blue float-left mb-3"><i class="mdi mdi-home-city mr-1"></i>
-                        Company Settings
+                        @yield('title')
                     </div>
                     <div class="ribbon-content">
                         <div class="table-responsive">
                             <table class="table table-centered table-borderless table-striped mb-0">
                                 <tbody>
                                     <tr>
-                                        <td>App Name</td>
+                                        <td>{{__('App Name')}}</td>
                                         <td><a href="#" class="inline-username" data-name="app_name" data-type="text"
                                                 data-pk="{{ $generalSetting->id != null ? $generalSetting->id : '' }}"
                                                 data-title="Enter company name">
@@ -56,7 +58,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="width: 35%;">Author</td>
+                                        <td style="width: 35%;">{{__('Author')}}</td>
                                         <td>
                                             <a href="#" class="inline-username" data-name="author" data-type="text"
                                                 data-pk="{{ $generalSetting->id != null ? $generalSetting->id : '' }}"
@@ -66,7 +68,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Email Address</td>
+                                        <td>{{__('Email Address')}}</td>
                                         <td><a href="#" class="inline-username" data-name="email" data-type="email"
                                                 data-pk="{{ $generalSetting->id != null ? $generalSetting->id : '' }}"
                                                 data-title="Enter email address">
@@ -76,7 +78,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td>Phone</td>
+                                        <td>{{__('Phone')}}</td>
                                         <td><a href="#" class="inline-username" data-name="phone" data-type="text"
                                                 data-pk="{{ $generalSetting->id != null ? $generalSetting->id : '' }}"
                                                 data-title="Enter phone">
@@ -86,7 +88,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td>Alamat</td>
+                                        <td>{{__('Alamat')}}</td>
                                         <td><a href="#" class="inline-username" data-name="address" data-type="text"
                                                 data-pk="{{ $generalSetting->id != null ? $generalSetting->id : '' }}"
                                                 data-title="Enter alamat">
@@ -95,7 +97,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>City</td>
+                                        <td>{{__('City')}}</td>
                                         <td><a href="#" class="inline-username" data-name="city" data-type="text"
                                                 data-pk="{{ $generalSetting->id != null ? $generalSetting->id : '' }}"
                                                 data-title="Enter alamat">
@@ -104,7 +106,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Province</td>
+                                        <td>{{__('Province')}}</td>
                                         <td><a href="#" class="inline-username" data-name="province" data-type="text"
                                                 data-pk="{{ $generalSetting->id != null ? $generalSetting->id : '' }}"
                                                 data-title="Enter alamat">
@@ -113,7 +115,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Country</td>
+                                        <td>{{__('Country')}}</td>
                                         <td><a href="#" class="inline-username" data-name="country" data-type="text"
                                                 data-pk="{{ $generalSetting->id != null ? $generalSetting->id : '' }}"
                                                 data-title="Enter alamat">
@@ -123,7 +125,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td>Tax Number</td>
+                                        <td>{{__('Tax Number')}}</td>
                                         <td><a href="#" class="inline-username" data-name="tax_number" data-type="text"
                                                 data-pk="{{ $generalSetting->id != null ? $generalSetting->id : '' }}"
                                                 data-title="Enter alamat">
@@ -133,7 +135,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>About Site</td>
+                                        <td>{{__('About Site')}}</td>
                                         <td><a href="#" class="inline-username" data-name="about_site" data-type="text"
                                                 data-pk="{{ $generalSetting->id != null ? $generalSetting->id : '' }}"
                                                 data-title="Enter alamat">
@@ -143,7 +145,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Copyright Text</td>
+                                        <td>{{__('Copyright Text')}}</td>
                                         <td><a href="#" class="inline-username" data-name="copyright_text"
                                                 data-type="text"
                                                 data-pk="{{ $generalSetting->id != null ? $generalSetting->id : '' }}"
@@ -156,7 +158,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td>Website</td>
+                                        <td>{{__('Website')}}</td>
                                         <td><a href="#" class="inline-username" data-name="link_website"
                                                 data-type="text"
                                                 data-pk="{{ $generalSetting->id != null ? $generalSetting->id : '' }}"

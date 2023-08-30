@@ -4,7 +4,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Create New Permission</h4>
+                <h4 class="modal-title">{{ __('Create New') }} @yield('title')</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <form action="{{ route('app.permissions.create') }}" method="post">
@@ -12,7 +12,8 @@
                 <div class="modal-body p-4">
 
                     <div class="form-group">
-                        <label for="module_id" class="control-label">Module <span class="text-danger">*</span></label>
+                        <label for="module_id" class="control-label">{{ __('Module') }} <span
+                                class="text-danger">*</span></label>
                         <select name="module_id" class="form-control @error('module_id') is-invalid @enderror"
                             data-toggle="select2">
                             @foreach ($modules as $module)
@@ -28,7 +29,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="name" class="control-label">Permission Name <span
+                        <label for="name" class="control-label">{{ __('Permission Name') }} <span
                                 class="text-danger">*</span></label>
                         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
                             id="name" placeholder="Enter permission name" value="{{ old('name') }}" autofocus>
@@ -41,7 +42,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="slug" class="control-label">Slug <span class="text-danger">*</span></label>
+                        <label for="slug" class="control-label">{{ __('Slug') }} <span
+                                class="text-danger">*</span></label>
                         <input type="text" name="slug" value="{{ old('slug') }}"
                             class="form-control @error('slug') is-invalid @enderror" id="slug" placeholder="Enter slug">
 

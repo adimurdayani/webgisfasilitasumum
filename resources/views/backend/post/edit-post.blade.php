@@ -1,5 +1,5 @@
 @extends('layouts.backend.admin')
-@section('title',__('Edit Article'))
+@section('title',Str::limit($post->title,50))
 
 @push('page-css')
 <link href="{{ asset('assets') }}/filepond/filepond.css" rel="stylesheet" />
@@ -271,15 +271,18 @@
                     </div> <!-- end card-box -->
 
                     <div class="card-box ribbon-box">
-                        <div class="ribbon ribbon-warning float-left mb-4"><i class="mdi mdi-publish mr-1"></i> {{ __('Publish') }}
+                        <div class="ribbon ribbon-warning float-left mb-4"><i class="mdi mdi-publish mr-1"></i> {{
+                            __('Publish') }}
                         </div>
                         <div class="ribbon-content">
                             <div class="form-group mb-2">
                                 <label for="publish">{{ __('Publish') }}</label>
                                 <select name="publish" class="form-control">
-                                    <option value="publish" {{ $post->publish == 'publish' ? 'selected' : '' }}>{{ __('Publish') }}
+                                    <option value="publish" {{ $post->publish == 'publish' ? 'selected' : '' }}>{{
+                                        __('Publish') }}
                                     </option>
-                                    <option value="draf" {{ $post->publish == 'draf' ? 'selected' : '' }}>{{ __('Draf') }}
+                                    <option value="draf" {{ $post->publish == 'draf' ? 'selected' : '' }}>{{ __('Draf')
+                                        }}
                                     </option>
                                 </select>
                             </div>

@@ -13,8 +13,11 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="{{ route('app.roles.index') }}">Roles</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">{{ __('Dashboard') }}</a>
+                            </li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.roles.index') }}">{{ __('List Roles')
+                                    }}</a>
+                            </li>
                             <li class="breadcrumb-item active">@yield('title')</li>
                         </ol>
                     </div>
@@ -30,18 +33,18 @@
                 <div class="col-lg-12">
                     <div class="card-box ribbon-box">
                         <div class="ribbon ribbon-blue float-left"><i class="mdi mdi-plus mr-1"></i>
-                            Create New Role
+                            {{ __('Create New Role') }}
                         </div>
 
                         <div class="float-right mt-0">
                             <a href="{{ route('app.roles.index') }}" class="text-secondary btn-rounded"><i
                                     class="fe-list"></i>
-                                List Role</a>
+                                {{ __('List Role') }}</a>
                         </div>
 
                         <div class="ribbon-content">
                             <div class="form-group mb-4">
-                                <label for="name">Name <span class="text-danger">*</span></label>
+                                <label for="name">{{ __('Name') }} <span class="text-danger">*</span></label>
                                 <input type="text" name="name" id="name" placeholder="Enter name"
                                     class="form-control @error('name') is-invalid @enderror">
 
@@ -53,7 +56,7 @@
                             </div>
 
                             <div class="form-group mb-4">
-                                <label for="description">Description </label>
+                                <label for="description">{{ __('Description') }} </label>
                                 <textarea name="description" id="description" cols="30" rows="5" class="form-control"
                                     placeholder="Enter description"></textarea>
                             </div>
@@ -69,7 +72,7 @@
                 <div class="col-lg-12">
                     <div class="card-box ribbon-box">
                         <div class="ribbon ribbon-blue float-left"><i class="mdi mdi-plus mr-1"></i>
-                            Manage Permission for Role
+                            {{ __('Manage Permission for Role') }}
                         </div>
                         <div class="float-right mt-0">
                             <div class="custom-control custom-checkbox mb-3">

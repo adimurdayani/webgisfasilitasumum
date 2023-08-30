@@ -1,5 +1,5 @@
 @extends('layouts.backend.admin')
-@section('title','SEO Settings')
+@section('title',__('SEO Settings'))
 
 @push('page-css')
 <link href="{{ asset('assets') }}/libs/x-editable/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet"
@@ -20,7 +20,8 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">{{ __('Dashboard') }}</a>
+                            </li>
                             <li class="breadcrumb-item active">@yield('title')</li>
                         </ol>
                     </div>
@@ -37,13 +38,13 @@
                         <div class="col-md-12">
                             <div class="text-right mb-2">
                                 <a href="{{ route('app.sitemaps.index') }}" class="btn btn-sm btn-rounded btn-blue"
-                                    target="_blank">Go to Sitemap</a>
+                                    target="_blank">{{ __('Go to Sitemap') }}</a>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-centered table-borderless table-striped mb-0">
                                     <tbody>
                                         <tr>
-                                            <td>SEO Title</td>
+                                            <td>{{ __('SEO Title') }}</td>
                                             <td><a href="#" class="inline-username" data-name="seo_title"
                                                     data-type="text"
                                                     data-pk="{{ $seo_setting->id != null ? $seo_setting->id : '' }}"
@@ -54,7 +55,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 35%;">SEO Keywords</td>
+                                            <td style="width: 35%;">{{ __('SEO Keywords') }}</td>
                                             <td>
                                                 <a href="#" class="inline-username" data-name="seo_keywords"
                                                     data-type="text"
@@ -66,7 +67,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 35%;">SEO Meta Description</td>
+                                            <td style="width: 35%;">{{ __('SEO Meta Description') }}</td>
                                             <td>
                                                 <a href="#" class="inline-username" data-name="seo_meta_description"
                                                     data-type="text"
@@ -79,7 +80,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 35%;">Author Name</td>
+                                            <td style="width: 35%;">{{ __('Author Name') }}</td>
                                             <td>
                                                 <a href="#" class="inline-username" data-name="author_name"
                                                     data-type="text"
@@ -91,7 +92,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 35%;">OG Title</td>
+                                            <td style="width: 35%;">{{ __('OG Title') }}</td>
                                             <td>
                                                 <a href="#" class="inline-username" data-name="og_title"
                                                     data-type="text"
@@ -103,7 +104,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 35%;">OG Description</td>
+                                            <td style="width: 35%;">{{ __('OG Description') }}</td>
                                             <td>
                                                 <a href="#" class="inline-username" data-name="og_description"
                                                     data-type="text"
@@ -125,34 +126,34 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group mb-3">
-                                    <label for="goggle_analytics_id">Google Analytics ID <span
+                                    <label for="goggle_analytics_id">{{ __('Google Analytics ID') }} <span
                                             class="text-danger">*</span></label>
                                     <input type="text" name="goggle_analytics_id" id="goggle_analytics_id"
                                         value="{{ $seo_setting->goggle_analytics_id == null ? '' : $seo_setting->goggle_analytics_id }}"
                                         class="form-control" placeholder="Enter google analytics id">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="addthis_script">AddThis Script <span
+                                    <label for="addthis_script">{{ __('AddThis Script') }} <span
                                             class="text-danger">*</span></label>
                                     <input type="text" name="addthis_script" id="addthis_script"
                                         value="{{ $seo_setting->addthis_script == null ? '' : $seo_setting->addthis_script }}"
                                         class="form-control" placeholder="Enter add this script">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="addthis_toolbox_code">AddThis Toolbox Code <span
+                                    <label for="addthis_toolbox_code">{{ __('AddThis Toolbox Code') }} <span
                                             class="text-danger">*</span></label>
                                     <input type="text" name="addthis_toolbox_code" id="addthis_toolbox_code"
                                         value="{{ $seo_setting->addthis_toolbox_code == null ? '' : $seo_setting->addthis_toolbox_code }}"
                                         class="form-control" placeholder="Enter add this toolbox code">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="costum_js">Costum JS</label>
+                                    <label for="costum_js">{{ __('Costum JS') }}</label>
                                     <textarea name="costum_js" id="costum_js" cols="30" rows="10"
                                         class="form-control">{{ $seo_setting->costum_js == null ? '' : $seo_setting->costum_js }}</textarea>
                                 </div>
 
                                 <button type="submit" class="btn btn-sm btn-success"><i class="fe-save"></i>
-                                    Update</button>
+                                    {{ __('Update') }}</button>
                             </form>
                         </div>
                     </div>
@@ -161,7 +162,7 @@
 
             <div class="col-lg-4">
                 <div class="card-box">
-                    <h4 class="header-title mb-3">OG Image</h4>
+                    <h4 class="header-title mb-3">{{ __('OG Image') }}</h4>
                     <div class="text-center mb-4">
                         <img src="{{ $seo_setting->og_img != null ? asset('storage/public/img').'/'.$seo_setting->og_img : asset('assets/images/not_found.jpg') }}"
                             class="img-thumbnail" alt="profile-image">
@@ -171,12 +172,12 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group mb-3">
-                            <label for="">OG Image</label>
+                            <label for="">{{ __('OG Image') }}</label>
                             <input type="file" name="og_img" id="og_img">
                         </div>
 
                         <button type="submit" class="btn btn-sm btn-success"><i class="fe-upload"></i>
-                            Upload</button>
+                            {{ __('Upload') }}</button>
                     </form>
                 </div>
             </div>

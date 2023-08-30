@@ -1,5 +1,5 @@
 @extends('layouts.backend.admin')
-@section('title','General Settings')
+@section('title',__('General Settings'))
 
 @push('page-css')
 <link href="{{ asset('assets') }}/libs/x-editable/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet"
@@ -20,7 +20,8 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">{{__('Dashboard')}}</a>
+                            </li>
                             <li class="breadcrumb-item active">@yield('title')</li>
                         </ol>
                     </div>
@@ -37,7 +38,7 @@
             <div class="col-lg-8">
                 <div class="card-box ribbon-box">
                     <div class="ribbon ribbon-blue float-left mb-3"><i class="mdi mdi-image mr-1"></i>
-                        Company Settings
+                        @yield('title')
                     </div>
                     <div class="ribbon-content">
                         <div class="row">

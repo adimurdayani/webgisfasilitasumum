@@ -4,12 +4,12 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Create New Sub Category</h4>
+                <h4 class="modal-title">{{ __('Create New') }} @yield('title')</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body p-4">
                 <div class="form-group">
-                    <label for="id_category" class="control-label">Category <span class="text-danger">*</span></label>
+                    <label for="id_category" class="control-label">{{__('Category')}} <span class="text-danger">*</span></label>
                     <select name="id_category" class="form-control" data-toggle="select2">
                         @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->title }}</option>
@@ -18,24 +18,24 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="title" class="control-label">Title <span class="text-danger">*</span></label>
+                    <label for="title" class="control-label">{{__('Title')}} <span class="text-danger">*</span></label>
                     <input type="text" name="title" class="form-control" placeholder="Enter title" autofocus>
                 </div>
 
                 <div class="form-group">
-                    <label for="keywords" class="control-label">Keywords</label>
+                    <label for="keywords" class="control-label">{{__('Keywords')}}</label>
                     <input type="text" name="keywords" class="form-control" placeholder="Enter keywords">
                 </div>
 
                 <div class="form-group">
-                    <label for="description" class="control-label">Description</label>
+                    <label for="description" class="control-label">{{__('Description')}}</label>
                     <textarea name="description" class="form-control" cols="30" rows="5"></textarea>
                 </div>
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success waves-effect waves-light simpan">Save</button>
+                <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">{{__('Close')}}</button>
+                <button type="button" class="btn btn-success waves-effect waves-light simpan">{{__('Save')}}</button>
             </div>
         </div>
     </div>
