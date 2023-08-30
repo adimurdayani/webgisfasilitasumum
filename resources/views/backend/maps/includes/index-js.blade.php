@@ -9,7 +9,7 @@
 <script>
     L.mapbox.accessToken = 'pk.eyJ1IjoiYWRpbXVyZGF5YW5pIiwiYSI6ImNrcmdyNG9oazBrOTIydnFuc21kYW53YjIifQ.kKTX_r3f99B-LTG5XKmUHA';
     var map = L.mapbox.map('map')
-        .setView([-2.492707, 120.759647], 11)
+        .setView([-2.492707, 120.759647], 12)
         .addControl(L.mapbox.geocoderControl('mapbox.places',{
             autocomplete: true 
         }));
